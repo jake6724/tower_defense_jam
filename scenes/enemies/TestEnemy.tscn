@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckwqc8ktbjdpa"]
+
+[ext_resource type="Texture2D" uid="uid://hnxttmgepy4x" path="res://assets/placeholders/enemy_placeholder.png" id="1_bom1g"]
+[ext_resource type="Script" uid="uid://bb3mlm71gp7ni" path="res://scripts/enemy.gd" id="2_4h6sc"]
+
+[node name="TestEnemy" type="Sprite2D"]
+texture = ExtResource("1_bom1g")
+centered = false
+script = ExtResource("2_4h6sc")
+metadata/_custom_type_script = "uid://bb3mlm71gp7ni"

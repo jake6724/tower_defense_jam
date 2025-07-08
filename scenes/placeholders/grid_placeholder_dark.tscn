@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://35cfmg53iykx"]
+
+[ext_resource type="Texture2D" uid="uid://4gsg2phqkt4s" path="res://assets/placeholders/grid_placeholder_dark.png" id="1_ccyfv"]
+
+[node name="CellPlaceholderDark" type="Sprite2D"]
+texture = ExtResource("1_ccyfv")
+centered = false

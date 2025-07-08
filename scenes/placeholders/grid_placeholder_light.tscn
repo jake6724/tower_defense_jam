@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbdti4qw3htmn"]
+
+[ext_resource type="Texture2D" uid="uid://c3cjmljr5gae3" path="res://assets/placeholders/grid_placeholder_light.png" id="1_ogkf4"]
+
+[node name="GridPlaceholderLight" type="Sprite2D"]
+texture = ExtResource("1_ogkf4")
+centered = false

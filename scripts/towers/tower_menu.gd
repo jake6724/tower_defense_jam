@@ -5,7 +5,7 @@ extends Control
 @onready var button_container: HBoxContainer = $HBoxContainer
 @onready var fire_button: Button = $HBoxContainer/FireButton
 @onready var water_button: Button = $HBoxContainer/WaterButton
-@onready var ice_button: Button = $HBoxContainer/IceButton
+@onready var earth_button: Button = $HBoxContainer/EarthButton
 
 # Signals
 signal tower_selected

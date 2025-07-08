@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfv8eavoxw6ln"]
-
-[ext_resource type="Script" uid="uid://bb3mlm71gp7ni" path="res://scripts/enemy.gd" id="1_3moqa"]
-
-[node name="FireTower" type="Area2D"]
-script = ExtResource("1_3moqa")
-metadata/_custom_type_script = "uid://bb3mlm71gp7ni"

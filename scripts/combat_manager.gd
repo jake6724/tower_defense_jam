@@ -1,2 +1,0 @@
-# Autoloader
-extends Node

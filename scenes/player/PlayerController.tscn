@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://btulqisr6vlgj"]
 
 [ext_resource type="Script" uid="uid://dfvyivdwm67y1" path="res://scripts/player/player_controller.gd" id="1_ci81t"]
-[ext_resource type="PackedScene" uid="uid://ciicsqtfh31fh" path="res://scenes/TowerMenu.tscn" id="2_awcob"]
+[ext_resource type="PackedScene" uid="uid://ciicsqtfh31fh" path="res://scenes/player/TowerMenu.tscn" id="2_awcob"]
 
 [node name="PlayerController" type="Node2D"]
 script = ExtResource("1_ci81t")

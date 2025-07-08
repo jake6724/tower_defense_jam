@@ -13,7 +13,7 @@ var attack_timer: Timer = Timer.new()
 # Tower stats
 var damage: float
 var speed: float
-var attack_range: float = 20.0
+var attack_range: float = 55.0
 var num_targets: int
 var element: String
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ciicsqtfh31fh"]
 
-[ext_resource type="Script" uid="uid://dhbvh3ym8unk4" path="res://scripts/towers/tower_menu.gd" id="1_xx6fa"]
-[ext_resource type="FontFile" uid="uid://b68bed5vb2siy" path="res://assets/fonts/Minecraft_font.ttf" id="2_q4nx8"]
+[ext_resource type="Script" uid="uid://dhbvh3ym8unk4" path="res://scripts/towers/tower_menu.gd" id="1_vis4n"]
+[ext_resource type="FontFile" uid="uid://b68bed5vb2siy" path="res://assets/fonts/Minecraft_font.ttf" id="2_y6gfl"]
 
 [node name="TowerMenu" type="Control"]
 layout_mode = 3
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_xx6fa")
+script = ExtResource("1_vis4n")
 metadata/_custom_type_script = "uid://dhbvh3ym8unk4"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -25,22 +25,24 @@ offset_top = -24.0
 offset_right = 65.5
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(0.953491, 1.00193)
+mouse_filter = 2
 
 [node name="FireButton" type="Button" parent="HBoxContainer"]
 texture_filter = 1
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_q4nx8")
+theme_override_fonts/font = ExtResource("2_y6gfl")
 text = "Fire"
 
 [node name="WaterButton" type="Button" parent="HBoxContainer"]
 texture_filter = 1
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_q4nx8")
+theme_override_fonts/font = ExtResource("2_y6gfl")
 text = "Water"
 
-[node name="IceButton" type="Button" parent="HBoxContainer"]
+[node name="EarthButton" type="Button" parent="HBoxContainer"]
 texture_filter = 1
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_q4nx8")
-text = "Ice"
+theme_override_fonts/font = ExtResource("2_y6gfl")
+text = "Earth"

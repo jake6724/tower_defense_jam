@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://vb1cipw2nthp"]
+[gd_scene load_steps=5 format=3 uid="uid://vb1cipw2nthp"]
 
 [ext_resource type="Script" uid="uid://c6gn0gwhvt2he" path="res://scripts/main.gd" id="1_0bbpv"]
 [ext_resource type="PackedScene" uid="uid://eierlhsm86n1" path="res://scenes/WorldGrid.tscn" id="1_elqb8"]
 [ext_resource type="PackedScene" uid="uid://btulqisr6vlgj" path="res://scenes/PlayerController.tscn" id="4_rarhs"]
-[ext_resource type="Script" uid="uid://n6g8ehb7njgs" path="res://scripts/path_finder.gd" id="5_vcsgt"]
 [ext_resource type="PackedScene" uid="uid://cmh04ac36ddat" path="res://scenes/EnvironmentSample.tscn" id="7_nxtc6"]
 
 [node name="Main" type="Node2D"]
@@ -12,12 +11,7 @@ script = ExtResource("1_0bbpv")
 [node name="WorldGrid" parent="." instance=ExtResource("1_elqb8")]
 z_index = 100
 
-[node name="PlayerController" parent="." node_paths=PackedStringArray("world_grid", "pathfinder") instance=ExtResource("4_rarhs")]
-world_grid = NodePath("../WorldGrid")
-pathfinder = NodePath("../PathFinder")
-
-[node name="PathFinder" type="Node" parent="." node_paths=PackedStringArray("world_grid")]
-script = ExtResource("5_vcsgt")
+[node name="PlayerController" parent="." node_paths=PackedStringArray("world_grid") instance=ExtResource("4_rarhs")]
 world_grid = NodePath("../WorldGrid")
 
 [node name="LevelGraphic" parent="." instance=ExtResource("7_nxtc6")]

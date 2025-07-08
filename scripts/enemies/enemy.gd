@@ -11,15 +11,18 @@ var path
 var min_distance: float = 1
 
 # Enemy Stats from Enemy Data Resource
-var health = data.health
-var speed = data.speed
-var element = data.element
+var health: float
+var speed: float
+var element: GameManager.Element
 
 # Signals
 signal is_dead
 
 func _ready():
 	path = GameManager.active_path.duplicate() # Enemies MUST use their own local copy
+	health = data.health
+	speed = data.speed
+	element = data.element
 
 ## Reduce enemies `health` stat by `damage_recieved`. Return `true` if enemy died, `false` otherwise.
 ## Handles despawning enemy in the case of death.

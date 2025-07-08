@@ -25,8 +25,6 @@ func generate_grid() -> void:
 			spawn_placeholder(world_pos, is_dark)
 			is_dark = not is_dark
 
-	print(data)
-
 func spawn_placeholder(pos: Vector2, _is_dark: bool) -> void:
 	var p: Sprite2D
 	if _is_dark:

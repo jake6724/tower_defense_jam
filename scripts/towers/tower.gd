@@ -8,19 +8,28 @@ extends Node2D
 
 var active_targets: Array[Enemy] = []
 var inactive_targets: Array[Enemy] = []
-var attack_timer: Timer
+var attack_timer: Timer = Timer.new()
 
 # Tower stats
-var damage: float = 5
-var speed: float = 1 # Fire rate; time between shots in seconds
-var num_targets: int = 1 # How many enemies shot per shot max
+var damage: float
+var speed: float
+var attack_range: float
+var num_targets: int
+var element: String
 
 var can_attack: bool = true
+
+func set_stats() -> void: # Used by child classes
+	pass
 
 func _ready():
 	# Configure Area2D
 	area.area_entered.connect(on_area_entered)
 	area.area_exited.connect(on_area_exited)
+
+	# Configure CollisionShape2D
+	var shape: CircleShape2D = collider.shape
+	shape.radius = attack_range
 
 	# Configure Timer
 	attack_timer.timeout.connect(on_attack_timer_timeout)
@@ -32,7 +41,7 @@ func _physics_process(_delta):
 
 func attack() -> void:
 	for enemy in active_targets:
-		var is_dead: bool = enemy.take_damage(damage) # TODO: Enemy interface for this needed
+		var is_dead: bool = enemy.take_damage(damage)
 		if is_dead:
 			active_targets.remove_at(active_targets.find(enemy))
 			update_active_targets()
@@ -57,7 +66,7 @@ func on_area_exited(intruder) -> void:
 
 func update_active_targets() -> void:
 	# Move as many inactive targets to active as possible/allowed
-	while active_targets.size() < num_targets and inactive_targets[0]:
+	while active_targets.size() < num_targets and inactive_targets.size() > 0:
 		active_targets.append(inactive_targets.pop_front())
 
 func on_attack_timer_timeout() -> void:

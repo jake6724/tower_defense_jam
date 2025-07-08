@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://ckfb2xehi2wqu" path="res://scripts/player/player_camera.gd" id="3_0bbpv"]
 [ext_resource type="PackedScene" uid="uid://btulqisr6vlgj" path="res://scenes/PlayerController.tscn" id="4_rarhs"]
 [ext_resource type="Script" uid="uid://n6g8ehb7njgs" path="res://scripts/path_finder.gd" id="5_vcsgt"]
-[ext_resource type="PackedScene" uid="uid://ckwqc8ktbjdpa" path="res://scenes/enemies/TestEnemy.tscn" id="6_c01mt"]
+[ext_resource type="PackedScene" uid="uid://du1t5vtr2ohbu" path="res://scenes/enemies/TestEnemy.tscn" id="6_c01mt"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0bbpv")
@@ -18,7 +18,7 @@ script = ExtResource("3_0bbpv")
 [node name="PlayerController" parent="." node_paths=PackedStringArray("world_grid", "pathfinder", "enemy") instance=ExtResource("4_rarhs")]
 world_grid = NodePath("../WorldGrid")
 pathfinder = NodePath("../PathFinder")
-enemy = NodePath("../TestEnemy")
+enemy = NodePath("")
 
 [node name="PathFinder" type="Node" parent="." node_paths=PackedStringArray("world_grid")]
 script = ExtResource("5_vcsgt")

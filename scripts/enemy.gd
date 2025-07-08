@@ -11,17 +11,27 @@ var path: PackedVector2Array = [Vector2(32.0, 224.0),Vector2(64.0, 224.0), Vecto
 var min_distance: float = 5.0
 
 # Enemy Stats
+var health: float = 100
 var speed: float = 300.0
 
 # func _ready():
 # 	position = GameManager.grid_to_world(path[0])
+
+## Reduce enemies `health` stat by `damage_recieved`. Return `true` if enemy died, `false` otherwise.
+## Handles despawning enemy in the case of death.
+func take_damage(damage_recieved: float):
+	health -= damage_recieved
+	if health <= 0:
+		call_deferred("queue_free") # TODO: Idk about this; could be dangerous to allow it to despawn itself
+		return true
+	else:
+		return false
 
 func _process(delta):
 	move(delta)
 
 func move(delta) -> void:
 	if path:
-		print(position)
 		if position.distance_to(path[0]) > min_distance:
 			position += (path[0] - position).normalized() * speed * delta
 

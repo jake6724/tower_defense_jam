@@ -1,5 +1,9 @@
 class_name Enemy
-extends Sprite2D
+extends Area2D
+
+# Child references
+@onready var sprite: Sprite2D = $Sprite2D
+@onready var collider: CollisionShape2D = $CollisionShape2D
 
 # TODO: Could add jittering to enemy placement, so that multiple small enemies could be on 1 grid point but not all stack
 

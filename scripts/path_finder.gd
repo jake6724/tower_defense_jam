@@ -29,7 +29,7 @@ func add_all_points():
 		a_star.add_point(cur_id, GameManager.grid_to_world(grid_point))
 		cur_id += 1
 
-## Iterate over all world_grid grid points and run connectPoint on them. Used to connect all points to eachother in world_grid.
+## Iterate over all world_grid grid points and run connect_point on them. Used to connect all points to eachother in world_grid.
 func connect_all_points():
 	for grid_point in world_grid.data:
 		connectPoint(grid_point)

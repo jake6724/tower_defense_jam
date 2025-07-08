@@ -37,8 +37,6 @@ func _input(_event):
 	if Input.is_action_just_pressed("right_click"):
 		if from:
 			to = get_global_mouse_position()
-			var one = GameManager.world_to_grid(from)
-			var two = GameManager.world_to_grid(to)
 			var path = pathfinder.get_astar_path(GameManager.world_to_grid(from), GameManager.world_to_grid(to))
 			enemy.path = path
 			print(path)
@@ -54,9 +52,6 @@ func _input(_event):
 			prev_line = line
 
 			from = null
-
-
-
 
 		else:
 			from = get_global_mouse_position()

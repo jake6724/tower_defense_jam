@@ -5,6 +5,9 @@ extends Node2D
 @export var world_grid: WorldGrid
 @export var pathfinder: PathFinder
 
+# Child References
+@onready var tower_menu: TowerMenu = $UI/TowerMenu
+
 var tower: PackedScene = preload("res://scenes/towers/FireTower.tscn") # Need to allow for different types of towers 
 
 # DEV

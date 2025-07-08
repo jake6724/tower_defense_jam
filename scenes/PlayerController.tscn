@@ -1,7 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://btulqisr6vlgj"]
+[gd_scene load_steps=3 format=3 uid="uid://btulqisr6vlgj"]
 
 [ext_resource type="Script" uid="uid://dfvyivdwm67y1" path="res://scripts/player/player_controller.gd" id="1_ci81t"]
+[ext_resource type="PackedScene" uid="uid://ciicsqtfh31fh" path="res://scenes/towers/TowerMenu.tscn" id="2_awcob"]
 
 [node name="PlayerController" type="Node2D"]
 script = ExtResource("1_ci81t")
 metadata/_custom_type_script = "uid://dfvyivdwm67y1"
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="TowerMenu" parent="UI" instance=ExtResource("2_awcob")]

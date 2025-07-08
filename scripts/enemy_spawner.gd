@@ -47,9 +47,8 @@ func spawn_enemy(enemy_name: String):
 	add_child(new_enemy)
 
 func on_enemy_died(enemy: Enemy) -> void:
+	active_enemies.remove_at(active_enemies.find(enemy))
 	enemy.queue_free()
 
 func on_spawn_timer_timeout():
 	can_spawn_enemy = true
-
-	

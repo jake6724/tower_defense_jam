@@ -5,15 +5,17 @@ var cell_size: int = 16
 var active_path: PackedVector2Array
 var active_spawn_location: Vector2 # In world coordinates
 
-# LEVEL PATHS
-var path_1: PackedVector2Array = [Vector2(0,9), Vector2(1,9), Vector2(2,9), Vector2(3,9), Vector2(4,9), Vector2(5,9), 
-Vector2(5,8), Vector2(5,7), Vector2(6,7), Vector2(7,7), Vector2(8,7), Vector2(9,7), Vector2(9, 8), Vector2(9, 9), 
-Vector2(9, 10), Vector2(9,11), Vector2(10,11), Vector2(11,11), Vector2(12,11), Vector2(13,11),Vector2(14,11),Vector2(15,11),
-Vector2(15,10),Vector2(15,9)]
+var levels: Array[PackedScene] = [preload("res://scenes/level/LevelEnvironmentOne.tscn")]
+var active_level: LevelEnvironment
+
+var path_1
 var path_1_spawn_location: Vector2 = Vector2(0,9)
 
 func _ready():
-	active_path = convert_path_to_world(path_1)
+	active_level = levels[0].instantiate()
+	add_child(active_level)
+	print(active_level)
+	active_path = convert_path_to_world((active_level.waypoint_manager.get_waypoint_path()))
 	active_spawn_location = (active_path[0])
 
 	# Configure Enemy Spawner

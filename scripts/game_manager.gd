@@ -14,15 +14,17 @@ var path_1_spawn_location: Vector2 = Vector2(0,9)
 
 func _ready():
 	active_path = convert_path_to_world(path_1)
-	active_spawn_location = grid_to_world(path_1_spawn_location)
+	active_spawn_location = (active_path[0])
+
+	# Configure Enemy Spawner
+	EnemySpawner.wave_complete.connect(on_wave_complete)
+
+func on_wave_complete() -> void:
+	print("Wave Complete!")
 
 func convert_path_to_world(path) -> PackedVector2Array:
 	for i in range(path.size()):
-		print("Before: ", path[i])
 		path[i] = GameManager.grid_to_world(path[i])
-		print("After: ", path[i])
-
-	print("Converted Path: ", path)
 	return path
 
 func grid_to_world(_pos: Vector2) -> Vector2:

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://mfpy8qxjx58x"]
 
 [ext_resource type="Script" uid="uid://bovy1ah2pivrm" path="res://scripts/towers/fire_tower.gd" id="1_8vcdi"]
-[ext_resource type="Texture2D" uid="uid://hnxttmgepy4x" path="res://assets/placeholders/enemy_placeholder.png" id="2_bfb4r"]
+[ext_resource type="Texture2D" uid="uid://npdjrbrabd6a" path="res://assets/placeholders/spr_tower_fire.png" id="2_bfb4r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_53w0b"]
 radius = 10.4403
@@ -12,6 +12,8 @@ script = ExtResource("1_8vcdi")
 metadata/_custom_type_script = "uid://bovy1ah2pivrm"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1, 0.995824)
 texture = ExtResource("2_bfb4r")
 centered = false
 

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://chcjfnhrohafj"]
+
+[ext_resource type="Script" uid="uid://bb3mlm71gp7ni" path="res://scripts/enemy.gd" id="1_56s5r"]
+[ext_resource type="Texture2D" uid="uid://cnn7fjhvwjuiy" path="res://assets/art/sprites/spr_enemy_water.png" id="2_lo6ju"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cjl7e"]
+radius = 8.06226
+
+[node name="WaterEnemy" type="Area2D"]
+script = ExtResource("1_56s5r")
+metadata/_custom_type_script = "uid://bb3mlm71gp7ni"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.970872, 0.994218)
+texture = ExtResource("2_lo6ju")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(8, 8)
+shape = SubResource("CircleShape2D_cjl7e")

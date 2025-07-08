@@ -3,3 +3,4 @@ extends Node2D
 
 # Child References
 @onready var waypoint_manager: WaypointManager = $WaypointManager
+@export var wave: Wave

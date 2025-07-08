@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Wave" load_steps=2 format=3 uid="uid://b48e0thvp6yj3"]
+
+[ext_resource type="Script" uid="uid://cskry1sw3vqba" path="res://scripts/level/wave.gd" id="1_ixo4d"]
+
+[resource]
+script = ExtResource("1_ixo4d")
+data = Array[int]([2, 1, 0, 0, 2, 2, 0, 2, 1, 0, 0])

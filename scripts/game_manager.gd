@@ -11,6 +11,8 @@ var active_level: LevelEnvironment
 var path_1
 var path_1_spawn_location: Vector2 = Vector2(0,9)
 
+enum Element {FIRE, WATER, EARTH}
+
 func _ready():
 	active_level = levels[0].instantiate()
 	add_child(active_level)
@@ -19,6 +21,7 @@ func _ready():
 	active_spawn_location = (active_path[0])
 
 	# Configure Enemy Spawner
+	EnemySpawner.active_wave = active_level.wave.data
 	EnemySpawner.wave_complete.connect(on_wave_complete)
 
 func on_wave_complete() -> void:

@@ -15,7 +15,7 @@ var damage: float
 var speed: float
 var attack_range: float = 55.0
 var num_targets: int
-var element: String
+var element: GameManager.Element
 
 var can_attack: bool = true
 
@@ -47,7 +47,7 @@ func _physics_process(_delta):
 
 func attack() -> void:
 	for enemy in active_targets:
-		var is_dead: bool = enemy.take_damage(damage)
+		var is_dead: bool = enemy.take_damage(damage, element)
 		if is_dead:
 			active_targets.remove_at(active_targets.find(enemy))
 			update_active_targets()

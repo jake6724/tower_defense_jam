@@ -3,7 +3,7 @@ extends CanvasLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$CanvasLayer.show()
+	$MainMenu.show()
 	
 
 
@@ -21,9 +21,12 @@ func _on_play_button_pressed() -> void:
 
 func _on_credits_button_pressed() -> void:
 	$Credits.show()
-	$CanvasLayer.hide()
+	$MainMenu.hide()
 
 
-func _on_play_button_2_pressed() -> void:
+
+
+func _on_go_back_button_pressed() -> void:
 	$Credits.hide()
-	$CanvasLayer.show()
+	$MainMenu.show()
+	

@@ -13,7 +13,7 @@ var attack_timer: Timer = Timer.new()
 # Tower stats
 var damage: float
 var speed: float
-var attack_range: float
+var attack_range: float = 20.0
 var num_targets: int
 var element: String
 
@@ -23,6 +23,8 @@ func set_stats() -> void: # Used by child classes
 	pass
 
 func _ready():
+	set_stats()
+
 	# Configure Area2D
 	area.area_entered.connect(on_area_entered)
 	area.area_exited.connect(on_area_exited)
@@ -39,16 +41,16 @@ func _physics_process(_delta):
 	if can_attack:
 		attack()
 
+		# Restart attack timer
+		can_attack = false
+		attack_timer.start(speed)
+
 func attack() -> void:
 	for enemy in active_targets:
 		var is_dead: bool = enemy.take_damage(damage)
 		if is_dead:
 			active_targets.remove_at(active_targets.find(enemy))
 			update_active_targets()
-
-	# Restart attack timer
-	can_attack = false
-	attack_timer.start(speed)
 
 func on_area_entered(intruder: Area2D) -> void:
 	if intruder is Enemy:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=4 uid="uid://c5tb3wk65qamy"]
+[gd_scene load_steps=5 format=4 uid="uid://cmh04ac36ddat"]
 
 [ext_resource type="Script" uid="uid://c6gn0gwhvt2he" path="res://scripts/main.gd" id="1_wapqc"]
 [ext_resource type="Texture2D" uid="uid://mx037l5wyj6c" path="res://assets/art/sprites/spr_environment_atlas.png" id="7_w4ghn"]

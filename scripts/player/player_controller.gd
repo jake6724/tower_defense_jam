@@ -5,7 +5,7 @@ extends Node2D
 @export var world_grid: WorldGrid
 @export var pathfinder: PathFinder
 
-var tower: PackedScene = preload("res://scenes/Tower.tscn") # Need to allow for different types of towers 
+var tower: PackedScene = preload("res://scenes/towers/FireTower.tscn") # Need to allow for different types of towers 
 
 # DEV
 @export_group("DEVELOPMENT")
@@ -19,7 +19,7 @@ func spawn_tower(world_pos) -> bool:
 	var grid_pos: Vector2 = GameManager.world_to_grid(world_pos)
 
 	if grid_pos in world_grid.data and world_grid.data[grid_pos]:
-		var t: Tower = tower.instantiate()
+		var t = tower.instantiate()
 		t.position = GameManager.grid_to_world(grid_pos) # Bring it back to world to get a clean grid point
 		add_child(t)
 		# Update grid position as occupied

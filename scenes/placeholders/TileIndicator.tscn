@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ch0h2x3xb3bs7"]
+
+[ext_resource type="Texture2D" uid="uid://b0n5mqjammger" path="res://assets/placeholders/tile_indicator.png" id="1_7dla2"]
+
+[node name="TileIndicator" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_7dla2")
+centered = false

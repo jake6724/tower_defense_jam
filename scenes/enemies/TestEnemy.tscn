@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bb3mlm71gp7ni" path="res://scripts/enemy.gd" id="2_4h6sc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4h6sc"]
-radius = 16.0312
+radius = 8.06226
 
 [node name="TestEnemy" type="Area2D"]
 script = ExtResource("2_4h6sc")
@@ -16,5 +16,5 @@ centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
-position = Vector2(16, 16)
+position = Vector2(8, 8)
 shape = SubResource("CircleShape2D_4h6sc")

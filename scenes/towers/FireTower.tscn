@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://mfpy8qxjx58x"]
+
+[ext_resource type="Script" uid="uid://bovy1ah2pivrm" path="res://scripts/towers/fire_tower.gd" id="1_8vcdi"]
+[ext_resource type="Texture2D" uid="uid://bc63tyqycfcv5" path="res://assets/placeholders/tower_placeholder.png" id="2_bfb4r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_53w0b"]
+radius = 10.4403
+
+[node name="FireTower" type="Node2D"]
+z_index = 1
+script = ExtResource("1_8vcdi")
+metadata/_custom_type_script = "uid://bovy1ah2pivrm"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_bfb4r")
+centered = false
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(8, 8)
+shape = SubResource("CircleShape2D_53w0b")

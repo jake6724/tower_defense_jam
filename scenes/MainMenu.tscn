@@ -8,6 +8,7 @@ anchors_preset = 0
 script = ExtResource("1_yqorp")
 
 [node name="MainMenu" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="PlayButton" type="Button" parent="MainMenu"]
 anchors_preset = 8
@@ -50,6 +51,29 @@ offset_right = 79.0
 offset_bottom = 48.0
 theme_override_font_sizes/font_size = 24
 text = "BACK"
+
+[node name="Label" type="Label" parent="Credits"]
+offset_left = 137.0
+offset_top = 22.0
+offset_right = 233.0
+offset_bottom = 56.0
+theme_override_font_sizes/font_size = 24
+text = "Credits"
+uppercase = true
+
+[node name="Label2" type="Label" parent="Credits"]
+offset_left = 8.0
+offset_top = 67.0
+offset_right = 377.0
+offset_bottom = 239.0
+theme_override_font_sizes/font_size = 12
+text = "Jake6724 – Programmer
+DanTheManNW – Menus Programmer
+Torspou - Artist
+Uvula_ - Game Design
+Emiliomedrano - Composer
+"
+uppercase = true
 
 [connection signal="pressed" from="MainMenu/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MainMenu/CreditsButton" to="." method="_on_credits_button_pressed"]

@@ -30,8 +30,6 @@ func start_wave():
 	can_spawn_enemy = true
 
 func _physics_process(_delta):
-	print("aclling pp")
-	print("can_spawn_enemy: ", can_spawn_enemy)
 	if can_spawn_enemy and active_wave.data.size() > 0:
 		spawn_enemy(active_wave.data.pop_front())
 		

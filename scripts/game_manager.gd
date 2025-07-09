@@ -16,7 +16,6 @@ enum Element {FIRE, WATER, EARTH}
 func _ready():
 	active_level = levels[0].instantiate()
 	add_child(active_level)
-	print(active_level)
 	active_path = convert_path_to_world((active_level.waypoint_manager.get_waypoint_path()))
 	active_spawn_location = (active_path[0])
 

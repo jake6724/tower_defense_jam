@@ -6,7 +6,7 @@ extends Control
 @onready var water_button: TextureButton = $MarginContainer/HBoxContainer/Water/WaterButton
 @onready var earth_button: TextureButton = $MarginContainer/HBoxContainer/Earth/EarthButton
 @onready var gold: Label = $MarginContainer/Gold/Gold
-@onready var wave_button: TextureButton = $MarginContainer/WaveButton
+@onready var wave_button: TextureButton = $MarginContainer/HBoxContainer2/WaveButton
 
 # Signals
 signal tower_selected

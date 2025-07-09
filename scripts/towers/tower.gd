@@ -1,15 +1,20 @@
 class_name Tower
 extends Node2D
 
+@export var tower_data: TowerData
+
 # Child references
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var area: Area2D = $Area2D
+@onready var transform_area: Area2D = %TransformArea
 @onready var collider: CollisionShape2D = $Area2D/CollisionShape2D
 @onready var ap: AnimationPlayer = $AnimationPlayer
 
 var active_targets: Array[Enemy] = []
 var inactive_targets: Array[Enemy] = []
 var attack_timer: Timer = Timer.new()
+var transform_timer: Timer = Timer.new()
+var can_transform: bool = false
 
 # Tower stats
 var damage: float
@@ -20,25 +25,37 @@ var element: GameManager.Element
 
 var can_attack: bool = true
 
-func set_stats() -> void: # Used by child classes
-	pass
-
 func _ready():
-	set_stats()
-
+	element = tower_data.element
+	damage = tower_data.damage
+	speed = tower_data.speed
+	attack_range = tower_data.attack_range
+	num_targets = tower_data.num_targets
+	
 	# Configure Area2D
 	area.area_entered.connect(on_area_entered)
 	area.area_exited.connect(on_area_exited)
+
+	# Configure Transforming
+	print(transform_area)
+	transform_area.input_event.connect(on_transform_area_pressed)
 
 	# Configure CollisionShape2D
 	var shape: CircleShape2D = collider.shape
 	shape.radius = attack_range
 
-	# Configure Timer
+	# Configure Timers
 	attack_timer.timeout.connect(on_attack_timer_timeout)
 	add_child(attack_timer)
 
+	transform_timer.timeout.connect(on_transform_timer_timeout)
+	transform_timer.one_shot = true
+	add_child(transform_timer)
+	transform_timer.start(.5) # time until you can transform a tower (so it doesn't when you click to spawn it)
+
 func _physics_process(_delta):	
+	print(can_transform)
+
 	if can_attack:
 		attack()
 		# Restart attack timer
@@ -68,6 +85,12 @@ func on_area_exited(intruder) -> void:
 		elif intruder in inactive_targets:
 			inactive_targets.remove_at(inactive_targets.find(intruder))
 
+func on_transform_area_pressed(_viewport, _event, _shape_idx) -> void:
+	if can_transform:
+		if Input.is_action_just_pressed("left_click"):
+			can_transform = false
+			print("Transform button pressed!")
+
 func update_active_targets() -> void:
 	# Move as many inactive targets to active as possible/allowed
 	while active_targets.size() < num_targets and inactive_targets.size() > 0:
@@ -75,3 +98,7 @@ func update_active_targets() -> void:
 
 func on_attack_timer_timeout() -> void:
 	can_attack = true
+
+func on_transform_timer_timeout() -> void:
+	print("TIMER TIMEOUT")
+	can_transform = true

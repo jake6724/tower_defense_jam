@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ciicsqtfh31fh"]
+[gd_scene load_steps=9 format=3 uid="uid://ciicsqtfh31fh"]
 
 [ext_resource type="Script" uid="uid://dhbvh3ym8unk4" path="res://scripts/towers/tower_menu.gd" id="1_vis4n"]
 [ext_resource type="Texture2D" uid="uid://cxofmi144agfc" path="res://assets/art/sprites/gold.png" id="2_aeftg"]
@@ -6,7 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://ducm8wc7gd0vx" path="res://assets/art/sprites/spr_ui_tower_fire.png" id="3_5nani"]
 [ext_resource type="Texture2D" uid="uid://c3lb7onbbfx5u" path="res://assets/art/sprites/spr_ui_tower_ice.png" id="4_jtt2a"]
 [ext_resource type="Texture2D" uid="uid://qaa0yn4cxbck" path="res://assets/art/sprites/spr_ui_tower_earth.png" id="5_f7nwt"]
-[ext_resource type="Texture2D" uid="uid://bvyt6e23jn6pg" path="res://assets/placeholders/go_button_placeholder.png" id="7_l5xp1"]
+[ext_resource type="Texture2D" uid="uid://b8wt5ykepyrjo" path="res://assets/art/sprites/spr_ui_triangle.png" id="7_0avqp"]
+[ext_resource type="Texture2D" uid="uid://bod2y1cmadsde" path="res://assets/art/sprites/spr_ui_wavebutton.png" id="8_0avqp"]
 
 [node name="TowerMenu" type="Control"]
 layout_mode = 3
@@ -15,6 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_vis4n")
 metadata/_custom_type_script = "uid://dhbvh3ym8unk4"
 
@@ -75,26 +77,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_y6gfl")
 text = "25g"
 
-[node name="Water" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-mouse_filter = 2
-theme_override_constants/separation = -1
-
-[node name="WaterButton" type="TextureButton" parent="MarginContainer/HBoxContainer/Water"]
-texture_filter = 1
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = ExtResource("4_jtt2a")
-
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Water"]
-texture_filter = 1
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_y6gfl")
-text = "50g"
-
 [node name="Earth" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -113,10 +95,41 @@ texture_normal = ExtResource("5_f7nwt")
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_y6gfl")
+text = "50g"
+
+[node name="Water" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+mouse_filter = 2
+theme_override_constants/separation = -1
+
+[node name="WaterButton" type="TextureButton" parent="MarginContainer/HBoxContainer/Water"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_jtt2a")
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Water"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_y6gfl")
 text = "75g"
 
-[node name="WaveButton" type="TextureButton" parent="MarginContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="ElementGuide" type="TextureRect" parent="MarginContainer/HBoxContainer2"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("7_0avqp")
+
+[node name="WaveButton" type="TextureButton" parent="MarginContainer/HBoxContainer2"]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 8
-texture_normal = ExtResource("7_l5xp1")
+texture_normal = ExtResource("8_0avqp")

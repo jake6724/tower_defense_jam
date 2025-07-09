@@ -24,8 +24,10 @@ EnemySpawner="*res://scripts/enemies/enemy_spawner.gd"
 
 window/size/viewport_width=400
 window/size/viewport_height=256
+window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
+mouse_cursor/custom_image="uid://d0ggh0ipjxkie"
 window/snap/snap_2d_vertices_to_pixel=false
 window/snap/snap_2d_transforms_to_pixel=false
 

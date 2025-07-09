@@ -22,8 +22,8 @@ var textures: Dictionary[String, Texture] = {
 
 var prices: Dictionary[String, int] = {
 	"fire": 25,
-	"water": 50,
-	"earth": 75,
+	"water": 75,
+	"earth": 50,
 }
 
 var click_enabled: bool = true
@@ -72,7 +72,7 @@ func spawn_tower(world_pos) -> bool:
 			print("Invalid position or space is occupied")
 			return false
 	else:
-		print("No tower type selected")
+		# print("No tower type selected")
 		return false
 
 func _process(_delta):
@@ -83,12 +83,11 @@ func on_tower_selected(tower_name: String) -> void:
 	# Check player can afford tower
 	if gold >= prices[tower_name]:
 		selected_tower_name = tower_name
-		print(selected_tower_name)
 
 		# Indicator
 		indicator_sprite.texture = textures[tower_name]
 		indicator_sprite.show()
-		print(selected_tower_name)
+		
 	else:
 		print("Not enough gold")
 

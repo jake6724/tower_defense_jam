@@ -9,4 +9,5 @@ damage = 50.0
 speed = 0.66
 attack_range = 55.0
 num_targets = 1
+tower_name = "earth"
 metadata/_custom_type_script = "uid://v7b6nq74b314"

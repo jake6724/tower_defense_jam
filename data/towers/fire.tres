@@ -9,4 +9,5 @@ damage = 25.0
 speed = 0.33
 attack_range = 55.0
 num_targets = 1
+tower_name = "fire"
 metadata/_custom_type_script = "uid://v7b6nq74b314"

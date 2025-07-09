@@ -22,8 +22,11 @@ var speed: float
 var attack_range: float = 55.0
 var num_targets: int
 var element: GameManager.Element
+var tower_name: String
 
 var can_attack: bool = true
+
+signal transform_tower
 
 func _ready():
 	element = tower_data.element
@@ -31,13 +34,13 @@ func _ready():
 	speed = tower_data.speed
 	attack_range = tower_data.attack_range
 	num_targets = tower_data.num_targets
+	tower_name = tower_data.tower_name
 	
 	# Configure Area2D
 	area.area_entered.connect(on_area_entered)
 	area.area_exited.connect(on_area_exited)
 
 	# Configure Transforming
-	print(transform_area)
 	transform_area.input_event.connect(on_transform_area_pressed)
 
 	# Configure CollisionShape2D
@@ -51,11 +54,9 @@ func _ready():
 	transform_timer.timeout.connect(on_transform_timer_timeout)
 	transform_timer.one_shot = true
 	add_child(transform_timer)
-	transform_timer.start(.5) # time until you can transform a tower (so it doesn't when you click to spawn it)
+	transform_timer.start(.1) # time until you can transform a tower (so it doesn't when you click to spawn it)
 
 func _physics_process(_delta):	
-	print(can_transform)
-
 	if can_attack:
 		attack()
 		# Restart attack timer
@@ -89,6 +90,7 @@ func on_transform_area_pressed(_viewport, _event, _shape_idx) -> void:
 	if can_transform:
 		if Input.is_action_just_pressed("left_click"):
 			can_transform = false
+			transform_tower.emit()
 			print("Transform button pressed!")
 
 func update_active_targets() -> void:
@@ -100,5 +102,4 @@ func on_attack_timer_timeout() -> void:
 	can_attack = true
 
 func on_transform_timer_timeout() -> void:
-	print("TIMER TIMEOUT")
 	can_transform = true

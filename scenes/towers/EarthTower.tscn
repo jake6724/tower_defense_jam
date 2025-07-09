@@ -124,18 +124,18 @@ script = ExtResource("1_nus1c")
 tower_data = ExtResource("2_tncdu")
 metadata/_custom_type_script = "uid://1v42jjyvr5ed"
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_nus1c")
+centered = false
+hframes = 4
+
 [node name="TransformArea" type="Area2D" parent="."]
 unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransformArea"]
 position = Vector2(8, 8)
 shape = SubResource("CircleShape2D_xdyxa")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
-texture = ExtResource("2_nus1c")
-centered = false
-hframes = 4
 
 [node name="Area2D" type="Area2D" parent="."]
 

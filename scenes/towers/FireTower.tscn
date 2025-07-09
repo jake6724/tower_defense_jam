@@ -125,19 +125,19 @@ script = ExtResource("1_53w0b")
 tower_data = ExtResource("2_53w0b")
 metadata/_custom_type_script = "uid://1v42jjyvr5ed"
 
-[node name="TransformArea" type="Area2D" parent="."]
-unique_name_in_owner = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TransformArea"]
-position = Vector2(8, 8)
-shape = SubResource("CircleShape2D_bfb4r")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(1, 0.995824)
 texture = ExtResource("2_bfb4r")
 centered = false
 hframes = 4
+
+[node name="TransformArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransformArea"]
+position = Vector2(8, 8)
+shape = SubResource("CircleShape2D_bfb4r")
 
 [node name="Area2D" type="Area2D" parent="."]
 input_pickable = false

@@ -16,7 +16,6 @@ var enemies: Dictionary[GameManager.Element, PackedScene] = {
 
 # Signals
 signal wave_complete
-# signal all_waves_complete
 
 #### NOTE ENEMY SPAWNER PARTIALLY CONFIGURED IN GAME MANAGER ####
 func _ready():

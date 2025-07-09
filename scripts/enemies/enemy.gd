@@ -14,6 +14,8 @@ var min_distance: float = 1
 var health: float
 var speed: float
 var element: GameManager.Element
+var weak_to: GameManager.Element
+var strong_to: GameManager.Element
 
 # Signals
 signal is_dead
@@ -27,6 +29,8 @@ func _ready():
 ## Reduce enemies `health` stat by `damage_recieved`. Return `true` if enemy died, `false` otherwise.
 ## Handles despawning enemy in the case of death.
 func take_damage(damage_recieved: float, tower_element: GameManager.Element):
+
+	# add RESISTANCES THRU THE DATA RESORUCE
 
 	health -= damage_recieved
 	if health <= 0:

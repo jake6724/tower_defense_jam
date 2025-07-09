@@ -36,6 +36,7 @@ theme_override_constants/separation = 16
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+mouse_filter = 2
 theme_override_constants/separation = -1
 
 [node name="FireButton" type="TextureButton" parent="HBoxContainer/HBoxContainer"]
@@ -55,6 +56,7 @@ text = "25g"
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+mouse_filter = 2
 theme_override_constants/separation = -1
 
 [node name="WaterButton" type="TextureButton" parent="HBoxContainer/HBoxContainer2"]
@@ -74,6 +76,7 @@ text = "50g"
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+mouse_filter = 2
 theme_override_constants/separation = -1
 
 [node name="EarthButton" type="TextureButton" parent="HBoxContainer/HBoxContainer3"]

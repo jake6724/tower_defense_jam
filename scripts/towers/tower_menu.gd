@@ -14,11 +14,11 @@ signal mouse_exited_button
 
 func _ready():
 	# Configure buttons
-	for child in button_container.get_children():
-		if child is TextureButton:
-			child.pressed.connect(on_button_pressed.bind(child))
-			child.mouse_entered.connect(on_mouse_entered_button)
-			child.mouse_exited.connect(on_mouse_exited_button)
+	var buttons: Array[TextureButton] = [fire_button, water_button, earth_button]
+	for b: TextureButton in buttons:
+			b.pressed.connect(on_button_pressed.bind(b))
+			b.mouse_entered.connect(on_mouse_entered_button)
+			b.mouse_exited.connect(on_mouse_exited_button)
 
 func on_button_pressed(pressed_button: TextureButton):
 	var b_name: String = pressed_button.name.to_lower()

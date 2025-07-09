@@ -2,10 +2,13 @@
 
 [ext_resource type="Script" uid="uid://c6gn0gwhvt2he" path="res://scripts/main.gd" id="1_0bbpv"]
 [ext_resource type="PackedScene" uid="uid://eierlhsm86n1" path="res://scenes/level/WorldGrid.tscn" id="1_elqb8"]
+[ext_resource type="PackedScene" uid="uid://bgcmeahvdrgcg" path="res://scenes/MainMenu.tscn" id="2_vcsgt"]
 [ext_resource type="PackedScene" uid="uid://btulqisr6vlgj" path="res://scenes/player/PlayerController.tscn" id="4_rarhs"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0bbpv")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("2_vcsgt")]
 
 [node name="WorldGrid" parent="." instance=ExtResource("1_elqb8")]
 z_index = 100

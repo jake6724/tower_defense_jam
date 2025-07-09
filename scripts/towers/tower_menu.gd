@@ -3,9 +3,10 @@ extends Control
 
 # Child References
 @onready var button_container: HBoxContainer = $HBoxContainer
-@onready var fire_button: TextureButton = $HBoxContainer/HBoxContainer/FireButton
-@onready var water_button: TextureButton = $HBoxContainer/HBoxContainer2/WaterButton
-@onready var earth_button: TextureButton = $HBoxContainer/HBoxContainer3/EarthButton
+@onready var fire_button: TextureButton = $HBoxContainer/Fire/FireButton
+@onready var water_button: TextureButton = $HBoxContainer/Water/WaterButton
+@onready var earth_button: TextureButton = $HBoxContainer/Earth/EarthButton
+@onready var gold: Label = $HBoxContainer/Gold/Gold
 
 # Signals
 signal tower_selected
@@ -26,6 +27,10 @@ func on_button_pressed(pressed_button: TextureButton):
 		"firebutton": tower_selected.emit("fire")
 		"waterbutton": tower_selected.emit("water")
 		"earthbutton": tower_selected.emit("earth")
+
+## Intended to be called by `player_controller` to directly update gold count
+func update_gold(new_amount: int) -> void:
+	gold.text = str(new_amount)
 
 func on_mouse_entered_button():
 	mouse_entered_button.emit()

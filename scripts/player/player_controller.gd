@@ -15,7 +15,7 @@ var towers: Dictionary[String, PackedScene] = {
 }
 
 var textures: Dictionary[String, Texture] = {
-	"fire": preload("res://assets/art/sprites/spr_enemy_fire.png"),
+	"fire": preload("res://assets/art/sprites/spr_tower_fire.png"),
 	"water": preload("res://assets/art/sprites/spr_tower_water.png"),
 	"earth": preload("res://assets/art/sprites/spr_tower_earth.png"),
 }
@@ -38,12 +38,16 @@ func _ready():
 	tower_menu.mouse_entered_button.connect(on_mouse_entered_button)
 	tower_menu.mouse_exited_button.connect(on_mouse_exited_button)
 
+	tower_menu.update_gold(gold)
+
 	# Configure indicator sprite
 	indicator_sprite = Sprite2D.new()
 	indicator_sprite.modulate.a = .75
 	indicator_sprite.centered = false
 	indicator_sprite.hide()
 	add_child(indicator_sprite)
+
+	
 
 ## Place a tower in the world grid. Return true if successful, false if not.
 func spawn_tower(world_pos) -> bool:
@@ -57,11 +61,13 @@ func spawn_tower(world_pos) -> bool:
 
 			# Update data
 			world_grid.data[grid_pos] = false
-			selected_tower_name = ""
+			gold -= prices[selected_tower_name]
+			tower_menu.update_gold(gold)
 
 			# Clean up indicator
 			indicator_sprite.hide()
 
+			selected_tower_name = ""
 			return true
 		else:
 			print("Invalid position or space is occupied")

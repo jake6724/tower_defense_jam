@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://ciicsqtfh31fh"]
+[gd_scene load_steps=7 format=3 uid="uid://ciicsqtfh31fh"]
 
 [ext_resource type="Script" uid="uid://dhbvh3ym8unk4" path="res://scripts/towers/tower_menu.gd" id="1_vis4n"]
+[ext_resource type="Texture2D" uid="uid://cxofmi144agfc" path="res://assets/art/sprites/gold.png" id="2_aeftg"]
 [ext_resource type="FontFile" uid="uid://b68bed5vb2siy" path="res://assets/fonts/Minecraft_font.ttf" id="2_y6gfl"]
 [ext_resource type="Texture2D" uid="uid://ducm8wc7gd0vx" path="res://assets/art/sprites/spr_ui_tower_fire.png" id="3_5nani"]
 [ext_resource type="Texture2D" uid="uid://c3lb7onbbfx5u" path="res://assets/art/sprites/spr_ui_tower_ice.png" id="4_jtt2a"]
@@ -32,61 +33,78 @@ scale = Vector2(0.953491, 1.00193)
 mouse_filter = 2
 theme_override_constants/separation = 16
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+[node name="Gold" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="GoldIcon" type="TextureRect" parent="HBoxContainer/Gold"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_aeftg")
+
+[node name="Gold" type="Label" parent="HBoxContainer/Gold"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_y6gfl")
+theme_override_font_sizes/font_size = 16
+text = "100g"
+
+[node name="Fire" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 mouse_filter = 2
 theme_override_constants/separation = -1
 
-[node name="FireButton" type="TextureButton" parent="HBoxContainer/HBoxContainer"]
+[node name="FireButton" type="TextureButton" parent="HBoxContainer/Fire"]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource("3_5nani")
 
-[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="HBoxContainer/Fire"]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_y6gfl")
 text = "25g"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer"]
+[node name="Water" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 mouse_filter = 2
 theme_override_constants/separation = -1
 
-[node name="WaterButton" type="TextureButton" parent="HBoxContainer/HBoxContainer2"]
+[node name="WaterButton" type="TextureButton" parent="HBoxContainer/Water"]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource("4_jtt2a")
 
-[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="HBoxContainer/Water"]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_y6gfl")
 text = "50g"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer"]
+[node name="Earth" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 mouse_filter = 2
 theme_override_constants/separation = -1
 
-[node name="EarthButton" type="TextureButton" parent="HBoxContainer/HBoxContainer3"]
+[node name="EarthButton" type="TextureButton" parent="HBoxContainer/Earth"]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource("5_f7nwt")
 
-[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="HBoxContainer/Earth"]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_y6gfl")

@@ -122,7 +122,6 @@ metadata/_custom_type_script = "uid://2cbqjtg2g3gj"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(0.968085, 0.993624)
 texture = ExtResource("2_nus1c")
 centered = false
 hframes = 4

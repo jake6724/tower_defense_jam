@@ -1,9 +1,8 @@
-class_name WorldGrid
 extends Node2D
 
 @export var debug: bool = false
 
-var height: int = 14
+var height: int = 25
 var width: int = 25
 var data: Dictionary[Vector2, bool] = {} # Coordinate, occupied or not
 
@@ -12,6 +11,22 @@ var dark: PackedScene = preload("res://scenes/placeholders/grid_placeholder_dark
 var light: PackedScene = preload("res://scenes/placeholders/grid_placeholder_light.tscn")
 var is_dark: bool = false
 var tile_inidicator: PackedScene = preload("res://scenes/placeholders/TileIndicator.tscn")
+
+var active_tilemap: TileMapLayer
+
+var valid_atlas_coords: Array[Vector2i] = [
+	Vector2i(0,0),Vector2i(1,0),Vector2i(2,0),Vector2i(3,0),Vector2i(4,0),Vector2i(5,0),Vector2i(6,0),
+	Vector2i(0,1),Vector2i(1,1),Vector2i(2,1),Vector2i(3,1),Vector2i(4,1),Vector2i(5,1),Vector2i(6,1),
+	Vector2i(0,2),Vector2i(1,2),Vector2i(2,2),
+	Vector2i(0,3),Vector2i(1,3),
+	Vector2i(0,4),Vector2i(1,4),
+	Vector2i(5,7),Vector2i(6,7),
+	Vector2i(2,8),Vector2i(3,8),Vector2i(4,8),Vector2i(5,8),Vector2i(6,8),
+	Vector2i(0,9),Vector2i(1,9),Vector2i(2,9),Vector2i(3,9),Vector2i(4,9),Vector2i(5,9),
+	Vector2i(0,10),Vector2i(1,10),Vector2i(2,10),Vector2i(3,10),Vector2i(4,10),Vector2i(5,10),
+	Vector2i(0,11),Vector2i(1,11),Vector2i(2,11),Vector2i(3,11),Vector2i(4,11),
+	Vector2i(3,12),Vector2i(4,12),
+]
 
 func _ready():
 	generate_grid()
@@ -28,6 +43,21 @@ func generate_grid() -> void:
 			if debug:
 				spawn_placeholder(world_pos)
 			# is_dark = not is_dark
+	print(data)
+
+func configure_tilemap(tilemap: TileMapLayer) -> void:
+	active_tilemap = tilemap
+
+	# print(tilemap.get_used_cells())
+	for tile_coords: Vector2i in tilemap.get_used_cells():
+		var atlas_coords: Vector2i = tilemap.get_cell_atlas_coords(tile_coords) 
+		# print(tilemap.get_cell_atlas_coords(tile_coords))
+		if atlas_coords in valid_atlas_coords:
+			# print(atlas_coords, " in ", valid_atlas_coords)
+			
+			data[Vector2(tile_coords)] = false
+		else:
+			data[Vector2(tile_coords)] = true 
 
 func spawn_placeholder(pos: Vector2) -> void:
 	var p: Sprite2D

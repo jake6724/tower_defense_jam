@@ -14,12 +14,18 @@ var path_1_spawn_location: Vector2 = Vector2(0,9)
 enum Element {FIRE, WATER, EARTH}
 
 func _ready():
-	active_level = levels[0].instantiate()
+	configure_level()
+
+func configure_level():
+	active_level = levels.pop_front().instantiate()
 	add_child(active_level)
 	active_path = convert_path_to_world((active_level.waypoint_manager.get_waypoint_path()))
 	active_spawn_location = (active_path[0])
 
-	# Configure Enemy Spawner
+	# Configure WorldGrid
+	WorldGrid.configure_tilemap(active_level.tilemap)
+	
+	# Configure EnemySpawner
 	EnemySpawner.all_waves = active_level.waves
 
 func convert_path_to_world(path) -> PackedVector2Array:

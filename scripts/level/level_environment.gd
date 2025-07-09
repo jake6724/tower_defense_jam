@@ -3,4 +3,5 @@ extends Node2D
 
 # Child References
 @onready var waypoint_manager: WaypointManager = $WaypointManager
+@onready var tilemap: TileMapLayer = $TileMapLayer
 @export var waves: Array[Wave]

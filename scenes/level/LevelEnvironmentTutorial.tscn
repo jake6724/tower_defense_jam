@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bmpnj0071d0l6"]
+[gd_scene load_steps=12 format=4 uid="uid://cfco8mo2bfg3b"]
 
 [ext_resource type="Script" uid="uid://b2p4p3fvxv2jk" path="res://scripts/level/level_environment.gd" id="1_vp43h"]
 [ext_resource type="Script" uid="uid://cskry1sw3vqba" path="res://scripts/level/wave.gd" id="2_xfk66"]
@@ -1056,16 +1056,16 @@ script = ExtResource("7_cqlve")
 metadata/_custom_type_script = "uid://cy2dgc1h1mhqd"
 
 [node name="Waypoint" parent="WaypointManager" instance=ExtResource("8_8amrt")]
-position = Vector2(1, 144)
+position = Vector2(0, 144)
 
 [node name="Waypoint2" parent="WaypointManager" instance=ExtResource("8_8amrt")]
-position = Vector2(111, 143)
+position = Vector2(112, 144)
 
 [node name="Waypoint3" parent="WaypointManager" instance=ExtResource("8_8amrt")]
 position = Vector2(112, 112)
 
 [node name="Waypoint4" parent="WaypointManager" instance=ExtResource("8_8amrt")]
-position = Vector2(191, 112)
+position = Vector2(192, 112)
 
 [node name="UI Reference" type="CanvasLayer" parent="."]
 visible = false

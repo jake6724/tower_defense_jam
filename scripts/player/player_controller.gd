@@ -35,7 +35,7 @@ var pre_wave_towers: Array[Tower] = [] # Original configuration of towers during
 
 var placement_enabled: bool = true
 
-var gold: float = 100.0
+var gold: float = 25.0
 var reward: float
 
 var indicator_sprite: Sprite2D

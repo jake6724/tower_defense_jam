@@ -39,6 +39,7 @@ func _ready():
 	tower_menu.mouse_exited_button.connect(on_mouse_exited_button)
 
 	tower_menu.update_gold(gold)
+	tower_menu.start_wave.connect(on_start_wave)
 
 	# Configure indicator sprite
 	indicator_sprite = Sprite2D.new()
@@ -46,8 +47,6 @@ func _ready():
 	indicator_sprite.centered = false
 	indicator_sprite.hide()
 	add_child(indicator_sprite)
-
-	
 
 ## Place a tower in the world grid. Return true if successful, false if not.
 func spawn_tower(world_pos) -> bool:
@@ -80,11 +79,6 @@ func _process(_delta):
 	if selected_tower_name in towers:
 		indicator_sprite.position = GameManager.grid_to_world(GameManager.world_to_grid(get_global_mouse_position()))
 
-func _input(_event):
-	# THIS IS ALL DEV
-	if click_enabled and Input.is_action_just_pressed("left_click"):
-		spawn_tower(get_global_mouse_position())
-
 func on_tower_selected(tower_name: String) -> void:
 	# Check player can afford tower
 	if gold >= prices[tower_name]:
@@ -97,6 +91,13 @@ func on_tower_selected(tower_name: String) -> void:
 		print(selected_tower_name)
 	else:
 		print("Not enough gold")
+
+func on_start_wave() -> void:
+	EnemySpawner.start_wave()
+
+func _input(_event):
+	if click_enabled and Input.is_action_just_pressed("left_click"):
+		spawn_tower(get_global_mouse_position())
 
 func on_mouse_entered_button() -> void:
 	click_enabled = false

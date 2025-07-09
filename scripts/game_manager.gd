@@ -21,7 +21,7 @@ func _ready():
 	active_spawn_location = (active_path[0])
 
 	# Configure Enemy Spawner
-	EnemySpawner.active_wave = active_level.wave.data
+	EnemySpawner.all_waves = active_level.waves
 	EnemySpawner.wave_complete.connect(on_wave_complete)
 
 func on_wave_complete() -> void:

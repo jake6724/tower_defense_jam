@@ -1,10 +1,11 @@
 # Autoloader
 extends Node
 
-var active_wave: Array[GameManager.Element]
+var all_waves: Array[Wave] = []
+var active_wave: Wave
 var spawn_timer: Timer = Timer.new()
 var spawn_rate: float = 1.0 # Time between enemy spawn, in seconds
-var can_spawn_enemy: bool = true
+var can_spawn_enemy: bool = false
 var active_enemies: Array[Enemy] = []
 
 var enemies: Dictionary[GameManager.Element, PackedScene] = {
@@ -15,7 +16,7 @@ var enemies: Dictionary[GameManager.Element, PackedScene] = {
 
 # Signals
 signal wave_complete
-signal all_waves_complete
+# signal all_waves_complete
 
 #### NOTE ENEMY SPAWNER PARTIALLY CONFIGURED IN GAME MANAGER ####
 func _ready():
@@ -23,16 +24,26 @@ func _ready():
 	spawn_timer.timeout.connect(on_spawn_timer_timeout)
 	add_child(spawn_timer)
 
+## Intended to be triggered directly by `player_controller`
+func start_wave():
+	active_wave = all_waves.pop_front()
+	can_spawn_enemy = true
+
 func _physics_process(_delta):
-	if can_spawn_enemy and active_wave.size() > 0:
-		spawn_enemy(active_wave.pop_front())
+	print("aclling pp")
+	print("can_spawn_enemy: ", can_spawn_enemy)
+	if can_spawn_enemy and active_wave.data.size() > 0:
+		spawn_enemy(active_wave.data.pop_front())
 		
 		# Restart spawn timer
 		spawn_timer.start(spawn_rate)
 		can_spawn_enemy = false
 	
-	if active_wave.size() == 0 and active_enemies.size() == 0:
-		wave_complete.emit()
+	# Check if wave is over
+	if active_wave:
+		if active_wave.data.size() == 0 and active_enemies.size() == 0:
+			wave_complete.emit()
+			can_spawn_enemy = false
 
 func spawn_enemy(enemy_type: GameManager.Element):
 	var new_enemy: Enemy = enemies[enemy_type].instantiate()

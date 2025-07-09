@@ -13,6 +13,7 @@ data = ExtResource("2_cjl7e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+texture_repeat = 1
 scale = Vector2(0.970872, 0.994218)
 texture = ExtResource("2_lo6ju")
 centered = false

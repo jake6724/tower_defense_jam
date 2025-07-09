@@ -2,7 +2,7 @@ class_name WorldGrid
 extends Node2D
 
 var height: int = 14
-var width: int = 22
+var width: int = 25
 var data: Dictionary[Vector2, bool] = {} # Coordinate, occupied or not
 
 # Temp for development

@@ -3,9 +3,9 @@ extends Control
 
 # Child References
 @onready var button_container: HBoxContainer = $HBoxContainer
-@onready var fire_button: Button = $HBoxContainer/FireButton
-@onready var water_button: Button = $HBoxContainer/WaterButton
-@onready var earth_button: Button = $HBoxContainer/EarthButton
+@onready var fire_button: TextureButton = $HBoxContainer/HBoxContainer/FireButton
+@onready var water_button: TextureButton = $HBoxContainer/HBoxContainer2/WaterButton
+@onready var earth_button: TextureButton = $HBoxContainer/HBoxContainer3/EarthButton
 
 # Signals
 signal tower_selected
@@ -14,12 +14,13 @@ signal mouse_exited_button
 
 func _ready():
 	# Configure buttons
-	for button: Button in button_container.get_children():
-		button.pressed.connect(on_button_pressed.bind(button))
-		button.mouse_entered.connect(on_mouse_entered_button)
-		button.mouse_exited.connect(on_mouse_exited_button)
+	for child in button_container.get_children():
+		if child is TextureButton:
+			child.pressed.connect(on_button_pressed.bind(child))
+			child.mouse_entered.connect(on_mouse_entered_button)
+			child.mouse_exited.connect(on_mouse_exited_button)
 
-func on_button_pressed(pressed_button: Button):
+func on_button_pressed(pressed_button: TextureButton):
 	var b_name: String = pressed_button.name.to_lower()
 	match b_name:
 		"firebutton": tower_selected.emit("fire")

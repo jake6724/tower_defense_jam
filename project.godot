@@ -27,6 +27,8 @@ window/size/viewport_height=224
 window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
+window/snap/snap_2d_vertices_to_pixel=false
+window/snap/snap_2d_transforms_to_pixel=false
 
 [input]
 

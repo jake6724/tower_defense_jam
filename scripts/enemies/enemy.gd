@@ -44,4 +44,4 @@ func move(delta) -> void:
 			# position = path[0]
 			path.remove_at(0)
 		else:
-			position = (position + ((path[0] - position).normalized() * speed * delta))
+			position = (position + ((path[0] - position).normalized() * speed * delta)) # Fixed with pixel snap in project settings, but not perfect

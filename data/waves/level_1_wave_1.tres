@@ -5,3 +5,4 @@
 [resource]
 script = ExtResource("1_uhhov")
 data = Array[int]([2, 2, 2, 1, 1, 1])
+reward = 100.0

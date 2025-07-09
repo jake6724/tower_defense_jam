@@ -29,19 +29,22 @@ func start_wave():
 	can_spawn_enemy = true
 
 func _physics_process(_delta):
-	if can_spawn_enemy and active_wave.data.size() > 0:
-		spawn_enemy(active_wave.data.pop_front())
-		
-		# Restart spawn timer
-		spawn_timer.start(spawn_rate)
-		can_spawn_enemy = false
-	
-	# Check if wave is over
+	# Only process if a wave is active	
 	if active_wave:
+		# Check if wave is over
 		if active_wave.data.size() == 0 and active_enemies.size() == 0:
+			active_wave = null
 			wave_complete.emit()
 			can_spawn_enemy = false
 
+
+		if can_spawn_enemy and active_wave.data.size() > 0:
+			spawn_enemy(active_wave.data.pop_front())
+		
+			# Restart spawn timer
+			spawn_timer.start(spawn_rate)
+			can_spawn_enemy = false
+		
 func spawn_enemy(enemy_type: GameManager.Element):
 	var new_enemy: Enemy = enemies[enemy_type].instantiate()
 	new_enemy.position = GameManager.active_spawn_location

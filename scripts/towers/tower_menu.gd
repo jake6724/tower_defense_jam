@@ -2,11 +2,12 @@ class_name TowerMenu
 extends Control
 
 # Child References
-@onready var fire_button: TextureButton = $MarginContainer/HBoxContainer/Fire/FireButton
-@onready var water_button: TextureButton = $MarginContainer/HBoxContainer/Water/WaterButton
-@onready var earth_button: TextureButton = $MarginContainer/HBoxContainer/Earth/EarthButton
-@onready var gold: Label = $MarginContainer/Gold/Gold
-@onready var wave_button: TextureButton = $MarginContainer/HBoxContainer2/WaveButton
+@onready var fire_button: TextureButton = %FireButton
+@onready var water_button: TextureButton = %WaterButton
+@onready var earth_button: TextureButton = %EarthButton
+@onready var tower_buttons: HBoxContainer = %TowerButtons
+@onready var gold: Label = %Gold
+@onready var wave_button: TextureButton = %WaveButton
 
 # Signals
 signal tower_selected
@@ -23,6 +24,14 @@ func _ready():
 			b.mouse_exited.connect(on_mouse_exited_button)
 
 	wave_button.pressed.connect(on_wave_button_pressed)
+
+func hide_placement_phase() -> void:
+	tower_buttons.hide()
+	wave_button.hide()
+
+func show_placement_phase() -> void:
+	tower_buttons.show()
+	wave_button.show()
 
 func on_button_pressed(pressed_button: TextureButton):
 	var b_name: String = pressed_button.name.to_lower()

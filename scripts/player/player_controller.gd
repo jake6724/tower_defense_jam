@@ -35,7 +35,8 @@ var pre_wave_towers: Array[Tower] = [] # Original configuration of towers during
 
 var placement_enabled: bool = true
 
-var gold: int = 100
+var gold: float = 100.0
+var reward: float
 
 var indicator_sprite: Sprite2D
 
@@ -45,7 +46,7 @@ func _ready():
 	tower_menu.mouse_entered_button.connect(on_mouse_entered_button)
 	tower_menu.mouse_exited_button.connect(on_mouse_exited_button)
 
-	tower_menu.update_gold(gold)
+	tower_menu.update_gold(int(gold))
 	tower_menu.start_wave.connect(on_start_wave)
 
 	# Configure indicator sprite
@@ -65,6 +66,10 @@ func _process(_delta):
 ## Place a tower in the world grid. Return true if successful, false if not. If `is_tranform` is `true`, the gold
 ## cost of the tower will not be subtracted from player gold.
 func spawn_tower(tower_name, world_pos, is_transform: bool=false) -> Array: # [was_spawned:bool, Tower]
+	# Do not allow placement during combat
+	if not placement_enabled and not is_transform:
+		return [false, null]
+
 	if tower_name in towers:
 		var grid_pos: Vector2 = GameManager.world_to_grid(world_pos)
 
@@ -107,7 +112,10 @@ func on_tower_selected(tower_name: String) -> void:
 		print("Not enough gold")
 
 func on_tower_transform(tower: Tower) -> void:
-	# Only allow transform if not previously done this combat phase AND not in placement phase
+	print("On tower transform")
+	print("placement_enabled: ", placement_enabled)
+	print("transformed_towers: ", transformed_towers)
+	# Only allow transformation if player not in placement phase and not tower was not previously transformed this wave
 	if not placement_enabled and not transformed_towers.has(tower):
 		# Remove old tower from active towers
 		active_towers.remove_at(active_towers.find(tower))
@@ -133,28 +141,46 @@ func get_next_tower_name(tower: Tower) -> String:
 	return "" # Should never be reached.
 
 func on_start_wave() -> void:
+	tower_menu.hide_placement_phase()
 	placement_enabled = false
 	copy_active_towers_to_prewave_towers()
 	transformed_towers = {}
+
+	# Enemy Spawner
 	EnemySpawner.start_wave()
+	reward = EnemySpawner.active_wave.reward
 
 	print("Start of wave")
 	print("ActiveTowers: ", active_towers)
 	print("PrewaveTowers: ", pre_wave_towers)
-
+	print("transformed_towers: ", transformed_towers)
 func on_wave_complete() -> void:
-	if not placement_enabled:
-		placement_enabled = true
-		reset_towers()
+	# Update variables
+	placement_enabled = true	
+	gold += reward
 
+	# Tower Menu config
+	tower_menu.show_placement_phase()
+	tower_menu.update_gold(int(gold))
+
+	reset_towers()
+
+	print("End of wave")
+	print("ActiveTowers: ", active_towers)
+	print("PrewaveTowers: ", pre_wave_towers)
+	print("transformed_towers: ", transformed_towers)
+
+## For each tower in `active_towers` create a new tower object in `pre_wave_towers` with the same attributes. 
+## This is a NEW `Tower` object and NOT a reference.
 func copy_active_towers_to_prewave_towers() -> void:
 	for tower: Tower in active_towers:
+		print(tower)
 		var copy: Tower = towers[tower.tower_name].instantiate()
 		copy.position = tower.position
+		copy.transform_tower.connect(on_tower_transform.bind(copy))
 		pre_wave_towers.append(copy)
 
 func reset_towers() -> void:
-	print("Resetting towers")
 	# Clear all active towers and replace them with towers from pre_wave_towers
 	for tower: Tower in active_towers:
 		tower.queue_free()
@@ -162,7 +188,9 @@ func reset_towers() -> void:
 	for tower: Tower in pre_wave_towers:
 		add_child(tower)
 
+	# Active towers becomes pre_wave; pre_wave is reset
 	active_towers = pre_wave_towers
+	pre_wave_towers = []
 
 func _input(_event):
 	if click_enabled and Input.is_action_just_pressed("left_click"):

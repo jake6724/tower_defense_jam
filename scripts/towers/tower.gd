@@ -23,7 +23,6 @@ var attack_range: float = 55.0
 var num_targets: int
 var element: GameManager.Element
 var tower_name: String
-
 var can_attack: bool = true
 
 signal transform_tower

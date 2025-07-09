@@ -21,10 +21,6 @@ func _ready():
 
 	# Configure Enemy Spawner
 	EnemySpawner.all_waves = active_level.waves
-	# EnemySpawner.wave_complete.connect(on_wave_complete)
-
-# func on_wave_complete() -> void:
-# 	print("Wave Complete!")
 
 func convert_path_to_world(path) -> PackedVector2Array:
 	for i in range(path.size()):

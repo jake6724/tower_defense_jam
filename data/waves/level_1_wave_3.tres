@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_tkl00")
 data = Array[int]([0, 0, 0, 1, 0, 0, 0, 0, 0, 0])
+reward = 100.0
 metadata/_custom_type_script = "uid://cskry1sw3vqba"

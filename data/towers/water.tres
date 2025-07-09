@@ -6,7 +6,7 @@
 script = ExtResource("1_fc8g7")
 element = 1
 damage = 9.0
-speed = 0.11
+speed = 0.22
 attack_range = 55.0
 num_targets = 1
 tower_name = "water"

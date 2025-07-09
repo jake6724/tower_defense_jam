@@ -1059,13 +1059,36 @@ metadata/_custom_type_script = "uid://cy2dgc1h1mhqd"
 position = Vector2(0, 144)
 
 [node name="Waypoint2" parent="WaypointManager" instance=ExtResource("8_8amrt")]
+<<<<<<< Updated upstream
 position = Vector2(112, 144)
+=======
+position = Vector2(113, 144)
+>>>>>>> Stashed changes
 
 [node name="Waypoint3" parent="WaypointManager" instance=ExtResource("8_8amrt")]
 position = Vector2(112, 112)
 
 [node name="Waypoint4" parent="WaypointManager" instance=ExtResource("8_8amrt")]
+<<<<<<< Updated upstream
 position = Vector2(192, 112)
+=======
+position = Vector2(193, 113)
+
+[node name="Waypoint5" parent="WaypointManager" instance=ExtResource("8_8amrt")]
+position = Vector2(195, 145)
+
+[node name="Waypoint6" parent="WaypointManager" instance=ExtResource("8_8amrt")]
+position = Vector2(256, 145)
+
+[node name="Waypoint7" parent="WaypointManager" instance=ExtResource("8_8amrt")]
+position = Vector2(258, 176)
+
+[node name="Waypoint8" parent="WaypointManager" instance=ExtResource("8_8amrt")]
+position = Vector2(352, 177)
+
+[node name="Waypoint9" parent="WaypointManager" instance=ExtResource("8_8amrt")]
+position = Vector2(353, 129)
+>>>>>>> Stashed changes
 
 [node name="UI Reference" type="CanvasLayer" parent="."]
 visible = false

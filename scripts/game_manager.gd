@@ -5,7 +5,7 @@ var cell_size: int = 16
 var active_path: PackedVector2Array
 var active_spawn_location: Vector2 # In world coordinates
 
-var levels: Array[PackedScene] = [preload("res://scenes/level/LevelEnvironmentOne.tscn")]
+var levels: Array[PackedScene] = [preload("res://scenes/level/LevelEnvironmentTutorial.tscn")]
 var active_level: LevelEnvironment
 
 var path_1

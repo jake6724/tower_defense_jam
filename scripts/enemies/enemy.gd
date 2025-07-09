@@ -44,4 +44,4 @@ func move(delta) -> void:
 			# position = path[0]
 			path.remove_at(0)
 		else:
-			position += (path[0] - position).normalized() * speed * delta
+			position = (position + ((path[0] - position).normalized() * speed * delta))

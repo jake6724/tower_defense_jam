@@ -5,6 +5,7 @@ extends Node2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var area: Area2D = $Area2D
 @onready var collider: CollisionShape2D = $Area2D/CollisionShape2D
+@onready var ap: AnimationPlayer = $AnimationPlayer
 
 var active_targets: Array[Enemy] = []
 var inactive_targets: Array[Enemy] = []
@@ -37,13 +38,14 @@ func _ready():
 	attack_timer.timeout.connect(on_attack_timer_timeout)
 	add_child(attack_timer)
 
-func _physics_process(_delta):
+func _physics_process(_delta):	
 	if can_attack:
 		attack()
-
 		# Restart attack timer
 		can_attack = false
 		attack_timer.start(speed)
+	else:
+		ap.play("idle")
 
 func attack() -> void:
 	for enemy in active_targets:

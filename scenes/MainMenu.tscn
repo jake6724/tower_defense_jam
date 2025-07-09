@@ -1,12 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgcmeahvdrgcg"]
+[gd_scene load_steps=3 format=3 uid="uid://bgcmeahvdrgcg"]
 
 [ext_resource type="Script" uid="uid://glpr25c7d5yd" path="res://scripts/main_menu.gd" id="1_yqorp"]
+[ext_resource type="Texture2D" uid="uid://bwhqaudd1pjst" path="res://assets/art/sprites/background.png" id="2_0ykhv"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_yqorp")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -4096
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_0ykhv")
+
 [node name="MainMenu" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="PlayButton" type="Button" parent="MainMenu"]
 anchors_preset = 8

@@ -1,8 +1,0 @@
-class_name FireTower
-extends Tower
-
-func set_stats() -> void:
-	damage = 25
-	speed = .33 # Fire rate; time between shots in seconds
-	num_targets = 1 # How many enemies shot per shot max
-	element = GameManager.Element.FIRE

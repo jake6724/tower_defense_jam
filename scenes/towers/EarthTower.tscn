@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://fbdpqm6a86de"]
+[gd_scene load_steps=9 format=3 uid="uid://fbdpqm6a86de"]
 
-[ext_resource type="Script" uid="uid://2cbqjtg2g3gj" path="res://scripts/towers/earth_tower.gd" id="1_kuede"]
+[ext_resource type="Script" uid="uid://1v42jjyvr5ed" path="res://scripts/towers/tower.gd" id="1_nus1c"]
 [ext_resource type="Texture2D" uid="uid://dh30ocxr6uk5n" path="res://assets/art/sprites/spr_tower_earth_idle.png" id="2_nus1c"]
+[ext_resource type="Resource" uid="uid://dscca5hkneedb" path="res://data/towers/earth.tres" id="2_tncdu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xdyxa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tncdu"]
 radius = 10.4403
@@ -117,14 +120,22 @@ _data = {
 }
 
 [node name="EarthTower" type="Node2D"]
-script = ExtResource("1_kuede")
-metadata/_custom_type_script = "uid://2cbqjtg2g3gj"
+script = ExtResource("1_nus1c")
+tower_data = ExtResource("2_tncdu")
+metadata/_custom_type_script = "uid://1v42jjyvr5ed"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_nus1c")
 centered = false
 hframes = 4
+
+[node name="TransformArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransformArea"]
+position = Vector2(8, 8)
+shape = SubResource("CircleShape2D_xdyxa")
 
 [node name="Area2D" type="Area2D" parent="."]
 

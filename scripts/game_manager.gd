@@ -23,6 +23,7 @@ func configure_level():
 	active_spawn_location = (active_path[0])
 
 	# Configure WorldGrid
+	WorldGrid.generate_grid()
 	WorldGrid.configure_tilemap(active_level.tilemap)
 	
 	# Configure EnemySpawner

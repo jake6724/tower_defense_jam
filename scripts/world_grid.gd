@@ -4,7 +4,8 @@ extends Node2D
 
 var height: int = 25
 var width: int = 25
-var data: Dictionary[Vector2, bool] = {} # Coordinate, occupied or not
+## Should always be indexed with Grid Coordinates
+var data: Dictionary[Vector2, bool] = {} # true = can be placed here, false cannot
 
 # Temp for development
 var dark: PackedScene = preload("res://scenes/placeholders/grid_placeholder_dark.tscn")
@@ -28,8 +29,8 @@ var valid_atlas_coords: Array[Vector2i] = [
 	Vector2i(3,12),Vector2i(4,12),
 ]
 
-func _ready():
-	generate_grid()
+# func _ready():
+# 	generate_grid()
 
 func generate_grid() -> void:
 	for y in range(height):
@@ -39,34 +40,22 @@ func generate_grid() -> void:
 			var world_pos = GameManager.grid_to_world(grid_pos)
 			data[grid_pos] = true
 
-			# # DEV
 			if debug:
 				spawn_placeholder(world_pos)
-			# is_dark = not is_dark
-	print(data)
+
 
 func configure_tilemap(tilemap: TileMapLayer) -> void:
 	active_tilemap = tilemap
 
-	# print(tilemap.get_used_cells())
 	for tile_coords: Vector2i in tilemap.get_used_cells():
 		var atlas_coords: Vector2i = tilemap.get_cell_atlas_coords(tile_coords) 
-		# print(tilemap.get_cell_atlas_coords(tile_coords))
 		if atlas_coords in valid_atlas_coords:
-			# print(atlas_coords, " in ", valid_atlas_coords)
-			
-			data[Vector2(tile_coords)] = false
+			data[Vector2(tile_coords)] = true
 		else:
-			data[Vector2(tile_coords)] = true 
+			data[Vector2(tile_coords)] = false 
 
 func spawn_placeholder(pos: Vector2) -> void:
 	var p: Sprite2D
 	p = tile_inidicator.instantiate()
-
-	# if _is_dark:
-	# 	p = dark.instantiate()
-	# else:
-	# 	p = light.instantiate()
-	
 	p.position = pos
 	add_child(p)

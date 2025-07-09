@@ -112,9 +112,6 @@ func on_tower_selected(tower_name: String) -> void:
 		print("Not enough gold")
 
 func on_tower_transform(tower: Tower) -> void:
-	print("On tower transform")
-	print("placement_enabled: ", placement_enabled)
-	print("transformed_towers: ", transformed_towers)
 	# Only allow transformation if player not in placement phase and not tower was not previously transformed this wave
 	if not placement_enabled and not transformed_towers.has(tower):
 		# Remove old tower from active towers
@@ -150,10 +147,6 @@ func on_start_wave() -> void:
 	EnemySpawner.start_wave()
 	reward = EnemySpawner.active_wave.reward
 
-	print("Start of wave")
-	print("ActiveTowers: ", active_towers)
-	print("PrewaveTowers: ", pre_wave_towers)
-	print("transformed_towers: ", transformed_towers)
 func on_wave_complete() -> void:
 	# Update variables
 	placement_enabled = true	
@@ -164,11 +157,6 @@ func on_wave_complete() -> void:
 	tower_menu.update_gold(int(gold))
 
 	reset_towers()
-
-	print("End of wave")
-	print("ActiveTowers: ", active_towers)
-	print("PrewaveTowers: ", pre_wave_towers)
-	print("transformed_towers: ", transformed_towers)
 
 ## For each tower in `active_towers` create a new tower object in `pre_wave_towers` with the same attributes. 
 ## This is a NEW `Tower` object and NOT a reference.

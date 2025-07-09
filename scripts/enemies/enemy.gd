@@ -14,8 +14,11 @@ var min_distance: float = 1
 var health: float
 var speed: float
 var element: GameManager.Element
-var weak_to: GameManager.Element
-var strong_to: GameManager.Element
+var weak_against: GameManager.Element
+var strong_against: GameManager.Element
+
+var negative_modifier: float = .5
+var positive_modifier: float = 2.0
 
 # Signals
 signal is_dead
@@ -26,11 +29,19 @@ func _ready():
 	speed = data.speed
 	element = data.element
 
+	set_resistances()
+
 ## Reduce enemies `health` stat by `damage_recieved`. Return `true` if enemy died, `false` otherwise.
 ## Handles despawning enemy in the case of death.
 func take_damage(damage_recieved: float, tower_element: GameManager.Element):
+	var x = damage_recieved
 
-	# add RESISTANCES THRU THE DATA RESORUCE
+	if tower_element == element or tower_element == strong_against:
+		damage_recieved *= negative_modifier
+	else: # Tower is strong against enemy
+		damage_recieved *= positive_modifier
+
+	print("Enemy element: ", element, " Tower element: ", tower_element, " original damage: ", x, "damage recieved: ", damage_recieved)
 
 	health -= damage_recieved
 	if health <= 0:
@@ -49,3 +60,17 @@ func move(delta) -> void:
 			path.remove_at(0)
 		else:
 			position = (position + ((path[0] - position).normalized() * speed * delta)) # Fixed with pixel snap in project settings, but not perfect
+
+func set_resistances() -> void:
+	match element:
+		GameManager.Element.FIRE: 
+			strong_against = GameManager.Element.EARTH
+			weak_against = GameManager.Element.WATER
+
+		GameManager.Element.EARTH:
+			strong_against = GameManager.Element.WATER
+			weak_against = GameManager.Element.FIRE
+
+		GameManager.Element.WATER:
+			strong_against = GameManager.Element.FIRE
+			weak_against = GameManager.Element.EARTH

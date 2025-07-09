@@ -17,94 +17,97 @@ grow_vertical = 2
 script = ExtResource("1_vis4n")
 metadata/_custom_type_script = "uid://dhbvh3ym8unk4"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 12
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -92.5
-offset_top = -40.0
-offset_right = 92.5
+offset_top = -32.0
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(0.953491, 1.00193)
-mouse_filter = 2
-theme_override_constants/separation = 16
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 32
 
-[node name="Gold" type="HBoxContainer" parent="HBoxContainer"]
+[node name="Gold" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 
-[node name="GoldIcon" type="TextureRect" parent="HBoxContainer/Gold"]
+[node name="GoldIcon" type="TextureRect" parent="MarginContainer/Gold"]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_aeftg")
 
-[node name="Gold" type="Label" parent="HBoxContainer/Gold"]
+[node name="Gold" type="Label" parent="MarginContainer/Gold"]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_y6gfl")
 theme_override_font_sizes/font_size = 16
 text = "100g"
 
-[node name="Fire" type="HBoxContainer" parent="HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="Fire" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 mouse_filter = 2
 theme_override_constants/separation = -1
 
-[node name="FireButton" type="TextureButton" parent="HBoxContainer/Fire"]
+[node name="FireButton" type="TextureButton" parent="MarginContainer/HBoxContainer/Fire"]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource("3_5nani")
 
-[node name="Label" type="Label" parent="HBoxContainer/Fire"]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Fire"]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_y6gfl")
 text = "25g"
 
-[node name="Water" type="HBoxContainer" parent="HBoxContainer"]
+[node name="Water" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 mouse_filter = 2
 theme_override_constants/separation = -1
 
-[node name="WaterButton" type="TextureButton" parent="HBoxContainer/Water"]
+[node name="WaterButton" type="TextureButton" parent="MarginContainer/HBoxContainer/Water"]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource("4_jtt2a")
 
-[node name="Label" type="Label" parent="HBoxContainer/Water"]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Water"]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_y6gfl")
 text = "50g"
 
-[node name="Earth" type="HBoxContainer" parent="HBoxContainer"]
+[node name="Earth" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 mouse_filter = 2
 theme_override_constants/separation = -1
 
-[node name="EarthButton" type="TextureButton" parent="HBoxContainer/Earth"]
+[node name="EarthButton" type="TextureButton" parent="MarginContainer/HBoxContainer/Earth"]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource("5_f7nwt")
 
-[node name="Label" type="Label" parent="HBoxContainer/Earth"]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Earth"]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_y6gfl")

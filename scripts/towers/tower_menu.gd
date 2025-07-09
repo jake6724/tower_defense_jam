@@ -2,11 +2,10 @@ class_name TowerMenu
 extends Control
 
 # Child References
-@onready var button_container: HBoxContainer = $HBoxContainer
-@onready var fire_button: TextureButton = $HBoxContainer/Fire/FireButton
-@onready var water_button: TextureButton = $HBoxContainer/Water/WaterButton
-@onready var earth_button: TextureButton = $HBoxContainer/Earth/EarthButton
-@onready var gold: Label = $HBoxContainer/Gold/Gold
+@onready var fire_button: TextureButton = $MarginContainer/HBoxContainer/Fire/FireButton
+@onready var water_button: TextureButton = $MarginContainer/HBoxContainer/Water/WaterButton
+@onready var earth_button: TextureButton = $MarginContainer/HBoxContainer/Earth/EarthButton
+@onready var gold: Label = $MarginContainer/Gold/Gold
 
 # Signals
 signal tower_selected

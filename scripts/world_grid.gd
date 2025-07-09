@@ -1,6 +1,8 @@
 class_name WorldGrid
 extends Node2D
 
+@export var debug: bool = false
+
 var height: int = 14
 var width: int = 25
 var data: Dictionary[Vector2, bool] = {} # Coordinate, occupied or not
@@ -23,7 +25,8 @@ func generate_grid() -> void:
 			data[grid_pos] = true
 
 			# # DEV
-			# spawn_placeholder(world_pos)
+			if debug:
+				spawn_placeholder(world_pos)
 			# is_dark = not is_dark
 
 func spawn_placeholder(pos: Vector2) -> void:

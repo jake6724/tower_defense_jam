@@ -41,6 +41,7 @@ func _ready():
 	# Configure indicator sprite
 	indicator_sprite = Sprite2D.new()
 	indicator_sprite.modulate.a = .75
+	indicator_sprite.centered = false
 	indicator_sprite.hide()
 	add_child(indicator_sprite)
 
@@ -69,9 +70,9 @@ func spawn_tower(world_pos) -> bool:
 		print("No tower type selected")
 		return false
 
-func _process(delta):
+func _process(_delta):
 	if selected_tower_name in towers:
-		indicator_sprite.position = get_global_mouse_position()
+		indicator_sprite.position = GameManager.grid_to_world(GameManager.world_to_grid(get_global_mouse_position()))
 
 func _input(_event):
 	# THIS IS ALL DEV

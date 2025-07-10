@@ -25,6 +25,7 @@ var damage: int = 10
 var can_attack: bool = true
 
 var base: Base
+var is_alive: bool = true
 
 # Signals
 signal is_dead
@@ -56,16 +57,16 @@ func take_damage(damage_recieved: float, tower_element: GameManager.Element):
 	#print("Enemy element: ", element, " Tower element: ", tower_element, " original damage: ", x, " damage recieved: ", damage_recieved, " health: ", health)
 
 	if health <= 0:
-		is_dead.emit(self)
+		die()
 		return true
 	else:
 		return false
 
-func _process(delta):
+func _physics_process(delta):
 	move(delta)
 
 func move(delta) -> void:
-	if path:
+	if path and is_alive:
 		ap.play("idle")
 		if position.distance_to(path[0]) < min_distance:
 			# position = path[0]
@@ -75,10 +76,8 @@ func move(delta) -> void:
 
 	else:
 		if can_attack:
-			sprite.centered = true # workaround to explosion size
-			can_attack = false
 			base.take_damage(damage)
-			is_dead.emit(self)
+			die()
 
 func set_resistances() -> void:
 	match element:
@@ -95,5 +94,12 @@ func set_resistances() -> void:
 			weak_against = GameManager.Element.EARTH
 
 func on_animation_finished(anim_name):
+	print("anim_name = ", anim_name)
 	if anim_name == "die":
 		queue_free()
+
+func die() -> void:
+	position -= (sprite.texture.get_size() / 2)
+	can_attack = false
+	is_alive = false
+	is_dead.emit(self)

@@ -68,8 +68,6 @@ func _physics_process(_delta):
 		update_active_target()
 		if active_target:
 			attack()
-
-			# Restart attack timer
 			can_attack = false
 			attack_timer.start(speed)
 	else:
@@ -77,44 +75,11 @@ func _physics_process(_delta):
 
 func attack() -> void:
 	# DEBUG
+	# print("active target: ", active_target)
+	# print("in_range_targets: ", in_range_targets)
+
 	debug_attack_line.points = PackedVector2Array([to_local(global_position), to_local(active_target.global_position)])
-	
-	var is_dead: bool = active_target.take_damage(damage, element)
-
-	if is_dead:
-		# Stop tracking enemy
-		in_range_targets.remove_at(in_range_targets.find(active_target))
-		active_target = null
-
-func on_enemy_is_dead(enemy: Enemy) -> void:
-	var index = in_range_targets.find(enemy)
-	if index > 0:
-		in_range_targets.remove_at(index)
-
-	if enemy == active_target: 
-		active_target = null
-		
-func on_area_entered(intruder: Area2D) -> void:
-	if intruder is Enemy:
-		in_range_targets.append(intruder)
-		intruder.is_dead.connect(on_enemy_is_dead)
-		
-
-func on_area_exited(intruder) -> void:
-	if intruder is Enemy:
-		if intruder == active_target:
-			active_target = null
-
-		elif intruder in in_range_targets:
-			in_range_targets.remove_at(in_range_targets.find(intruder))
-			intruder.is_dead.disconnect(on_enemy_is_dead)
-
-func on_transform_area_pressed(_viewport, _event, _shape_idx) -> void:
-	if can_transform:
-		if Input.is_action_just_pressed("left_click"):
-			can_transform = false
-			transform_tower.emit()
-			# print("Transform button pressed!")
+	active_target.take_damage(damage, element)
 
 func update_active_target() -> void:
 	var selected_target: Enemy
@@ -126,21 +91,44 @@ func update_active_target() -> void:
 		return
 
 	for enemy: Enemy in in_range_targets:
-		if enemy:
-			if enemy.path.size() < shortest_path:
-				shortest_path = enemy.path.size()
-				# check distance to next WP in path
-				if (position - enemy.path[0]) <= shortest_distance_to_waypoint:
-					selected_target = enemy
-		else:
-			in_range_targets.remove_at(in_range_targets.find(enemy))
+		if enemy.is_alive and enemy.path.size() < shortest_path: # May need to remove if dead here
+			shortest_path = enemy.path.size()
+			# check distance to next WP in path
+			if (position - enemy.path[0]) <= shortest_distance_to_waypoint:
+				selected_target = enemy
 
 	active_target = selected_target
 
+func on_enemy_is_dead(enemy: Enemy) -> void:
+	var index = in_range_targets.find(enemy)
+	if index != -1:
+		in_range_targets.remove_at(index)
+
+	if enemy == active_target: 
+		active_target = null
+		
+func on_area_entered(intruder: Area2D) -> void:
+	if intruder is Enemy:
+		in_range_targets.append(intruder)
+		intruder.is_dead.connect(on_enemy_is_dead)
+
+func on_area_exited(intruder) -> void:
+	if intruder is Enemy:
+		if intruder == active_target:
+			active_target = null
+
+		if intruder in in_range_targets:
+			in_range_targets.remove_at(in_range_targets.find(intruder))
+			intruder.is_dead.disconnect(on_enemy_is_dead)
+
+func on_transform_area_pressed(_viewport, _event, _shape_idx) -> void:
+	if can_transform:
+		if Input.is_action_just_pressed("left_click"):
+			can_transform = false
+			transform_tower.emit()
+
 func on_attack_timer_timeout() -> void:
 	can_attack = true
-	# print("active target: ", active_target)
-	# print("in_range_targets: ", in_range_targets)
 
 func on_transform_timer_timeout() -> void:
 	can_transform = true

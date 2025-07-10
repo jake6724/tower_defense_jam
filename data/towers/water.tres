@@ -5,9 +5,9 @@
 [resource]
 script = ExtResource("1_fc8g7")
 element = 1
-damage = 9.0
-speed = 0.22
-attack_range = 55.0
+damage = 25.0
+speed = 0.6
+attack_range = 50.0
 num_targets = 1
 tower_name = "water"
 metadata/_custom_type_script = "uid://v7b6nq74b314"

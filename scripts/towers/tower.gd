@@ -77,8 +77,8 @@ func _physics_process(_delta):
 			attack()
 			can_attack = false
 			attack_timer.start(speed)
-	else:
-		ap.play("idle")
+
+	ap.play("idle")
 
 func attack() -> void:
 	spawn_bullet()

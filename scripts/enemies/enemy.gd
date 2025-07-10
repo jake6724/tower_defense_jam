@@ -94,7 +94,6 @@ func set_resistances() -> void:
 			weak_against = GameManager.Element.EARTH
 
 func on_animation_finished(anim_name):
-	print("anim_name = ", anim_name)
 	if anim_name == "die":
 		queue_free()
 

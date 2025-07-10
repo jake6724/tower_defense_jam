@@ -38,15 +38,16 @@ var reward: float
 var indicator_sprite: Sprite2D
 
 func _ready():
+	# ** EVERYTHING in here will only be done ONCE. If something needs to be done each level, put in configure_level()
 	# Configure tower menu
 	tower_menu.tower_selected.connect(on_tower_selected)
 	tower_menu.mouse_entered_button.connect(on_mouse_entered_button)
 	tower_menu.mouse_exited_button.connect(on_mouse_exited_button)
 
-	tower_menu.update_gold(int(gold))
-	tower_menu.start_wave.connect(on_start_wave)
-
 	tower_menu.show_level_number()
+	tower_menu.update_gold(int(gold)) # get this from GameManager active_level
+
+	tower_menu.start_wave.connect(on_start_wave)
 
 	# Configure indicator sprite
 	indicator_sprite = Sprite2D.new()

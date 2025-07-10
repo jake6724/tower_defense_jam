@@ -76,7 +76,7 @@ func update_gold(new_amount: int) -> void:
 	gold.text = str(new_amount)
 
 func on_wave_button_pressed() -> void:
-	wave_number.text = "Wave " + str(GameManager.wave_count)
+	wave_number.text = "Wave " + str(EnemySpawner.wave_index+1)
 	wave_number.show()
 	wave_number_timer.start(wave_number_duration)
 	start_wave.emit()

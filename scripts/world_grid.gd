@@ -4,13 +4,11 @@ extends Node2D
 
 var height: int = 25
 var width: int = 25
+
 ## Should always be indexed with Grid Coordinates
-var data: Dictionary[Vector2, bool] = {} # true = can be placed here, false cannot
+var data: Dictionary[Vector2, bool] # true = can be placed here, false cannot
 
 # Temp for development
-var dark: PackedScene = preload("res://scenes/placeholders/grid_placeholder_dark.tscn")
-var light: PackedScene = preload("res://scenes/placeholders/grid_placeholder_light.tscn")
-var is_dark: bool = false
 var tile_inidicator: PackedScene = preload("res://scenes/placeholders/TileIndicator.tscn")
 
 var active_tilemap: TileMapLayer
@@ -33,8 +31,10 @@ var valid_atlas_coords: Array[Vector2i] = [
 # 	generate_grid()
 
 func generate_grid() -> void:
+	# Reset values
+	data = {}
+
 	for y in range(height):
-		is_dark = not is_dark # DEV
 		for x in range(width):
 			var grid_pos = Vector2(x,y)
 			var world_pos = GameManager.grid_to_world(grid_pos)

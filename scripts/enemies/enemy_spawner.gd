@@ -1,8 +1,10 @@
 # Autoloader
 extends Node
 
-var all_waves: Array[Wave] = []
+var level_waves: Array[Wave] = []
 var active_wave: Wave
+var wave_index: int = 0
+var enemy_index: int = 0 
 var spawn_timer: Timer = Timer.new()
 var spawn_rate: float = 1.0 # Time between enemy spawn, in seconds
 var can_spawn_enemy: bool = false
@@ -17,28 +19,51 @@ var enemies: Dictionary[GameManager.Element, PackedScene] = {
 # Signals
 signal wave_complete
 
-#### NOTE ENEMY SPAWNER PARTIALLY CONFIGURED IN GAME MANAGER ####
 func _ready():
 	# Configure Timer
 	spawn_timer.timeout.connect(on_spawn_timer_timeout)
 	add_child(spawn_timer)
 
+	# Enemy spawner manually start and reset by GameManager
+
+func configure_level(active_level: LevelEnvironment):
+	level_waves = active_level.waves
+	active_wave = level_waves[wave_index]
+	print("active_wave: ", active_wave)
+	print("level_waves: ", level_waves)
+
+func clear_level():
+	for enemy: Enemy in active_enemies.duplicate(true):
+		print("Deleting enemy ", enemy)
+		active_enemies.remove_at(active_enemies.find(enemy))
+		enemy.is_dead.disconnect(on_enemy_died)
+		enemy.queue_free()
+
+	level_waves = []
+	active_wave = null
+	wave_index = 0
+	enemy_index = 0
+	
+		
 ## Intended to be triggered directly by `player_controller`
 func start_wave():
-	active_wave = all_waves.pop_front()
+	active_wave = level_waves[wave_index]
 	can_spawn_enemy = true
 
 func _physics_process(_delta):
 	# Only process if a wave is active	
 	if active_wave:
 		# Check if wave is over
-		if active_wave.data.size() == 0 and active_enemies.size() == 0:
+		if enemy_index == active_wave.data.size() and active_enemies.size() == 0:
+			# Wave complete (could be a function)
 			active_wave = null
+			wave_index += 1
 			wave_complete.emit()
 			can_spawn_enemy = false
 
-		if can_spawn_enemy and active_wave.data.size() > 0:
-			spawn_enemy(active_wave.data.pop_front())
+		if can_spawn_enemy and enemy_index < active_wave.data.size():
+			spawn_enemy(active_wave.data[enemy_index])
+			enemy_index += 1
 		
 			# Restart spawn timer
 			spawn_timer.start(spawn_rate)

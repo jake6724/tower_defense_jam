@@ -6,6 +6,7 @@ extends Area2D
 # Child references
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collider: CollisionShape2D = $CollisionShape2D
+@onready var ap: AnimationPlayer = $AnimationPlayer
 
 var path: PackedVector2Array
 var min_distance: float = 1
@@ -20,9 +21,7 @@ var strong_against: GameManager.Element
 var negative_modifier: float = .5
 var positive_modifier: float = 2.0
 
-var attack_timer: Timer = Timer.new()
-var attack_speed: float = .5 # Time between attacks
-var damage: int = 1
+var damage: int = 10
 var can_attack: bool = true
 
 var base: Base
@@ -38,18 +37,14 @@ func _ready():
 
 	set_resistances()
 
-	add_child(attack_timer)
-	attack_timer.one_shot = true
-	attack_timer.timeout.connect(on_attack_timer_timeout)
-
-	# Get reference to player base
 	base = GameManager.base
-	print(base)
+	
+	ap.animation_finished.connect(on_animation_finished)
 	
 ## Reduce enemies `health` stat by `damage_recieved`. Return `true` if enemy died, `false` otherwise.
 ## Handles despawning enemy in the case of death.
 func take_damage(damage_recieved: float, tower_element: GameManager.Element):
-	var x = damage_recieved
+	#var x = damage_recieved
 
 	if tower_element == element or tower_element == strong_against:
 		damage_recieved *= negative_modifier
@@ -58,7 +53,7 @@ func take_damage(damage_recieved: float, tower_element: GameManager.Element):
 
 	health -= damage_recieved
 
-	print("Enemy element: ", element, " Tower element: ", tower_element, " original damage: ", x, " damage recieved: ", damage_recieved, " health: ", health)
+	#print("Enemy element: ", element, " Tower element: ", tower_element, " original damage: ", x, " damage recieved: ", damage_recieved, " health: ", health)
 
 	if health <= 0:
 		is_dead.emit(self)
@@ -71,6 +66,7 @@ func _process(delta):
 
 func move(delta) -> void:
 	if path:
+		ap.play("idle")
 		if position.distance_to(path[0]) < min_distance:
 			# position = path[0]
 			path.remove_at(0)
@@ -79,12 +75,10 @@ func move(delta) -> void:
 
 	else:
 		if can_attack:
-			base.take_damage(damage)
+			sprite.centered = true # workaround to explosion size
 			can_attack = false
-			attack_timer.start(attack_speed)
-
-func on_attack_timer_timeout() -> void:
-	can_attack = true
+			base.take_damage(damage)
+			is_dead.emit(self)
 
 func set_resistances() -> void:
 	match element:
@@ -99,3 +93,7 @@ func set_resistances() -> void:
 		GameManager.Element.WATER:
 			strong_against = GameManager.Element.FIRE
 			weak_against = GameManager.Element.EARTH
+
+func on_animation_finished(anim_name):
+	if anim_name == "die":
+		queue_free()

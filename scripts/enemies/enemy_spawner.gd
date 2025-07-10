@@ -37,7 +37,6 @@ func _physics_process(_delta):
 			wave_complete.emit()
 			can_spawn_enemy = false
 
-
 		if can_spawn_enemy and active_wave.data.size() > 0:
 			spawn_enemy(active_wave.data.pop_front())
 		
@@ -54,7 +53,8 @@ func spawn_enemy(enemy_type: GameManager.Element):
 
 func on_enemy_died(enemy: Enemy) -> void:
 	active_enemies.remove_at(active_enemies.find(enemy))
-	enemy.queue_free()
+	print("Die")
+	enemy.ap.play("die")
 
 func on_spawn_timer_timeout():
 	can_spawn_enemy = true

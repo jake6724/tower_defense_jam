@@ -9,6 +9,7 @@ extends Control
 @onready var gold: Label = %Gold
 @onready var wave_button: TextureButton = %WaveButton
 @onready var wave_number: Label = %WaveNumber
+@onready var level_number: Label = %LevelNumber
 
 # Signals
 signal tower_selected
@@ -18,6 +19,9 @@ signal mouse_exited_button
 
 var wave_number_timer: Timer = Timer.new()
 var wave_number_duration: float = 2.0
+
+var level_number_timer: Timer = Timer.new()
+var level_number_duration: float = 1.5
 
 func _ready():
 	# Configure buttons
@@ -31,10 +35,14 @@ func _ready():
 	wave_button.mouse_entered.connect(on_mouse_entered_button)
 	wave_button.mouse_exited.connect(on_mouse_exited_button)
 
-	# Configure timer
+	# Configure timers
 	wave_number_timer.timeout.connect(on_wave_number_timer_timeout)
 	wave_number_timer.one_shot = true
 	add_child(wave_number_timer)
+
+	level_number_timer.timeout.connect(on_level_number_timer_timeout)
+	level_number_timer.one_shot = true
+	add_child(level_number_timer)
 
 func hide_placement_phase() -> void:
 	tower_buttons.hide()
@@ -43,6 +51,12 @@ func hide_placement_phase() -> void:
 func show_placement_phase() -> void:
 	tower_buttons.show()
 	wave_button.show()
+
+func show_level_number() -> void:
+	level_number.text = "Level " + str(GameManager.level_index + 1)
+	level_number.show()
+	# Start timer which will automatically hide level number after timeout
+	level_number_timer.start(level_number_duration)
 
 func on_button_pressed(pressed_button: TextureButton):
 	var b_name: String = pressed_button.name.to_lower()
@@ -54,6 +68,9 @@ func on_button_pressed(pressed_button: TextureButton):
 func on_wave_number_timer_timeout():
 	wave_number.hide()
 
+func on_level_number_timer_timeout():
+	level_number.hide()
+
 ## Intended to be called by `player_controller` to directly update gold count
 func update_gold(new_amount: int) -> void:
 	gold.text = str(new_amount)
@@ -62,7 +79,6 @@ func on_wave_button_pressed() -> void:
 	wave_number.text = "Wave " + str(GameManager.wave_count)
 	wave_number.show()
 	wave_number_timer.start(wave_number_duration)
-
 	start_wave.emit()
 
 func on_mouse_entered_button():

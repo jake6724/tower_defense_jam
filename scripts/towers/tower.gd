@@ -25,6 +25,13 @@ var element: GameManager.Element
 var tower_name: String
 var can_attack: bool = true
 
+# Bullets
+var bullets: Dictionary[GameManager.Element, PackedScene] = {
+	GameManager.Element.FIRE: preload("res://scenes/towers/bullets/FireBullet.tscn"),
+	GameManager.Element.EARTH: preload("res://scenes/towers/bullets/EarthBullet.tscn"),
+	GameManager.Element.WATER: preload("res://scenes/towers/bullets/WaterBullet.tscn"),
+}
+
 # Debug
 var debug_attack_line: Line2D = Line2D.new()
 
@@ -78,7 +85,15 @@ func attack() -> void:
 	# print("active target: ", active_target)
 	# print("in_range_targets: ", in_range_targets)
 
-	debug_attack_line.points = PackedVector2Array([to_local(global_position), to_local(active_target.global_position)])
+	# Spawn bullet
+	var new_bullet: Bullet = bullets[element].instantiate()
+	new_bullet.element = element
+	new_bullet.damage = int(damage)
+	new_bullet.target = active_target
+	new_bullet.position += Vector2(8,8) # Hard-code works unless tower sprite size changes
+	add_child(new_bullet)
+
+	#debug_attack_line.points = PackedVector2Array([to_local(global_position), to_local(active_target.global_position)])
 	active_target.take_damage(damage, element)
 
 func update_active_target() -> void:

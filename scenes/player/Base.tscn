@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0jbspdabhoc1"]
+[gd_scene load_steps=6 format=3 uid="uid://c0jbspdabhoc1"]
 
 [ext_resource type="Script" uid="uid://cns8ywst87qt" path="res://scripts/player/base.gd" id="1_iwalr"]
 [ext_resource type="Texture2D" uid="uid://cccu8scs778v6" path="res://assets/art/sprites/spr_base.png" id="2_w8a5b"]
@@ -113,9 +113,6 @@ _data = {
 &"idle": SubResource("Animation_w8a5b")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w8a5b"]
-size = Vector2(48, 64)
-
 [node name="Base" type="Node2D"]
 script = ExtResource("1_iwalr")
 
@@ -128,9 +125,3 @@ hframes = 6
 libraries = {
 &"": SubResource("AnimationLibrary_y18op")
 }
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 16)
-shape = SubResource("RectangleShape2D_w8a5b")

@@ -30,8 +30,6 @@ var debug_attack_line: Line2D = Line2D.new()
 
 signal transform_tower
 
-var count = 0
-
 func _ready():
 	element = tower_data.element
 	damage = tower_data.damage
@@ -78,9 +76,6 @@ func _physics_process(_delta):
 		ap.play("idle")
 
 func attack() -> void:
-	count += 1
-	print("attack ", count)
-
 	# DEBUG
 	debug_attack_line.points = PackedVector2Array([to_local(global_position), to_local(active_target.global_position)])
 	
@@ -144,8 +139,8 @@ func update_active_target() -> void:
 
 func on_attack_timer_timeout() -> void:
 	can_attack = true
-	print("active target: ", active_target)
-	print("in_range_targets: ", in_range_targets)
+	# print("active target: ", active_target)
+	# print("in_range_targets: ", in_range_targets)
 
 func on_transform_timer_timeout() -> void:
 	can_transform = true

@@ -46,6 +46,8 @@ func _ready():
 	tower_menu.update_gold(int(gold))
 	tower_menu.start_wave.connect(on_start_wave)
 
+	tower_menu.show_level_number()
+
 	# Configure indicator sprite
 	indicator_sprite = Sprite2D.new()
 	indicator_sprite.modulate.a = .75

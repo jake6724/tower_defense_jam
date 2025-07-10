@@ -1,17 +1,15 @@
 # Autoloader
 extends Node
 
+enum Element {FIRE, WATER, EARTH}
 var cell_size: int = 16
-var active_path: PackedVector2Array
-var active_spawn_location: Vector2 # In world coordinates
 
 var levels: Array[PackedScene] = [preload("res://scenes/level/LevelEnvironmentTutorial.tscn")]
 var active_level: LevelEnvironment
+var active_path: PackedVector2Array
+var active_spawn_location: Vector2 # In world coordinates
 
-var path_1
-var path_1_spawn_location: Vector2 = Vector2(0,9)
-
-enum Element {FIRE, WATER, EARTH}
+var wave_count: int = 1
 
 func _ready():
 	configure_level()
@@ -23,10 +21,15 @@ func configure_level():
 	active_spawn_location = (active_path[0])
 
 	# Configure WorldGrid
+	WorldGrid.generate_grid()
 	WorldGrid.configure_tilemap(active_level.tilemap)
 	
 	# Configure EnemySpawner
 	EnemySpawner.all_waves = active_level.waves
+	EnemySpawner.wave_complete.connect(on_wave_complete)
+
+func on_wave_complete():
+	wave_count += 1
 
 func convert_path_to_world(path) -> PackedVector2Array:
 	for i in range(path.size()):

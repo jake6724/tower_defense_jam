@@ -10,5 +10,4 @@ script = ExtResource("1_0bbpv")
 [node name="WorldGrid" parent="." instance=ExtResource("1_elqb8")]
 z_index = 100
 
-[node name="PlayerController" parent="." node_paths=PackedStringArray("world_grid") instance=ExtResource("4_rarhs")]
-world_grid = NodePath("../WorldGrid")
+[node name="PlayerController" parent="." instance=ExtResource("4_rarhs")]

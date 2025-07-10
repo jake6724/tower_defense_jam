@@ -80,6 +80,22 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 texture_normal = ExtResource("8_0avqp")
 
+[node name="WaveNumber" type="Label" parent="MarginContainer"]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0.0941176, 0.0941176, 0.25098, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("5_h11kl")
+theme_override_font_sizes/font_size = 64
+text = "Wave 3"
+
 [node name="TowerButtons" type="HBoxContainer" parent="MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2

@@ -1,9 +1,6 @@
 class_name PlayerController
 extends Node2D
 
-# Sibling References
-@export var world_grid: WorldGrid
-
 # Child References
 @onready var tower_menu: TowerMenu = $UI/TowerMenu
 
@@ -60,12 +57,12 @@ func _ready():
 	EnemySpawner.wave_complete.connect(on_wave_complete)
 
 func _process(_delta):
-	if selected_tower_name in towers:
+	if placement_enabled and selected_tower_name in towers:
 		indicator_sprite.position = GameManager.grid_to_world(GameManager.world_to_grid(get_global_mouse_position()))
 
 ## Place a tower in the world grid. Return true if successful, false if not. If `is_tranform` is `true`, the gold
 ## cost of the tower will not be subtracted from player gold.
-func spawn_tower(tower_name, world_pos, is_transform: bool=false) -> Array: # [was_spawned:bool, Tower]
+func spawn_tower(tower_name: String, world_pos: Vector2, is_transform: bool=false) -> Array: # [was_spawned:bool, Tower]
 	# Do not allow placement during combat
 	if not placement_enabled and not is_transform:
 		return [false, null]
@@ -73,27 +70,33 @@ func spawn_tower(tower_name, world_pos, is_transform: bool=false) -> Array: # [w
 	if tower_name in towers:
 		var grid_pos: Vector2 = GameManager.world_to_grid(world_pos)
 
-		if grid_pos in world_grid.data and world_grid.data[grid_pos]:
-			# Spawn and configure new tower
-			var tower = towers[tower_name].instantiate()
-			tower.position = GameManager.grid_to_world(grid_pos) # Bring it back to world to get a clean grid point
-			tower.transform_tower.connect(on_tower_transform.bind(tower))
-			add_child(tower)
+		if grid_pos in WorldGrid.data: 
+			print("spawn_tower() grid_pos: ", grid_pos)
+			print("WorldGrid.data[grid_pos]: ", WorldGrid.data[grid_pos])
+			if WorldGrid.data[grid_pos]:
+				# Spawn and configure new tower
+				var tower = towers[tower_name].instantiate()
+				tower.position = GameManager.grid_to_world(grid_pos) # Bring it back to world to get a clean grid point
+				tower.transform_tower.connect(on_tower_transform.bind(tower))
+				add_child(tower)
 
-			# Update related data
-			active_towers.append(tower)
-			world_grid.data[grid_pos] = false
-			if not is_transform:
-				gold -= prices[tower_name]
-				tower_menu.update_gold(gold)
+				# Update related data
+				active_towers.append(tower)
+				WorldGrid.data[grid_pos] = false
+				if not is_transform:
+					gold -= prices[tower_name]
+					tower_menu.update_gold(int(gold))
 
-			# Clean up indicator
-			indicator_sprite.hide()
+				# Clean up indicator
+				indicator_sprite.hide()
 
-			selected_tower_name = ""
-			return [true, tower]
+				selected_tower_name = ""
+				return [true, tower]
+			else:
+				print("Space occupied")
+				return [false, null]
 		else:
-			print("Invalid position or space is occupied")
+			print("Invalid position")
 			return [false, null]
 	else:
 		# print("No tower type selected")
@@ -107,7 +110,6 @@ func on_tower_selected(tower_name: String) -> void:
 		# Indicator
 		indicator_sprite.texture = textures[tower_name]
 		indicator_sprite.show()
-		
 	else:
 		print("Not enough gold")
 
@@ -121,12 +123,14 @@ func on_tower_transform(tower: Tower) -> void:
 		var next_tower_name: String = get_next_tower_name(tower)
 
 		# Remove old tower, clear map position
-		var _pos: Vector2 = tower.position
-		world_grid.data[GameManager.world_to_grid(_pos)] = true
+		var _world_pos: Vector2 = tower.position
+		var _grid_pos: Vector2 = GameManager.world_to_grid(_world_pos)
+		print("_grid_pos: ", _grid_pos)
+		WorldGrid.data[_grid_pos] = true
 		tower.queue_free()
 
 		# Spawn new tower, add to set
-		var new_tower: Tower = spawn_tower(next_tower_name, _pos, true)[1]
+		var new_tower: Tower = spawn_tower(next_tower_name, _world_pos, true)[1]
 		transformed_towers[new_tower] = 0
 		
 func get_next_tower_name(tower: Tower) -> String:

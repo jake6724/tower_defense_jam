@@ -4,7 +4,7 @@ extends Node
 enum Element {FIRE, WATER, EARTH}
 var cell_size: int = 16
 
-var levels: Array[PackedScene] = [preload("res://scenes/level/LevelEnvironmentTutorial.tscn")]
+var levels: Array[PackedScene] = [preload("res://scenes/level/LevelEnvironmentOne.tscn")]
 var active_level: LevelEnvironment
 var active_path: PackedVector2Array
 var active_spawn_location: Vector2 # In world coordinates

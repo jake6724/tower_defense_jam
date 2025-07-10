@@ -7,7 +7,7 @@ extends Area2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collider: CollisionShape2D = $CollisionShape2D
 
-var path
+var path: PackedVector2Array
 var min_distance: float = 1
 
 # Enemy Stats from Enemy Data Resource
@@ -34,16 +34,17 @@ func _ready():
 ## Reduce enemies `health` stat by `damage_recieved`. Return `true` if enemy died, `false` otherwise.
 ## Handles despawning enemy in the case of death.
 func take_damage(damage_recieved: float, tower_element: GameManager.Element):
-	# var x = damage_recieved
+	var x = damage_recieved
 
 	if tower_element == element or tower_element == strong_against:
 		damage_recieved *= negative_modifier
 	else: # Tower is strong against enemy
 		damage_recieved *= positive_modifier
 
-	#print("Enemy element: ", element, " Tower element: ", tower_element, " original damage: ", x, "damage recieved: ", damage_recieved)
-
 	health -= damage_recieved
+
+	print("Enemy element: ", element, " Tower element: ", tower_element, " original damage: ", x, " damage recieved: ", damage_recieved, " health: ", health)
+
 	if health <= 0:
 		is_dead.emit(self)
 		return true

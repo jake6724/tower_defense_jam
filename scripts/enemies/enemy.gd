@@ -21,8 +21,9 @@ var negative_modifier: float = .5
 var positive_modifier: float = 2.0
 
 var attack_timer: Timer = Timer.new()
-var attack_speed: float = 2.0 # Time between attacks
+var attack_speed: float = .5 # Time between attacks
 var damage: int = 1
+var can_attack: bool = true
 
 var base: Base
 
@@ -43,6 +44,7 @@ func _ready():
 
 	# Get reference to player base
 	base = GameManager.base
+	print(base)
 	
 ## Reduce enemies `health` stat by `damage_recieved`. Return `true` if enemy died, `false` otherwise.
 ## Handles despawning enemy in the case of death.
@@ -75,12 +77,14 @@ func move(delta) -> void:
 		else:
 			position = (position + ((path[0] - position).normalized() * speed * delta)) # Fixed with pixel snap in project settings, but not perfect
 
-	# else:
-	# 	# print("At the end!")
+	else:
+		if can_attack:
+			base.take_damage(damage)
+			can_attack = false
+			attack_timer.start(attack_speed)
 
-func on_attack_timer_timeout():
-	base.take_damage(damage)
-	pass
+func on_attack_timer_timeout() -> void:
+	can_attack = true
 
 func set_resistances() -> void:
 	match element:

@@ -1052,7 +1052,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAHAAAAAAABAAAAAAAIAAAAAAACAAAAAAAJAAA
 tile_set = SubResource("TileSet_grsr5")
 collision_enabled = false
 
-[node name="Base" parent="TileMapLayer" instance=ExtResource("7_xfk66")]
+[node name="Base" parent="." instance=ExtResource("7_xfk66")]
 position = Vector2(360, 80)
 
 [node name="WaypointManager" type="Node2D" parent="."]
@@ -1063,10 +1063,10 @@ metadata/_custom_type_script = "uid://cy2dgc1h1mhqd"
 position = Vector2(0, 144)
 
 [node name="Waypoint2" parent="WaypointManager" instance=ExtResource("8_8amrt")]
-position = Vector2(353, 145)
+position = Vector2(352, 144)
 
 [node name="Waypoint3" parent="WaypointManager" instance=ExtResource("8_8amrt")]
-position = Vector2(354, 129)
+position = Vector2(352, 128)
 
 [node name="UI Reference" type="CanvasLayer" parent="."]
 visible = false

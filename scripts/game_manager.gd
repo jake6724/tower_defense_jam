@@ -23,6 +23,7 @@ func configure_level():
 	active_spawn_location = (active_path[0])
 
 	base = active_level.base
+	base.was_destroyed.connect(on_base_was_destroyed)
 
 	# Configure WorldGrid
 	WorldGrid.generate_grid()
@@ -31,6 +32,9 @@ func configure_level():
 	# Configure EnemySpawner
 	EnemySpawner.all_waves = active_level.waves
 	EnemySpawner.wave_complete.connect(on_wave_complete)
+
+func on_base_was_destroyed():
+	print("Gameover")
 
 func on_wave_complete():
 	wave_count += 1

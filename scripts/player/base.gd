@@ -5,9 +5,14 @@ extends Node2D
 
 var health: int = 100
 
+signal was_destroyed
+
 func _physics_process(_delta):
 	ap.play("idle")
 
 func take_damage(damage_recieved: int):
 	health -= damage_recieved
 	print("Damage taken. New HP: ", health)
+
+	if health <= 0:
+		was_destroyed.emit()

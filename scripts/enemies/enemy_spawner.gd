@@ -45,16 +45,19 @@ func _physics_process(_delta):
 			can_spawn_enemy = false
 		
 func spawn_enemy(enemy_type: GameManager.Element):
+	# Configure new enemy
 	var new_enemy: Enemy = enemies[enemy_type].instantiate()
 	new_enemy.position = GameManager.active_spawn_location
 	new_enemy.is_dead.connect(on_enemy_died)
-	active_enemies.append(new_enemy)
 	add_child(new_enemy)
 
+	active_enemies.append(new_enemy)
+
 func on_enemy_died(enemy: Enemy) -> void:
-	active_enemies.remove_at(active_enemies.find(enemy))
-	print("Die")
-	enemy.ap.play("die")
+	var index = active_enemies.find(enemy)
+	if index != -1:
+		active_enemies.remove_at(index)
+		enemy.ap.play("die")
 
 func on_spawn_timer_timeout():
 	can_spawn_enemy = true

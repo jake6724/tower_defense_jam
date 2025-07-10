@@ -57,7 +57,7 @@ func _ready():
 	EnemySpawner.wave_complete.connect(on_wave_complete)
 
 func _process(_delta):
-	if selected_tower_name in towers:
+	if placement_enabled and selected_tower_name in towers:
 		indicator_sprite.position = GameManager.grid_to_world(GameManager.world_to_grid(get_global_mouse_position()))
 
 ## Place a tower in the world grid. Return true if successful, false if not. If `is_tranform` is `true`, the gold

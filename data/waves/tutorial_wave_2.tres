@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_2mrye")
-data = Array[int]([1, 1, 0, 0])
-reward = 50.0
+data = Array[int]([0, 0, 0, 1, 1])
+reward = 75.0
 metadata/_custom_type_script = "uid://cskry1sw3vqba"

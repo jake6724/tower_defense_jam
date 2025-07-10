@@ -7,7 +7,8 @@ var element: GameManager.Element
 var damage: int 
 var target: Enemy
 
-var min_distance: float = 1
+var pos_offset: Vector2 = Vector2(8,8) # Hard-code works unless tower sprite size changes
+var min_distance: float = 11
 var speed: float = 100
 
 func _physics_process(delta):
@@ -15,8 +16,11 @@ func _physics_process(delta):
 		print(global_position.distance_to(target.global_position))
 		if global_position.distance_to(target.global_position) > min_distance:
 			ap.play("move")
-			global_position = global_position + ((global_position.direction_to(target.global_position)) * speed * delta)
-		else:
+			global_position = global_position + ((global_position.direction_to(target.global_position + pos_offset)) * speed * delta)
+		
+		else: # If target has been reached
+			target.take_damage(damage, element)
 			queue_free()
-	else:
+
+	else: # Do nothing if target is null or dead
 		queue_free()

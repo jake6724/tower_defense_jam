@@ -81,20 +81,7 @@ func _physics_process(_delta):
 		ap.play("idle")
 
 func attack() -> void:
-	# DEBUG
-	# print("active target: ", active_target)
-	# print("in_range_targets: ", in_range_targets)
-
-	# Spawn bullet
-	var new_bullet: Bullet = bullets[element].instantiate()
-	new_bullet.element = element
-	new_bullet.damage = int(damage)
-	new_bullet.target = active_target
-	new_bullet.position += Vector2(8,8) # Hard-code works unless tower sprite size changes
-	add_child(new_bullet)
-
-	#debug_attack_line.points = PackedVector2Array([to_local(global_position), to_local(active_target.global_position)])
-	active_target.take_damage(damage, element)
+	spawn_bullet()
 
 func update_active_target() -> void:
 	var selected_target: Enemy
@@ -135,6 +122,14 @@ func on_area_exited(intruder) -> void:
 		if intruder in in_range_targets:
 			in_range_targets.remove_at(in_range_targets.find(intruder))
 			intruder.is_dead.disconnect(on_enemy_is_dead)
+
+func spawn_bullet() -> void:
+	var new_bullet: Bullet = bullets[element].instantiate()
+	new_bullet.element = element
+	new_bullet.damage = int(damage)
+	new_bullet.target = active_target
+	new_bullet.position += new_bullet.pos_offset
+	add_child(new_bullet)
 
 func on_transform_area_pressed(_viewport, _event, _shape_idx) -> void:
 	if can_transform:

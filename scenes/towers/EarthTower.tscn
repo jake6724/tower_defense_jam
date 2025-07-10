@@ -4,7 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://dh30ocxr6uk5n" path="res://assets/art/sprites/spr_tower_earth_idle.png" id="2_nus1c"]
 [ext_resource type="Resource" uid="uid://dscca5hkneedb" path="res://data/towers/earth.tres" id="2_tncdu"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xdyxa"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tncdu"]
+size = Vector2(16, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tncdu"]
 radius = 10.4403
@@ -135,7 +136,7 @@ unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransformArea"]
 position = Vector2(8, 8)
-shape = SubResource("CircleShape2D_xdyxa")
+shape = SubResource("RectangleShape2D_tncdu")
 
 [node name="Area2D" type="Area2D" parent="."]
 

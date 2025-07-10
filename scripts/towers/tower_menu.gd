@@ -18,10 +18,10 @@ signal mouse_entered_button
 signal mouse_exited_button
 
 var wave_number_timer: Timer = Timer.new()
-var wave_number_duration: float = 2.0
+var wave_number_duration: float = 1.0
 
 var level_number_timer: Timer = Timer.new()
-var level_number_duration: float = 1.5
+var level_number_duration: float = 1.0
 
 func _ready():
 	# Configure buttons

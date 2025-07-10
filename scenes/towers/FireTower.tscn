@@ -4,7 +4,8 @@
 [ext_resource type="Resource" uid="uid://dmqkrjnii0xbf" path="res://data/towers/fire.tres" id="2_53w0b"]
 [ext_resource type="Texture2D" uid="uid://c3em678h7o11n" path="res://assets/art/sprites/spr_tower_fire_idle.png" id="2_bfb4r"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_bfb4r"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_53w0b"]
+size = Vector2(16, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_53w0b"]
 radius = 10.4403
@@ -137,7 +138,7 @@ unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransformArea"]
 position = Vector2(8, 8)
-shape = SubResource("CircleShape2D_bfb4r")
+shape = SubResource("RectangleShape2D_53w0b")
 
 [node name="Area2D" type="Area2D" parent="."]
 input_pickable = false

@@ -32,13 +32,15 @@ var pre_wave_towers: Array[Tower] = [] # Original configuration of towers during
 
 var placement_enabled: bool = true
 
-var gold: float = 25.0
+var gold: float
 var reward: float
 
 var indicator_sprite: Sprite2D
 
 func _ready():
 	# ** EVERYTHING in here will only be done ONCE. If something needs to be done each level, put in configure_level()
+	gold = GameManager.active_level.initial_gold
+
 	# Configure tower menu
 	tower_menu.tower_selected.connect(on_tower_selected)
 	tower_menu.mouse_entered_button.connect(on_mouse_entered_button)

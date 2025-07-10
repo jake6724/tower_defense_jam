@@ -28,7 +28,7 @@ func _ready():
 
 func configure_level(active_level: LevelEnvironment):
 	level_waves = active_level.waves
-	active_wave = level_waves[wave_index]
+	# active_wave = level_waves[wave_index]
 	print("active_wave: ", active_wave)
 	print("level_waves: ", level_waves)
 
@@ -44,7 +44,6 @@ func clear_level():
 	wave_index = 0
 	enemy_index = 0
 	
-		
 ## Intended to be triggered directly by `player_controller`
 func start_wave():
 	active_wave = level_waves[wave_index]
@@ -58,6 +57,7 @@ func _physics_process(_delta):
 			# Wave complete (could be a function)
 			active_wave = null
 			wave_index += 1
+			enemy_index = 0
 			wave_complete.emit()
 			can_spawn_enemy = false
 

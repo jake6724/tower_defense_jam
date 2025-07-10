@@ -7,7 +7,7 @@
 [ext_resource type="Resource" uid="uid://k1ffmkqx42pk" path="res://data/waves/tutorial_wave_2.tres" id="5_xfk66"]
 [ext_resource type="Texture2D" uid="uid://mx037l5wyj6c" path="res://assets/art/sprites/spr_environment_atlas.png" id="6_485kb"]
 [ext_resource type="Resource" uid="uid://oit7dbyv3aot" path="res://data/waves/tutorial_wave_4.tres" id="6_x20n4"]
-[ext_resource type="Resource" uid="uid://d4de08aepspnu" path="res://data/waves/tutorial_wave_5.tres" id="7_5ute2"]
+[ext_resource type="Resource" uid="uid://bo8irjnmhocn5" path="res://data/waves/tutorial_wave_5.tres" id="7_5ute2"]
 [ext_resource type="Script" uid="uid://cy2dgc1h1mhqd" path="res://scripts/level/waypoint_manager.gd" id="7_cqlve"]
 [ext_resource type="PackedScene" uid="uid://c0jbspdabhoc1" path="res://scenes/player/Base.tscn" id="7_xfk66"]
 [ext_resource type="PackedScene" uid="uid://deixtoq82gyis" path="res://scenes/level/Waypoint.tscn" id="8_8amrt"]
@@ -1047,6 +1047,7 @@ sources/0 = SubResource("TileSetAtlasSource_ylovj")
 z_index = -1
 script = ExtResource("1_vp43h")
 waves = Array[ExtResource("2_xfk66")]([ExtResource("3_vp43h"), ExtResource("5_xfk66"), ExtResource("5_o01c6"), ExtResource("6_x20n4"), ExtResource("7_5ute2")])
+initial_gold = 25
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 texture_filter = 1

@@ -6,3 +6,4 @@ extends Node2D
 @onready var tilemap: TileMapLayer = $TileMapLayer
 @onready var base: Base = $Base
 @export var waves: Array[Wave]
+@export var initial_gold: int

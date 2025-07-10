@@ -1052,6 +1052,9 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAHAAAAAAABAAAAAAAIAAAAAAACAAAAAAAJAAA
 tile_set = SubResource("TileSet_grsr5")
 collision_enabled = false
 
+[node name="Base" parent="." instance=ExtResource("10_k1152")]
+position = Vector2(360, 80)
+
 [node name="WaypointManager" type="Node2D" parent="."]
 script = ExtResource("3_grsr5")
 metadata/_custom_type_script = "uid://cy2dgc1h1mhqd"
@@ -1099,6 +1102,3 @@ position = Vector2(352, 128)
 visible = false
 
 [node name="TowerMenu" parent="UI Reference" instance=ExtResource("9_fpffg")]
-
-[node name="Base" parent="." instance=ExtResource("10_k1152")]
-position = Vector2(360, 80)

@@ -20,6 +20,12 @@ var strong_against: GameManager.Element
 var negative_modifier: float = .5
 var positive_modifier: float = 2.0
 
+var attack_timer: Timer = Timer.new()
+var attack_speed: float = 2.0 # Time between attacks
+var damage: int = 1
+
+var base: Base
+
 # Signals
 signal is_dead
 
@@ -31,6 +37,13 @@ func _ready():
 
 	set_resistances()
 
+	add_child(attack_timer)
+	attack_timer.one_shot = true
+	attack_timer.timeout.connect(on_attack_timer_timeout)
+
+	# Get reference to player base
+	base = GameManager.base
+	
 ## Reduce enemies `health` stat by `damage_recieved`. Return `true` if enemy died, `false` otherwise.
 ## Handles despawning enemy in the case of death.
 func take_damage(damage_recieved: float, tower_element: GameManager.Element):
@@ -61,6 +74,13 @@ func move(delta) -> void:
 			path.remove_at(0)
 		else:
 			position = (position + ((path[0] - position).normalized() * speed * delta)) # Fixed with pixel snap in project settings, but not perfect
+
+	# else:
+	# 	# print("At the end!")
+
+func on_attack_timer_timeout():
+	base.take_damage(damage)
+	pass
 
 func set_resistances() -> void:
 	match element:

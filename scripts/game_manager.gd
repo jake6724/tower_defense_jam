@@ -4,10 +4,12 @@ extends Node
 enum Element {FIRE, WATER, EARTH}
 var cell_size: int = 16
 
-var levels: Array[PackedScene] = [preload("res://scenes/level/LevelEnvironmentOne.tscn")]
+var levels: Array[PackedScene] = [preload("res://scenes/level/LevelEnvironmentTutorial.tscn")]
 var active_level: LevelEnvironment
 var active_path: PackedVector2Array
 var active_spawn_location: Vector2 # In world coordinates
+
+var base: Base
 
 var wave_count: int = 1
 
@@ -19,6 +21,8 @@ func configure_level():
 	add_child(active_level)
 	active_path = convert_path_to_world((active_level.waypoint_manager.get_waypoint_path()))
 	active_spawn_location = (active_path[0])
+
+	base = active_level.base
 
 	# Configure WorldGrid
 	WorldGrid.generate_grid()

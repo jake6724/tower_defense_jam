@@ -10,8 +10,8 @@ extends Node2D
 @onready var collider: CollisionShape2D = $Area2D/CollisionShape2D
 @onready var ap: AnimationPlayer = $AnimationPlayer
 
-var active_targets: Array[Enemy] = []
-var inactive_targets: Array[Enemy] = []
+var active_target: Enemy
+var in_range_targets: Array[Enemy] = []
 var attack_timer: Timer = Timer.new()
 var transform_timer: Timer = Timer.new()
 var can_transform: bool = false
@@ -25,7 +25,12 @@ var element: GameManager.Element
 var tower_name: String
 var can_attack: bool = true
 
+# Debug
+var debug_attack_line: Line2D = Line2D.new()
+
 signal transform_tower
+
+var count = 0
 
 func _ready():
 	element = tower_data.element
@@ -48,57 +53,99 @@ func _ready():
 
 	# Configure Timers
 	attack_timer.timeout.connect(on_attack_timer_timeout)
+	attack_timer.one_shot = true
 	add_child(attack_timer)
+	attack_timer.start(speed)
 
 	transform_timer.timeout.connect(on_transform_timer_timeout)
 	transform_timer.one_shot = true
 	add_child(transform_timer)
 	transform_timer.start(.1) # time until you can transform a tower (so it doesn't when you click to spawn it)
 
+	debug_attack_line.width = 4
+	add_child(debug_attack_line)
+
 func _physics_process(_delta):	
 	if can_attack:
-		attack()
-		# Restart attack timer
-		can_attack = false
-		attack_timer.start(speed)
+		update_active_target()
+		if active_target:
+			attack()
+
+			# Restart attack timer
+			can_attack = false
+			attack_timer.start(speed)
 	else:
 		ap.play("idle")
 
 func attack() -> void:
-	for enemy in active_targets:
-		var is_dead: bool = enemy.take_damage(damage, element)
-		if is_dead:
-			active_targets.remove_at(active_targets.find(enemy))
-			update_active_targets()
+	count += 1
+	print("attack ", count)
 
+	# DEBUG
+	debug_attack_line.points = PackedVector2Array([to_local(global_position), to_local(active_target.global_position)])
+	
+	var is_dead: bool = active_target.take_damage(damage, element)
+
+	if is_dead:
+		# Stop tracking enemy
+		in_range_targets.remove_at(in_range_targets.find(active_target))
+		active_target = null
+
+func on_enemy_is_dead(enemy: Enemy) -> void:
+	var index = in_range_targets.find(enemy)
+	if index > 0:
+		in_range_targets.remove_at(index)
+
+	if enemy == active_target: 
+		active_target = null
+		
 func on_area_entered(intruder: Area2D) -> void:
 	if intruder is Enemy:
-		inactive_targets.append(intruder)
-		update_active_targets()
+		in_range_targets.append(intruder)
+		intruder.is_dead.connect(on_enemy_is_dead)
+		
 
 func on_area_exited(intruder) -> void:
 	if intruder is Enemy:
-		if intruder in active_targets:
-			active_targets.remove_at(active_targets.find(intruder))
-			update_active_targets()
+		if intruder == active_target:
+			active_target = null
 
-		elif intruder in inactive_targets:
-			inactive_targets.remove_at(inactive_targets.find(intruder))
+		elif intruder in in_range_targets:
+			in_range_targets.remove_at(in_range_targets.find(intruder))
+			intruder.is_dead.disconnect(on_enemy_is_dead)
 
 func on_transform_area_pressed(_viewport, _event, _shape_idx) -> void:
 	if can_transform:
 		if Input.is_action_just_pressed("left_click"):
 			can_transform = false
 			transform_tower.emit()
-			print("Transform button pressed!")
+			# print("Transform button pressed!")
 
-func update_active_targets() -> void:
-	# Move as many inactive targets to active as possible/allowed
-	while active_targets.size() < num_targets and inactive_targets.size() > 0:
-		active_targets.append(inactive_targets.pop_front())
+func update_active_target() -> void:
+	var selected_target: Enemy
+	var shortest_path = INF
+	var shortest_distance_to_waypoint = Vector2(INF, INF)
+
+	if in_range_targets.size() == 0:
+		active_target = null
+		return
+
+	for enemy: Enemy in in_range_targets:
+		if enemy:
+			if enemy.path.size() < shortest_path:
+				shortest_path = enemy.path.size()
+				# check distance to next WP in path
+				if (position - enemy.path[0]) <= shortest_distance_to_waypoint:
+					selected_target = enemy
+		else:
+			in_range_targets.remove_at(in_range_targets.find(enemy))
+
+	active_target = selected_target
 
 func on_attack_timer_timeout() -> void:
 	can_attack = true
+	print("active target: ", active_target)
+	print("in_range_targets: ", in_range_targets)
 
 func on_transform_timer_timeout() -> void:
 	can_transform = true

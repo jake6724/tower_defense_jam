@@ -71,8 +71,6 @@ func spawn_tower(tower_name: String, world_pos: Vector2, is_transform: bool=fals
 		var grid_pos: Vector2 = GameManager.world_to_grid(world_pos)
 
 		if grid_pos in WorldGrid.data: 
-			print("spawn_tower() grid_pos: ", grid_pos)
-			print("WorldGrid.data[grid_pos]: ", WorldGrid.data[grid_pos])
 			if WorldGrid.data[grid_pos]:
 				# Spawn and configure new tower
 				var tower = towers[tower_name].instantiate()
@@ -99,7 +97,6 @@ func spawn_tower(tower_name: String, world_pos: Vector2, is_transform: bool=fals
 			print("Invalid position")
 			return [false, null]
 	else:
-		# print("No tower type selected")
 		return [false, null]
 
 func on_tower_selected(tower_name: String) -> void:
@@ -125,7 +122,6 @@ func on_tower_transform(tower: Tower) -> void:
 		# Remove old tower, clear map position
 		var _world_pos: Vector2 = tower.position
 		var _grid_pos: Vector2 = GameManager.world_to_grid(_world_pos)
-		print("_grid_pos: ", _grid_pos)
 		WorldGrid.data[_grid_pos] = true
 		tower.queue_free()
 
@@ -166,7 +162,6 @@ func on_wave_complete() -> void:
 ## This is a NEW `Tower` object and NOT a reference.
 func copy_active_towers_to_prewave_towers() -> void:
 	for tower: Tower in active_towers:
-		print(tower)
 		var copy: Tower = towers[tower.tower_name].instantiate()
 		copy.position = tower.position
 		copy.transform_tower.connect(on_tower_transform.bind(copy))

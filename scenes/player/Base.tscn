@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0jbspdabhoc1"]
+[gd_scene load_steps=7 format=3 uid="uid://c0jbspdabhoc1"]
 
 [ext_resource type="Script" uid="uid://cns8ywst87qt" path="res://scripts/player/base.gd" id="1_iwalr"]
 [ext_resource type="Texture2D" uid="uid://cccu8scs778v6" path="res://assets/art/sprites/spr_base.png" id="2_w8a5b"]
+[ext_resource type="FontFile" uid="uid://cwmwdesn8l82o" path="res://assets/fonts/alagard.ttf" id="3_roqga"]
 
 [sub_resource type="Animation" id="Animation_roqga"]
 length = 0.001
@@ -125,3 +126,16 @@ hframes = 6
 libraries = {
 &"": SubResource("AnimationLibrary_y18op")
 }
+
+[node name="HealthLabel" type="Label" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+offset_left = -19.0
+offset_top = 6.0
+offset_right = 21.0
+offset_bottom = 29.0
+theme_override_fonts/font = ExtResource("3_roqga")
+theme_override_font_sizes/font_size = 16
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1

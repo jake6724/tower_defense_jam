@@ -1046,8 +1046,9 @@ sources/0 = SubResource("TileSetAtlasSource_ylovj")
 [node name="LevelEnvironmentTutorial" type="Node2D"]
 z_index = -1
 script = ExtResource("1_vp43h")
-waves = Array[ExtResource("2_xfk66")]([ExtResource("3_vp43h"), ExtResource("5_xfk66"), ExtResource("5_o01c6"), ExtResource("6_x20n4"), ExtResource("7_5ute2")])
+level_name = "Tutorial"
 initial_gold = 25
+waves = Array[ExtResource("2_xfk66")]([ExtResource("3_vp43h"), ExtResource("5_xfk66"), ExtResource("5_o01c6"), ExtResource("6_x20n4"), ExtResource("7_5ute2")])
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 texture_filter = 1

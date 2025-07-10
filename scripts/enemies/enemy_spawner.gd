@@ -18,6 +18,7 @@ var enemies: Dictionary[GameManager.Element, PackedScene] = {
 
 # Signals
 signal wave_complete
+signal level_complete
 
 func _ready():
 	# Configure Timer
@@ -28,13 +29,9 @@ func _ready():
 
 func configure_level(active_level: LevelEnvironment):
 	level_waves = active_level.waves
-	# active_wave = level_waves[wave_index]
-	print("active_wave: ", active_wave)
-	print("level_waves: ", level_waves)
 
 func clear_level():
 	for enemy: Enemy in active_enemies.duplicate(true):
-		print("Deleting enemy ", enemy)
 		active_enemies.remove_at(active_enemies.find(enemy))
 		enemy.is_dead.disconnect(on_enemy_died)
 		enemy.queue_free()
@@ -60,6 +57,9 @@ func _physics_process(_delta):
 			enemy_index = 0
 			wave_complete.emit()
 			can_spawn_enemy = false
+
+			if wave_index == level_waves.size():
+				level_complete.emit()
 
 		if can_spawn_enemy and enemy_index < active_wave.data.size():
 			spawn_enemy(active_wave.data[enemy_index])

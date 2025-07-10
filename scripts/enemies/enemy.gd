@@ -21,7 +21,7 @@ var strong_against: GameManager.Element
 var negative_modifier: float = .5
 var positive_modifier: float = 2.0
 
-var damage: int = 10
+var damage: int = 1
 var can_attack: bool = true
 
 var base: Base
@@ -45,16 +45,12 @@ func _ready():
 ## Reduce enemies `health` stat by `damage_recieved`. Return `true` if enemy died, `false` otherwise.
 ## Handles despawning enemy in the case of death.
 func take_damage(damage_recieved: float, tower_element: GameManager.Element):
-	#var x = damage_recieved
-
 	if tower_element == element or tower_element == strong_against:
 		damage_recieved *= negative_modifier
 	else: # Tower is strong against enemy
 		damage_recieved *= positive_modifier
 
 	health -= damage_recieved
-
-	#print("Enemy element: ", element, " Tower element: ", tower_element, " original damage: ", x, " damage recieved: ", damage_recieved, " health: ", health)
 
 	if health <= 0:
 		die()

@@ -21,7 +21,7 @@ var wave_number_timer: Timer = Timer.new()
 var wave_number_duration: float = 1.0
 
 var level_number_timer: Timer = Timer.new()
-var level_number_duration: float = 1.0
+var level_number_duration: float = 2.0
 
 func _ready():
 	# Configure buttons
@@ -53,7 +53,8 @@ func show_placement_phase() -> void:
 	wave_button.show()
 
 func show_level_number() -> void:
-	level_number.text = "Level " + str(GameManager.level_index + 1)
+	# level_number.text = "Level " + str(GameManager.level_index + 1)
+	level_number.text = GameManager.active_level.level_name
 	level_number.show()
 	# Start timer which will automatically hide level number after timeout
 	level_number_timer.start(level_number_duration)

@@ -92,11 +92,11 @@ func update_active_target() -> void:
 		active_target = null
 		return
 
-	for enemy: Enemy in in_range_targets:
+	for enemy: Enemy in in_range_targets: 
 		if enemy.is_alive and enemy.path.size() < shortest_path: # May need to remove if dead here
 			shortest_path = enemy.path.size()
 			# check distance to next WP in path
-			if (position - enemy.path[0]) <= shortest_distance_to_waypoint:
+			if enemy.path and (position - enemy.path[0]) <= shortest_distance_to_waypoint:
 				selected_target = enemy
 
 	active_target = selected_target

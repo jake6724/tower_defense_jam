@@ -62,11 +62,13 @@ func _physics_process(_delta):
 				level_complete.emit()
 
 		if can_spawn_enemy and enemy_index < active_wave.data.size():
-			spawn_enemy(active_wave.data[enemy_index])
+			var spawn_element: GameManager.Element = active_wave.data[enemy_index].element
+			var spawn_delay: float = active_wave.data[enemy_index].delay
+			spawn_enemy(spawn_element)
 			enemy_index += 1
 		
 			# Restart spawn timer
-			spawn_timer.start(spawn_rate)
+			spawn_timer.start(spawn_delay)
 			can_spawn_enemy = false
 		
 func spawn_enemy(enemy_type: GameManager.Element):

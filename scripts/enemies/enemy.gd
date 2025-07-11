@@ -28,6 +28,8 @@ var can_attack: bool = true
 var base: Base
 var is_alive: bool = true
 
+var walk_resume_pos: float
+
 # Signals
 signal is_dead
 
@@ -65,6 +67,10 @@ func take_damage(damage_recieved: float, tower_element: GameManager.Element):
 		die()
 		return true
 	else:
+		walk_resume_pos = ap.get_current_animation_position()
+		if ap.current_animation != "hit":
+			print("hit")
+			ap.play("hit")
 		return false
 
 func _physics_process(delta):
@@ -98,6 +104,10 @@ func set_resistances() -> void:
 			weak_against = GameManager.Element.EARTH
 
 func on_animation_finished(anim_name):
+	if anim_name == "hit":
+		ap.play("walk")
+		ap.seek(walk_resume_pos)
+
 	if anim_name == "die":
 		queue_free()
 

@@ -64,9 +64,9 @@ func _ready():
 	var shape: CircleShape2D = collider.shape
 	shape.radius = attack_range
 
-	var range_indicator: Polygon2D = Polygon2D.new()
-	sprite.add_child(range_indicator)
-
+	# # TODO
+	# var range_indicator: Polygon2D = Polygon2D.new()
+	# sprite.add_child(range_indicator)
 
 	# Configure Timers
 	attack_timer.timeout.connect(on_attack_timer_timeout)

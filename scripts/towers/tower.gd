@@ -16,6 +16,7 @@ var active_target: Enemy
 var in_range_targets: Array[Enemy] = []
 var attack_timer: Timer = Timer.new()
 var transform_timer: Timer = Timer.new()
+var transform_delay: float = 1.0
 
 var can_transform: bool = false
 
@@ -63,6 +64,10 @@ func _ready():
 	var shape: CircleShape2D = collider.shape
 	shape.radius = attack_range
 
+	var range_indicator: Polygon2D = Polygon2D.new()
+	sprite.add_child(range_indicator)
+
+
 	# Configure Timers
 	attack_timer.timeout.connect(on_attack_timer_timeout)
 	attack_timer.one_shot = true
@@ -72,7 +77,7 @@ func _ready():
 	transform_timer.timeout.connect(on_transform_timer_timeout)
 	transform_timer.one_shot = true
 	add_child(transform_timer)
-	transform_timer.start(1) # time until you can transform a tower (so it doesn't when you click to spawn it)
+	transform_timer.start(transform_delay) # time until you can transform a tower (so it doesn't when you click to spawn it)
 
 	debug_attack_line.width = 4
 	add_child(debug_attack_line)

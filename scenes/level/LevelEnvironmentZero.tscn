@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b2p4p3fvxv2jk" path="res://scripts/level/level_environment.gd" id="1_ngoaq"]
 [ext_resource type="Script" uid="uid://cskry1sw3vqba" path="res://scripts/level/wave.gd" id="2_ks76k"]
-[ext_resource type="Resource" uid="uid://yvnaolv1trfl" path="res://data/waves/level_0_wave_1.tres" id="3_bujrr"]
+[ext_resource type="Resource" path="res://data/waves/level_0_wave_1.tres" id="3_bujrr"]
 [ext_resource type="Texture2D" uid="uid://mx037l5wyj6c" path="res://assets/art/sprites/spr_environment_atlas.png" id="6_0pqvd"]
 [ext_resource type="PackedScene" uid="uid://c0jbspdabhoc1" path="res://scenes/player/Base.tscn" id="7_o8jjm"]
 [ext_resource type="Script" uid="uid://cy2dgc1h1mhqd" path="res://scripts/level/waypoint_manager.gd" id="8_4vp7k"]
@@ -1043,6 +1043,7 @@ sources/0 = SubResource("TileSetAtlasSource_ylovj")
 z_index = -1
 script = ExtResource("1_ngoaq")
 level_name = "Level Zero"
+initial_gold = 25
 waves = Array[ExtResource("2_ks76k")]([ExtResource("3_bujrr")])
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]

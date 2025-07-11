@@ -1,16 +1,12 @@
 [gd_resource type="Resource" script_class="Wave" load_steps=5 format=3 uid="uid://cycxrsfnom6xu"]
 
 [ext_resource type="Script" uid="uid://cskry1sw3vqba" path="res://scripts/level/wave.gd" id="1_2mrye"]
-[ext_resource type="Script" path="res://scripts/enemies/spawn.gd" id="1_gwqqs"]
+[ext_resource type="Script" uid="uid://drj0bkkfpdi50" path="res://scripts/enemies/spawn.gd" id="1_gwqqs"]
 [ext_resource type="Resource" uid="uid://dna6k11dppmyk" path="res://data/spawn/fire_1.tres" id="2_ax33a"]
 [ext_resource type="Resource" uid="uid://8uj44s234ppj" path="res://data/spawn/fire_half.tres" id="3_fni2s"]
 
 [resource]
 script = ExtResource("1_2mrye")
-<<<<<<< HEAD
-data = Array[ExtResource("1_gwqqs")]([ExtResource("2_ax33a"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s")])
-=======
 data = Array[ExtResource("1_gwqqs")]([ExtResource("2_ax33a"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s")])
->>>>>>> 4e39c42bd06cc7777f41b40e03e0064bbec193af
 reward = 0.0
 metadata/_custom_type_script = "uid://cskry1sw3vqba"

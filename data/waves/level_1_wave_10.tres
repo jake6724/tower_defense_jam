@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Wave" load_steps=3 format=3 uid="uid://cejkodtychq1c"]
+
+[ext_resource type="Script" path="res://scripts/enemies/spawn.gd" id="1_yk7vn"]
+[ext_resource type="Script" uid="uid://cskry1sw3vqba" path="res://scripts/level/wave.gd" id="2_aqd4r"]
+
+[resource]
+script = ExtResource("2_aqd4r")
+data = Array[ExtResource("1_yk7vn")]([])
+reward = 0.0
+metadata/_custom_type_script = "uid://cskry1sw3vqba"

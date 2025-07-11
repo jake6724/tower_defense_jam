@@ -12,7 +12,7 @@ var level_tutorial: PackedScene = preload("res://scenes/level/LevelEnvironmentTu
 var level_one: PackedScene = preload("res://scenes/level/LevelEnvironmentOne.tscn")
 
 var levels: Array[PackedScene] = [level_zero, level_tutorial, level_one]
-var level_index: int = 1
+var level_index: int = 0
 var active_level: LevelEnvironment
 var active_path: PackedVector2Array
 var active_spawn_location: Vector2 # In world coordinates

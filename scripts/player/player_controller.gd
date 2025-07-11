@@ -64,6 +64,8 @@ func _ready():
 func _process(_delta):
 	if placement_enabled and selected_tower_name in towers:
 		indicator_sprite.position = GameManager.grid_to_world(GameManager.world_to_grid(get_global_mouse_position()))
+	else:
+		indicator_sprite.hide()
 
 ## Place a tower in the world grid. Return true if successful, false if not. If `is_tranform` is `true`, the gold
 ## cost of the tower will not be subtracted from player gold.
@@ -165,10 +167,10 @@ func on_wave_complete() -> void:
 	gold += reward
 
 	# Tower Menu config
-	tower_menu.show_placement_phase()
-	tower_menu.update_gold(int(gold))
-
-	reset_towers()
+	if EnemySpawner.wave_index != EnemySpawner.level_waves.size():
+		tower_menu.show_placement_phase()
+		tower_menu.update_gold(int(gold))
+		reset_towers()
 
 ## For each tower in `active_towers` create a new tower object in `pre_wave_towers` with the same attributes. 
 ## This is a NEW `Tower` object and NOT a reference.
@@ -216,6 +218,10 @@ func play_tower_select_sfx(tower_name: String) -> void:
 func _input(_event):
 	if click_enabled and Input.is_action_just_pressed("left_click"):
 		spawn_tower(selected_tower_name, get_global_mouse_position(), false)
+
+	if click_enabled and Input.is_action_just_pressed("right_click"):
+		if selected_tower_name:
+			selected_tower_name = ""
 
 func on_mouse_entered_button() -> void:
 	click_enabled = false

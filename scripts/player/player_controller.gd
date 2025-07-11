@@ -96,6 +96,8 @@ func spawn_tower(tower_name: String, world_pos: Vector2, is_transform: bool=fals
 				# Clean up indicator
 				indicator_sprite.hide()
 
+				play_tower_select_sfx(tower_name)
+
 				selected_tower_name = ""
 				return [true, tower]
 			else:
@@ -155,6 +157,8 @@ func on_start_wave() -> void:
 	EnemySpawner.start_wave()
 	reward = EnemySpawner.active_wave.reward
 
+	SFXPlayer.play_sfx("go")
+
 func on_wave_complete() -> void:
 	# Update variables
 	placement_enabled = true	
@@ -202,6 +206,12 @@ func on_tower_unhovered(tower: Tower):
 		# Could check to see which but I don't think it is that important rn
 		tower.swap_sprite.hide()
 		tower.cross_sprite.hide()
+
+func play_tower_select_sfx(tower_name: String) -> void:
+	match tower_name:
+		"fire": SFXPlayer.play_sfx("fire_select")
+		"earth": SFXPlayer.play_sfx("earth_select")
+		"water": SFXPlayer.play_sfx("water_select")
 
 func _input(_event):
 	if click_enabled and Input.is_action_just_pressed("left_click"):

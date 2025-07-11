@@ -84,7 +84,8 @@ func on_enemy_died(enemy: Enemy) -> void:
 	var index = active_enemies.find(enemy)
 	if index != -1:
 		active_enemies.remove_at(index)
-		enemy.ap.play("die")
+		enemy.ap.play("die") # This may not need to be here and could MAYBE go in enemy. Not sure if queue_free() would cause race condition or issues...
+		enemy.play_explosion_sfx()
 
 func on_spawn_timer_timeout():
 	can_spawn_enemy = true

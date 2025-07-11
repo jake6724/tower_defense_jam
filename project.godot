@@ -21,6 +21,7 @@ GameManager="*res://scripts/game_manager.gd"
 EnemySpawner="*res://scripts/enemies/enemy_spawner.gd"
 WorldGrid="*res://scripts/world_grid.gd"
 MusicManager="*res://scripts/music_manager.gd"
+SFXPlayer="*res://scripts/sfx_player.gd"
 
 [display]
 

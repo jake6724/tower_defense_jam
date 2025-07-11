@@ -95,6 +95,7 @@ func _physics_process(_delta):
 func attack() -> void:
 	flip_to_face_active_target()
 	spawn_bullet()
+	play_shot_sfx()
 
 func update_active_target() -> void:
 	var selected_target: Enemy
@@ -152,6 +153,11 @@ func flip_to_face_active_target():
 		else:
 			sprite.flip_h = true
 
+func play_shot_sfx() -> void:
+	match element:
+		GameManager.Element.FIRE: SFXPlayer.play_sfx("fire_shot")
+		GameManager.Element.EARTH: SFXPlayer.play_sfx("earth_shot")
+		GameManager.Element.WATER: SFXPlayer.play_sfx("water_shot")
 
 func on_mouse_entered_transform_area():
 	tower_hovered.emit(self)

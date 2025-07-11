@@ -12,4 +12,3 @@ script = ExtResource("1_0bbpv")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="RoundInfo" parent="UI" instance=ExtResource("3_0bbpv")]
-mouse_filter = 2

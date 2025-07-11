@@ -114,7 +114,12 @@ func on_animation_finished(anim_name):
 
 func die() -> void:
 	%HealthBar.hide()
-	# position -= (sprite.texture.get_size() / 2)
 	can_attack = false
 	is_alive = false
 	is_dead.emit(self)
+
+func play_explosion_sfx():
+	match element:
+		GameManager.Element.FIRE: SFXPlayer.play_sfx("fire_explosion")
+		GameManager.Element.EARTH: SFXPlayer.play_sfx("water_explosion")
+		GameManager.Element.WATER: SFXPlayer.play_sfx("earth_explosion")

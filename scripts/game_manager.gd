@@ -11,9 +11,8 @@ var level_zero: PackedScene = preload("res://scenes/level/LevelEnvironmentZero.t
 var level_tutorial: PackedScene = preload("res://scenes/level/LevelEnvironmentTutorial.tscn")
 var level_one: PackedScene = preload("res://scenes/level/LevelEnvironmentOne.tscn")
 
-# THIS DETERMINES LEVEL ORDER @ UVULA
 var levels: Array[PackedScene] = [level_zero, level_tutorial, level_one]
-var level_index: int = 0 
+var level_index: int = 1
 var active_level: LevelEnvironment
 var active_path: PackedVector2Array
 var active_spawn_location: Vector2 # In world coordinates

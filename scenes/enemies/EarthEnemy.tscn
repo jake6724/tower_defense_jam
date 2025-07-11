@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d2l8n2rgh5duo"]
+[gd_scene load_steps=18 format=3 uid="uid://d2l8n2rgh5duo"]
 
 [ext_resource type="Script" uid="uid://dn6bxxa2tg45m" path="res://scripts/enemies/enemy.gd" id="1_vs1t4"]
 [ext_resource type="Resource" uid="uid://cwvipuex2alcf" path="res://data/enemies/earth_enemy.tres" id="2_4bdo8"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cwtda7bqtv044" path="res://assets/art/sprites/spr_enemy_earth_walk.png" id="5_oss8i"]
 [ext_resource type="Texture2D" uid="uid://rwec3xnhkxkf" path="res://assets/art/sprites/spr_ui_health_bar.png" id="6_oss8i"]
 [ext_resource type="Texture2D" uid="uid://potjn3pa0a7n" path="res://assets/art/sprites/spr_enemy_earth_hit.png" id="6_uu5pk"]
+[ext_resource type="Texture2D" uid="uid://e2uconnnmor6" path="res://assets/art/sprites/spr_enemy_earth_corpse.png" id="7_3puct"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4bdo8"]
 radius = 8.06226
@@ -225,8 +226,8 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_oss8i"]
 resource_name = "hit"
-length = 0.2
-step = 0.1
+length = 0.05
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -270,15 +271,69 @@ tracks/3/path = NodePath("Sprite2D:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0, 0.02),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0, 1]
 }
 
+[sub_resource type="Animation" id="Animation_uu5pk"]
+resource_name = "corpse"
+length = 2.0
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_3puct")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c7mxh"]
 _data = {
 &"RESET": SubResource("Animation_vumnu"),
+&"corpse": SubResource("Animation_uu5pk"),
 &"die": SubResource("Animation_c7mxh"),
 &"hit": SubResource("Animation_oss8i"),
 &"idle": SubResource("Animation_4bdo8"),

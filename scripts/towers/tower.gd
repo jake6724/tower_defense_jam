@@ -93,6 +93,7 @@ func _physics_process(_delta):
 	ap.play("idle")
 
 func attack() -> void:
+	flip_to_face_active_target()
 	spawn_bullet()
 
 func update_active_target() -> void:
@@ -142,6 +143,15 @@ func spawn_bullet() -> void:
 	new_bullet.target = active_target
 	new_bullet.position += new_bullet.pos_offset
 	add_child(new_bullet)
+
+func flip_to_face_active_target():
+	if active_target:
+		var direction: Vector2 = global_position.direction_to(active_target.global_position)
+		if direction > Vector2.ZERO:
+			sprite.flip_h = false
+		else:
+			sprite.flip_h = true
+
 
 func on_mouse_entered_transform_area():
 	tower_hovered.emit(self)

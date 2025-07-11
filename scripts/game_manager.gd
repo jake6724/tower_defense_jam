@@ -7,9 +7,11 @@ var cell_size: int = 16
 var main_scene: PackedScene = preload("res://scenes/Main.tscn")
 var main: Node2D
 
-var level_zero: PackedScene = preload("res://scenes/level/LevelEnvironmentTutorial.tscn")
+var level_zero: PackedScene = preload("res://scenes/level/LevelEnvironmentZero.tscn")
+var level_tutorial: PackedScene = preload("res://scenes/level/LevelEnvironmentTutorial.tscn")
+var level_one: PackedScene = preload("res://scenes/level/LevelEnvironmentOne.tscn")
 
-var levels: Array[PackedScene] = [level_zero, preload("res://scenes/level/LevelEnvironmentTutorial.tscn"), preload("res://scenes/level/LevelEnvironmentOne.tscn")]
+var levels: Array[PackedScene] = [level_tutorial, level_one]
 var level_index: int = 0
 var active_level: LevelEnvironment
 var active_path: PackedVector2Array

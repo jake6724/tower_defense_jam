@@ -1,8 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1tpevjl5vidt"]
+[gd_scene load_steps=12 format=3 uid="uid://d1tpevjl5vidt"]
 
 [ext_resource type="Script" uid="uid://1v42jjyvr5ed" path="res://scripts/towers/tower.gd" id="1_i5ies"]
 [ext_resource type="Resource" uid="uid://bplk0h2miw0yo" path="res://data/towers/water.tres" id="2_5t26u"]
 [ext_resource type="Texture2D" uid="uid://bl0s2x653xn2u" path="res://assets/art/sprites/spr_tower_water_idle.png" id="2_i5ies"]
+[ext_resource type="Texture2D" uid="uid://bytque4pb4xlc" path="res://assets/art/sprites/spr_ui_swap.png" id="4_ulvl6"]
+[ext_resource type="Texture2D" uid="uid://ddu5dkds6mgeh" path="res://assets/art/sprites/spr_ui_fire.png" id="5_hjywe"]
+[ext_resource type="Texture2D" uid="uid://8k0oajw470vq" path="res://assets/art/sprites/spr_ui_cross.png" id="5_snxhm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5t26u"]
 size = Vector2(16, 16)
@@ -128,3 +131,19 @@ debug_color = Color(4.04298e-06, 0.562972, 0.875305, 0.42)
 libraries = {
 &"": SubResource("AnimationLibrary_5t26u")
 }
+
+[node name="SwapSprite" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+texture = ExtResource("4_ulvl6")
+offset = Vector2(8, -8)
+
+[node name="Sprite2D" type="Sprite2D" parent="SwapSprite"]
+texture = ExtResource("5_hjywe")
+offset = Vector2(16, 0)
+
+[node name="CrossSprite" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+texture = ExtResource("5_snxhm")
+offset = Vector2(8, 8)

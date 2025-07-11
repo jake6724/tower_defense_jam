@@ -80,7 +80,10 @@ func spawn_tower(tower_name: String, world_pos: Vector2, is_transform: bool=fals
 				# Spawn and configure new tower
 				var tower = towers[tower_name].instantiate()
 				tower.position = GameManager.grid_to_world(grid_pos) # Bring it back to world to get a clean grid point
+				# Connect to signals (this needs be done in copy_active_towers_to_prewave_towers() as well!)
 				tower.transform_tower.connect(on_tower_transform.bind(tower))
+				tower.tower_hovered.connect(on_tower_hovered)
+				tower.tower_unhovered.connect(on_tower_unhovered)
 				add_child(tower)
 
 				# Update related data
@@ -170,6 +173,8 @@ func copy_active_towers_to_prewave_towers() -> void:
 		var copy: Tower = towers[tower.tower_name].instantiate()
 		copy.position = tower.position
 		copy.transform_tower.connect(on_tower_transform.bind(copy))
+		copy.tower_hovered.connect(on_tower_hovered)
+		copy.tower_unhovered.connect(on_tower_unhovered)
 		pre_wave_towers.append(copy)
 
 func reset_towers() -> void:
@@ -183,6 +188,20 @@ func reset_towers() -> void:
 	# Active towers becomes pre_wave; pre_wave is reset
 	active_towers = pre_wave_towers
 	pre_wave_towers = []
+
+func on_tower_hovered(tower: Tower):
+	if tower.can_transform:
+		if not placement_enabled:
+			if transformed_towers.has(tower) and not tower.cross_sprite.is_visible():
+				tower.cross_sprite.show()
+			else:
+				tower.swap_sprite.show()
+
+func on_tower_unhovered(tower: Tower):
+	if not placement_enabled:
+		# Could check to see which but I don't think it is that important rn
+		tower.swap_sprite.hide()
+		tower.cross_sprite.hide()
 
 func _input(_event):
 	if click_enabled and Input.is_action_just_pressed("left_click"):

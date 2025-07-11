@@ -1,0 +1,3 @@
+class_name TutorialLevelEnvironment
+extends LevelEnvironment
+

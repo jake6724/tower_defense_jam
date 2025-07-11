@@ -59,7 +59,6 @@ func take_damage(damage_recieved: float, tower_element: GameManager.Element):
 
 	health -= damage_recieved
 	var v = (health / max_health) * 100
-	print(v)
 	%HealthBar.value = v
 
 	if health <= 0:

@@ -1,8 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://fbdpqm6a86de"]
+[gd_scene load_steps=12 format=3 uid="uid://fbdpqm6a86de"]
 
 [ext_resource type="Script" uid="uid://1v42jjyvr5ed" path="res://scripts/towers/tower.gd" id="1_nus1c"]
 [ext_resource type="Texture2D" uid="uid://dh30ocxr6uk5n" path="res://assets/art/sprites/spr_tower_earth_idle.png" id="2_nus1c"]
 [ext_resource type="Resource" uid="uid://dscca5hkneedb" path="res://data/towers/earth.tres" id="2_tncdu"]
+[ext_resource type="Texture2D" uid="uid://bytque4pb4xlc" path="res://assets/art/sprites/spr_ui_swap.png" id="4_xdyxa"]
+[ext_resource type="Texture2D" uid="uid://8k0oajw470vq" path="res://assets/art/sprites/spr_ui_cross.png" id="5_aa3id"]
+[ext_resource type="Texture2D" uid="uid://bt1v03t0h2bp6" path="res://assets/art/sprites/spr_ui_water.png" id="5_jcr74"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tncdu"]
 size = Vector2(16, 16)
@@ -150,3 +153,19 @@ debug_color = Color(0.287137, 0.630308, 1.92523e-07, 0.42)
 libraries = {
 &"": SubResource("AnimationLibrary_tncdu")
 }
+
+[node name="SwapSprite" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+texture = ExtResource("4_xdyxa")
+offset = Vector2(8, -8)
+
+[node name="Sprite2D" type="Sprite2D" parent="SwapSprite"]
+texture = ExtResource("5_jcr74")
+offset = Vector2(16, 0)
+
+[node name="CrossSprite" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+texture = ExtResource("5_aa3id")
+offset = Vector2(8, 8)

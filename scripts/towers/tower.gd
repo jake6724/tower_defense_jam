@@ -5,6 +5,8 @@ extends Node2D
 
 # Child references
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var swap_sprite: Sprite2D = $SwapSprite
+@onready var cross_sprite: Sprite2D = $CrossSprite
 @onready var area: Area2D = $Area2D
 @onready var transform_area: Area2D = %TransformArea
 @onready var collider: CollisionShape2D = $Area2D/CollisionShape2D
@@ -14,6 +16,7 @@ var active_target: Enemy
 var in_range_targets: Array[Enemy] = []
 var attack_timer: Timer = Timer.new()
 var transform_timer: Timer = Timer.new()
+
 var can_transform: bool = false
 
 # Tower stats
@@ -36,6 +39,8 @@ var bullets: Dictionary[GameManager.Element, PackedScene] = {
 var debug_attack_line: Line2D = Line2D.new()
 
 signal transform_tower
+signal tower_hovered
+signal tower_unhovered
 
 func _ready():
 	element = tower_data.element
@@ -51,6 +56,8 @@ func _ready():
 
 	# Configure Transforming
 	transform_area.input_event.connect(on_transform_area_pressed)
+	transform_area.mouse_entered.connect(on_mouse_entered_transform_area)
+	transform_area.mouse_exited.connect(on_mouse_exited_transform_area)
 
 	# Configure CollisionShape2D
 	var shape: CircleShape2D = collider.shape
@@ -65,7 +72,7 @@ func _ready():
 	transform_timer.timeout.connect(on_transform_timer_timeout)
 	transform_timer.one_shot = true
 	add_child(transform_timer)
-	transform_timer.start(.1) # time until you can transform a tower (so it doesn't when you click to spawn it)
+	transform_timer.start(1) # time until you can transform a tower (so it doesn't when you click to spawn it)
 
 	debug_attack_line.width = 4
 	add_child(debug_attack_line)
@@ -130,6 +137,12 @@ func spawn_bullet() -> void:
 	new_bullet.target = active_target
 	new_bullet.position += new_bullet.pos_offset
 	add_child(new_bullet)
+
+func on_mouse_entered_transform_area():
+	tower_hovered.emit(self)
+
+func on_mouse_exited_transform_area():
+	tower_unhovered.emit(self)
 
 func on_transform_area_pressed(_viewport, _event, _shape_idx) -> void:
 	if can_transform:

@@ -72,7 +72,7 @@ func _physics_process(delta):
 
 func move(delta) -> void:
 	if path and is_alive:
-		ap.play("idle")
+		ap.play("walk")
 		if position.distance_to(path[0]) < min_distance:
 			# position = path[0]
 			path.remove_at(0)
@@ -104,7 +104,7 @@ func on_animation_finished(anim_name):
 
 func die() -> void:
 	%HealthBar.hide()
-	position -= (sprite.texture.get_size() / 2)
+	# position -= (sprite.texture.get_size() / 2)
 	can_attack = false
 	is_alive = false
 	is_dead.emit(self)

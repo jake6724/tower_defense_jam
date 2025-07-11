@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6lkclm3qwm4e"]
+
+[ext_resource type="Shader" uid="uid://btn76211mct8c" path="res://assets/art/scroll.gdshader" id="1_chaq1"]
+[ext_resource type="Texture2D" uid="uid://b8wt5ykepyrjo" path="res://assets/art/sprites/spr_ui_triangle.png" id="2_chaq1"]
+[ext_resource type="Texture2D" uid="uid://du4eqmkqh76la" path="res://assets/art/sprites/spr_ui_box2.png" id="3_67v2q"]
+[ext_resource type="Texture2D" uid="uid://dmda72qgk1nbj" path="res://assets/art/sprites/spr_tower_earth.png" id="4_xt0p4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lw6xl"]
+shader = ExtResource("1_chaq1")
+shader_parameter/xSpeed = 0.1
+shader_parameter/ySpeed = -0.1
+
+[node name="ScrollBackgroundTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0941176, 0.0941176, 0.25098, 1)
+
+[node name="Pattern" type="TextureRect" parent="."]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_lw6xl")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_chaq1")
+stretch_mode = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.5
+offset_top = -48.0
+offset_right = 78.5
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_67v2q")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="Fairy" type="TextureRect" parent="NinePatchRect"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_xt0p4")
+stretch_mode = 2

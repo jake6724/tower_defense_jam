@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://cy2dgc1h1mhqd" path="res://scripts/level/waypoint_manager.gd" id="7_cqlve"]
 [ext_resource type="PackedScene" uid="uid://c0jbspdabhoc1" path="res://scenes/player/Base.tscn" id="7_xfk66"]
 [ext_resource type="PackedScene" uid="uid://deixtoq82gyis" path="res://scenes/level/Waypoint.tscn" id="8_8amrt"]
-[ext_resource type="PackedScene" uid="uid://ciicsqtfh31fh" path="res://scenes/player/TowerMenu.tscn" id="9_dit66"]
+[ext_resource type="PackedScene" uid="uid://ciicsqtfh31fh" path="res://scenes/ui/TowerMenu.tscn" id="9_dit66"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ylovj"]
 texture = ExtResource("6_485kb")

@@ -31,11 +31,11 @@ func configure_level(active_level: LevelEnvironment):
 	level_waves = active_level.waves
 
 func clear_level():
-	for enemy: Enemy in active_enemies.duplicate(true):
-		active_enemies.remove_at(active_enemies.find(enemy))
-		enemy.is_dead.disconnect(on_enemy_died)
-		enemy.queue_free()
+	for child in get_children():
+		if child is Enemy:
+			child.queue_free()
 
+	active_enemies = []
 	level_waves = []
 	active_wave = null
 	wave_index = 0

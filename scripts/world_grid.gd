@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 @export var debug: bool = false
 
@@ -13,7 +13,7 @@ var tile_inidicator: PackedScene = preload("res://scenes/placeholders/TileIndica
 
 var active_tilemap: TileMapLayer
 
-var valid_atlas_coords: Array[Vector2i] = [
+var valid_atlas_coords: Array[Vector2i] = [ # Tiles that towers CAN be placed on; defined by tileset atlas coordinates
 	Vector2i(0,0),Vector2i(1,0),Vector2i(2,0),Vector2i(3,0),Vector2i(4,0),Vector2i(5,0),Vector2i(6,0),
 	Vector2i(0,1),Vector2i(1,1),Vector2i(2,1),Vector2i(3,1),Vector2i(4,1),Vector2i(5,1),Vector2i(6,1),
 	Vector2i(0,2),Vector2i(1,2),Vector2i(2,2),
@@ -27,8 +27,6 @@ var valid_atlas_coords: Array[Vector2i] = [
 	Vector2i(3,12),Vector2i(4,12),
 ]
 
-# func _ready():
-# 	generate_grid()
 
 func generate_grid() -> void:
 	# Reset values

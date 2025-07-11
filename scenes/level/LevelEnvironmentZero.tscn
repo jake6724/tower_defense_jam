@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c0jbspdabhoc1" path="res://scenes/player/Base.tscn" id="7_o8jjm"]
 [ext_resource type="Script" uid="uid://cy2dgc1h1mhqd" path="res://scripts/level/waypoint_manager.gd" id="8_4vp7k"]
 [ext_resource type="PackedScene" uid="uid://deixtoq82gyis" path="res://scenes/level/Waypoint.tscn" id="9_elnb1"]
-[ext_resource type="PackedScene" uid="uid://ciicsqtfh31fh" path="res://scenes/player/TowerMenu.tscn" id="10_bwsqc"]
+[ext_resource type="PackedScene" uid="uid://ciicsqtfh31fh" path="res://scenes/ui/TowerMenu.tscn" id="10_bwsqc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ylovj"]
 texture = ExtResource("6_0pqvd")

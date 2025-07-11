@@ -1,15 +1,15 @@
 [gd_scene load_steps=11 format=3 uid="uid://ciicsqtfh31fh"]
 
-[ext_resource type="Script" uid="uid://dhbvh3ym8unk4" path="res://scripts/towers/tower_menu.gd" id="1_vis4n"]
-[ext_resource type="Texture2D" uid="uid://b8c4r7msm3cdi" path="res://assets/art/sprites/spr_ui_coin_big.png" id="2_0avqp"]
-[ext_resource type="Texture2D" uid="uid://ducm8wc7gd0vx" path="res://assets/art/sprites/spr_ui_tower_fire.png" id="3_5nani"]
-[ext_resource type="Texture2D" uid="uid://c3lb7onbbfx5u" path="res://assets/art/sprites/spr_ui_tower_ice.png" id="4_jtt2a"]
-[ext_resource type="Texture2D" uid="uid://qaa0yn4cxbck" path="res://assets/art/sprites/spr_ui_tower_earth.png" id="5_f7nwt"]
-[ext_resource type="FontFile" uid="uid://cwmwdesn8l82o" path="res://assets/fonts/alagard.ttf" id="5_h11kl"]
-[ext_resource type="Texture2D" uid="uid://d3uwhutrtqgwi" path="res://assets/art/sprites/spr_ui_coin_small.png" id="6_4gbai"]
-[ext_resource type="Texture2D" uid="uid://b8wt5ykepyrjo" path="res://assets/art/sprites/spr_ui_triangle.png" id="7_0avqp"]
-[ext_resource type="FontFile" uid="uid://b4s1nia7yq8yo" path="res://assets/fonts/EarlyGameBoy.ttf" id="7_i0m07"]
-[ext_resource type="Texture2D" uid="uid://bod2y1cmadsde" path="res://assets/art/sprites/spr_ui_wavebutton.png" id="8_0avqp"]
+[ext_resource type="Script" uid="uid://dhbvh3ym8unk4" path="res://scripts/towers/tower_menu.gd" id="1_c8bcu"]
+[ext_resource type="Texture2D" uid="uid://b8c4r7msm3cdi" path="res://assets/art/sprites/spr_ui_coin_big.png" id="2_opq3w"]
+[ext_resource type="FontFile" uid="uid://cwmwdesn8l82o" path="res://assets/fonts/alagard.ttf" id="3_ur1ae"]
+[ext_resource type="Texture2D" uid="uid://b8wt5ykepyrjo" path="res://assets/art/sprites/spr_ui_triangle.png" id="4_638he"]
+[ext_resource type="Texture2D" uid="uid://bod2y1cmadsde" path="res://assets/art/sprites/spr_ui_wavebutton.png" id="5_gfj4e"]
+[ext_resource type="Texture2D" uid="uid://d3uwhutrtqgwi" path="res://assets/art/sprites/spr_ui_coin_small.png" id="6_g5j4q"]
+[ext_resource type="FontFile" uid="uid://b4s1nia7yq8yo" path="res://assets/fonts/EarlyGameBoy.ttf" id="7_r3bjd"]
+[ext_resource type="Texture2D" uid="uid://ducm8wc7gd0vx" path="res://assets/art/sprites/spr_ui_tower_fire.png" id="8_4bluh"]
+[ext_resource type="Texture2D" uid="uid://qaa0yn4cxbck" path="res://assets/art/sprites/spr_ui_tower_earth.png" id="9_rh755"]
+[ext_resource type="Texture2D" uid="uid://c3lb7onbbfx5u" path="res://assets/art/sprites/spr_ui_tower_ice.png" id="10_e3xib"]
 
 [node name="TowerMenu" type="Control"]
 layout_mode = 3
@@ -19,7 +19,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_vis4n")
+script = ExtResource("1_c8bcu")
 metadata/_custom_type_script = "uid://dhbvh3ym8unk4"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -48,7 +48,7 @@ texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-texture = ExtResource("2_0avqp")
+texture = ExtResource("2_opq3w")
 
 [node name="Gold" type="Label" parent="MarginContainer/HBoxContainer4/HBoxContainer3"]
 unique_name_in_owner = true
@@ -60,7 +60,7 @@ theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/outline_size = 0
 theme_override_constants/shadow_outline_size = 0
-theme_override_fonts/font = ExtResource("5_h11kl")
+theme_override_fonts/font = ExtResource("3_ur1ae")
 theme_override_font_sizes/font_size = 32
 text = "25"
 vertical_alignment = 2
@@ -70,7 +70,7 @@ texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
-texture = ExtResource("7_0avqp")
+texture = ExtResource("4_638he")
 
 [node name="WaveButton" type="TextureButton" parent="MarginContainer"]
 unique_name_in_owner = true
@@ -78,7 +78,7 @@ texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
-texture_normal = ExtResource("8_0avqp")
+texture_normal = ExtResource("5_gfj4e")
 
 [node name="WaveNumber" type="Label" parent="MarginContainer"]
 unique_name_in_owner = true
@@ -91,22 +91,22 @@ theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 4
 theme_override_constants/outline_size = 0
 theme_override_constants/shadow_outline_size = 0
-theme_override_fonts/font = ExtResource("5_h11kl")
+theme_override_fonts/font = ExtResource("3_ur1ae")
 theme_override_font_sizes/font_size = 64
 text = "Wave 3"
 
 [node name="LevelNumber" type="Label" parent="MarginContainer"]
 unique_name_in_owner = true
-visible = false
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_colors/font_shadow_color = Color(0.0941176, 0.0941176, 0.25098, 1)
+theme_override_colors/font_outline_color = Color(0.0941176, 0.0941176, 0.25098, 1)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 4
 theme_override_constants/shadow_outline_size = -2
-theme_override_fonts/font = ExtResource("5_h11kl")
+theme_override_fonts/font = ExtResource("3_ur1ae")
 theme_override_font_sizes/font_size = 64
 text = "Level 1"
 
@@ -135,7 +135,7 @@ custom_minimum_size = Vector2(7, 9)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("6_4gbai")
+texture = ExtResource("6_g5j4q")
 
 [node name="Label" type="Label" parent="MarginContainer/TowerButtons/VBoxContainer/HBoxContainer"]
 texture_filter = 1
@@ -145,7 +145,7 @@ theme_override_colors/font_shadow_color = Color(0.0941176, 0.0941176, 0.25098, 1
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 0
-theme_override_fonts/font = ExtResource("7_i0m07")
+theme_override_fonts/font = ExtResource("7_r3bjd")
 theme_override_font_sizes/font_size = 8
 text = "25"
 horizontal_alignment = 1
@@ -156,7 +156,7 @@ texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture_normal = ExtResource("3_5nani")
+texture_normal = ExtResource("8_4bluh")
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/TowerButtons"]
 layout_mode = 2
@@ -171,7 +171,7 @@ custom_minimum_size = Vector2(7, 9)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("6_4gbai")
+texture = ExtResource("6_g5j4q")
 
 [node name="Label" type="Label" parent="MarginContainer/TowerButtons/VBoxContainer3/HBoxContainer"]
 texture_filter = 1
@@ -181,7 +181,7 @@ theme_override_colors/font_shadow_color = Color(0.0941176, 0.0941176, 0.25098, 1
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 0
-theme_override_fonts/font = ExtResource("7_i0m07")
+theme_override_fonts/font = ExtResource("7_r3bjd")
 theme_override_font_sizes/font_size = 8
 text = "50"
 
@@ -191,7 +191,7 @@ texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture_normal = ExtResource("5_f7nwt")
+texture_normal = ExtResource("9_rh755")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/TowerButtons"]
 layout_mode = 2
@@ -206,7 +206,7 @@ custom_minimum_size = Vector2(7, 9)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("6_4gbai")
+texture = ExtResource("6_g5j4q")
 
 [node name="Label" type="Label" parent="MarginContainer/TowerButtons/VBoxContainer2/HBoxContainer"]
 texture_filter = 1
@@ -216,7 +216,7 @@ theme_override_colors/font_shadow_color = Color(0.0941176, 0.0941176, 0.25098, 1
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 0
-theme_override_fonts/font = ExtResource("7_i0m07")
+theme_override_fonts/font = ExtResource("7_r3bjd")
 theme_override_font_sizes/font_size = 8
 text = "75"
 
@@ -226,4 +226,4 @@ texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture_normal = ExtResource("4_jtt2a")
+texture_normal = ExtResource("10_e3xib")

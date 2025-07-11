@@ -11,8 +11,9 @@ var level_zero: PackedScene = preload("res://scenes/level/LevelEnvironmentZero.t
 var level_tutorial: PackedScene = preload("res://scenes/level/LevelEnvironmentTutorial.tscn")
 var level_one: PackedScene = preload("res://scenes/level/LevelEnvironmentOne.tscn")
 
-var levels: Array[PackedScene] = [level_tutorial, level_one]
-var level_index: int = 0
+# THIS DETERMINES LEVEL ORDER @ UVULA
+var levels: Array[PackedScene] = [level_zero, level_tutorial, level_one]
+var level_index: int = 2
 var active_level: LevelEnvironment
 var active_path: PackedVector2Array
 var active_spawn_location: Vector2 # In world coordinates
@@ -20,46 +21,45 @@ var active_spawn_location: Vector2 # In world coordinates
 var base: Base
 
 func _ready():
+	# configure_level() called in main - level only configured when main is ready to parent it
 	EnemySpawner.level_complete.connect(on_level_complete)
-	configure_level()
+	active_level = levels[level_index].instantiate()
 
 func configure_level():
-	active_level = levels[level_index].instantiate()
-	add_child(active_level)
+	main = get_tree().root.get_node("Main")
+	main.add_child(active_level)
 	active_path = convert_path_to_world((active_level.waypoint_manager.get_waypoint_path()))
 	active_spawn_location = (active_path[0])
 
 	base = active_level.base
-	base.base_destroyed.connect(on_base_destroyed)
+	base.base_destroyed.connect(start_level)
 
 	# Configure Autoloaders
 	WorldGrid.generate_grid()
 	WorldGrid.configure_tilemap(active_level.tilemap)
-
 	EnemySpawner.configure_level(active_level)
 
-func on_base_destroyed():
-	# Reset Main Scene
+func start_level():
+	# Reset autoloaders
+	clear_level()
+
+	# Instantiate a new level scene - will become a child of Main
+	active_level = levels[level_index].instantiate()
+
+	# Reset Main Scene - this will trigger configure_level()
 	get_tree().change_scene_to_packed(main_scene)
 
-	# Re-configure autoloaders
-	clear_level()
-	configure_level()
-
 func clear_level():
-	active_level.queue_free()
 	active_level = null
 	active_path = []
 	active_spawn_location = Vector2()
-
-	base.base_destroyed.disconnect(on_base_destroyed)
+	base.base_destroyed.disconnect(start_level)
 	base = null
-
 	EnemySpawner.clear_level()
 
 func on_level_complete(): # Emitted by EnemySpawner
 	level_index += 1
-	on_base_destroyed()
+	start_level()
 
 func convert_path_to_world(path) -> PackedVector2Array:
 	for i in range(path.size()):

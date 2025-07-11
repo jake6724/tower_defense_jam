@@ -98,6 +98,7 @@ func on_animation_finished(anim_name):
 		queue_free()
 
 func die() -> void:
+	%HealthBar.hide()
 	position -= (sprite.texture.get_size() / 2)
 	can_attack = false
 	is_alive = false

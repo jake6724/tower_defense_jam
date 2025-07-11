@@ -193,8 +193,6 @@ shape = SubResource("CircleShape2D_ikns8")
 libraries = {
 &"": SubResource("AnimationLibrary_h0ygw")
 }
-<<<<<<< HEAD
-=======
 
 [node name="HealthBar" type="TextureProgressBar" parent="."]
 unique_name_in_owner = true
@@ -209,4 +207,3 @@ grow_horizontal = 2
 value = 100.0
 texture_under = ExtResource("6_meion")
 texture_progress = ExtResource("5_lcirn")
->>>>>>> 6d6113b2415c5e86ad507e37dddc17fa2862e47a

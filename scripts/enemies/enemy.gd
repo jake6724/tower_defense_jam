@@ -39,7 +39,7 @@ func _ready():
 	set_resistances()
 
 	base = GameManager.base
-	
+
 	ap.animation_finished.connect(on_animation_finished)
 	
 ## Reduce enemies `health` stat by `damage_recieved`. Return `true` if enemy died, `false` otherwise.
@@ -50,7 +50,11 @@ func take_damage(damage_recieved: float, tower_element: GameManager.Element):
 	else: # Tower is strong against enemy
 		damage_recieved *= positive_modifier
 
+	if not %HealthBar.is_visible():
+		%HealthBar.show()
+
 	health -= damage_recieved
+	%HealthBar.value = health
 
 	if health <= 0:
 		die()

@@ -196,6 +196,7 @@ libraries = {
 [node name="HealthBar" type="TextureProgressBar" parent="."]
 unique_name_in_owner = true
 visible = false
+z_index = 4096
 texture_filter = 1
 anchors_preset = 5
 anchor_left = 0.5

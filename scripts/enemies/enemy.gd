@@ -68,9 +68,7 @@ func take_damage(damage_recieved: float, tower_element: GameManager.Element):
 		return true
 	else:
 		walk_resume_pos = ap.get_current_animation_position()
-		if ap.current_animation != "hit":
-			print("hit")
-			ap.play("hit")
+		ap.play("hit")
 		return false
 
 func _physics_process(delta):
@@ -109,6 +107,9 @@ func on_animation_finished(anim_name):
 		ap.seek(walk_resume_pos)
 
 	if anim_name == "die":
+		ap.play("corpse")
+
+	if anim_name == "corpse":
 		queue_free()
 
 func die() -> void:

@@ -11,4 +11,7 @@ func _ready():
 	music_player.volume_db = -16
 	add_child(music_player)
 	music_player.stream = track_1
-	music_player.play()
+	#music_player.play()
+
+	# Disable pausing
+	process_mode = Node.PROCESS_MODE_ALWAYS

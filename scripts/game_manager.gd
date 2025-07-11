@@ -12,7 +12,7 @@ var level_tutorial: PackedScene = preload("res://scenes/level/LevelEnvironmentTu
 var level_one: PackedScene = preload("res://scenes/level/LevelEnvironmentOne.tscn")
 
 var levels: Array[PackedScene] = [level_zero, level_tutorial, level_one]
-var level_index: int = 2
+var level_index: int = 1
 var active_level: LevelEnvironment
 var active_path: PackedVector2Array
 var active_spawn_location: Vector2 # In world coordinates
@@ -25,12 +25,14 @@ var level_complete_duration: float = 2
 func _ready():
 	# configure_level() called in main - level only configured when main is ready to parent it
 	EnemySpawner.level_complete.connect(on_level_complete)
-	active_level = levels[level_index].instantiate()
 
 	level_complete_timer.one_shot = true
 	level_complete_timer.autostart = false
 	level_complete_timer.timeout.connect(on_level_complete_message_finished)
 	add_child(level_complete_timer)
+
+func configure_active_level():
+	active_level = levels[level_index].instantiate()
 
 func configure_level():
 	main = get_tree().root.get_node("Main")

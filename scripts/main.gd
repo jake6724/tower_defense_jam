@@ -5,3 +5,9 @@ extends Node2D
 
 func _ready():
 	GameManager.configure_level()
+
+func pause_game():
+	get_tree().paused = true
+
+func unpause_game():
+	get_tree().paused = false

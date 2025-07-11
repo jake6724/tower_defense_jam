@@ -19,6 +19,7 @@ var enemies: Dictionary[GameManager.Element, PackedScene] = {
 # Signals
 signal wave_complete
 signal level_complete
+signal enemy_spawned
 
 func _ready():
 	# Configure Timer
@@ -79,6 +80,7 @@ func spawn_enemy(enemy_type: GameManager.Element):
 	add_child(new_enemy)
 
 	active_enemies.append(new_enemy)
+	enemy_spawned.emit()
 
 func on_enemy_died(enemy: Enemy) -> void:
 	var index = active_enemies.find(enemy)

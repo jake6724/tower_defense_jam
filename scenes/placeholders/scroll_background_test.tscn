@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6lkclm3qwm4e"]
+[gd_scene load_steps=6 format=3 uid="uid://d37yx87886ct2"]
 
 [ext_resource type="Shader" uid="uid://btn76211mct8c" path="res://assets/art/scroll.gdshader" id="1_chaq1"]
 [ext_resource type="Texture2D" uid="uid://b8wt5ykepyrjo" path="res://assets/art/sprites/spr_ui_triangle.png" id="2_chaq1"]
@@ -7,8 +7,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lw6xl"]
 shader = ExtResource("1_chaq1")
-shader_parameter/xSpeed = 0.1
-shader_parameter/ySpeed = -0.1
+shader_parameter/xSpeed = 0.6
+shader_parameter/ySpeed = -0.6
 
 [node name="ScrollBackgroundTest" type="Control"]
 layout_mode = 3
@@ -17,17 +17,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="BackgroundColor" type="ColorRect" parent="."]
+z_index = -1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.0941176, 0.0941176, 0.25098, 1)
 
 [node name="Pattern" type="TextureRect" parent="."]
+z_index = -1
 texture_filter = 1
 texture_repeat = 2
 material = SubResource("ShaderMaterial_lw6xl")
@@ -37,10 +43,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("2_chaq1")
 stretch_mode = 1
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
+z_index = -1
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -62,6 +70,8 @@ patch_margin_right = 16
 patch_margin_bottom = 16
 
 [node name="Fairy" type="TextureRect" parent="NinePatchRect"]
+visible = false
+z_index = -1
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -75,5 +85,6 @@ offset_right = 8.0
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("4_xt0p4")
 stretch_mode = 2

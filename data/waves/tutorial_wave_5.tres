@@ -1,12 +1,16 @@
-[gd_resource type="Resource" script_class="Wave" load_steps=5 format=3 uid="uid://cycxrsfnom6xu"]
+[gd_resource type="Resource" script_class="Wave" load_steps=9 format=3 uid="uid://cycxrsfnom6xu"]
 
 [ext_resource type="Script" uid="uid://cskry1sw3vqba" path="res://scripts/level/wave.gd" id="1_2mrye"]
-[ext_resource type="Script" uid="uid://drj0bkkfpdi50" path="res://scripts/enemies/spawn.gd" id="1_gwqqs"]
+[ext_resource type="Script" path="res://scripts/enemies/spawn.gd" id="1_gwqqs"]
 [ext_resource type="Resource" uid="uid://dna6k11dppmyk" path="res://data/spawn/fire_1.tres" id="2_ax33a"]
 [ext_resource type="Resource" uid="uid://8uj44s234ppj" path="res://data/spawn/fire_half.tres" id="3_fni2s"]
+[ext_resource type="Resource" uid="uid://bpgyidhyvooxc" path="res://data/spawn/fire_5.tres" id="3_klo2t"]
+[ext_resource type="Resource" uid="uid://codsdroc2rxtm" path="res://data/spawn/water_10.tres" id="3_uaksj"]
+[ext_resource type="Resource" uid="uid://cjgavyk2t226r" path="res://data/spawn/water_half.tres" id="5_pjq0g"]
+[ext_resource type="Resource" uid="uid://bvmpo726bxw8o" path="res://data/spawn/earth_1.tres" id="6_pjq0g"]
 
 [resource]
 script = ExtResource("1_2mrye")
-data = Array[ExtResource("1_gwqqs")]([ExtResource("2_ax33a"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s")])
+data = Array[ExtResource("1_gwqqs")]([ExtResource("5_pjq0g"), ExtResource("5_pjq0g"), ExtResource("5_pjq0g"), ExtResource("5_pjq0g"), ExtResource("5_pjq0g"), ExtResource("5_pjq0g"), ExtResource("5_pjq0g"), ExtResource("5_pjq0g"), ExtResource("3_uaksj"), ExtResource("2_ax33a"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_klo2t"), ExtResource("6_pjq0g"), ExtResource("6_pjq0g"), ExtResource("6_pjq0g"), ExtResource("6_pjq0g"), ExtResource("6_pjq0g")])
 reward = 0.0
 metadata/_custom_type_script = "uid://cskry1sw3vqba"

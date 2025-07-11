@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://d005asbs0koie"]
+[gd_scene load_steps=12 format=3 uid="uid://d005asbs0koie"]
 
 [ext_resource type="Script" uid="uid://dn6bxxa2tg45m" path="res://scripts/enemies/enemy.gd" id="1_8gdkf"]
 [ext_resource type="Resource" uid="uid://btkmprtnsviar" path="res://data/enemies/fire_enemy.tres" id="2_ikns8"]
 [ext_resource type="Texture2D" uid="uid://cien41finpp3o" path="res://assets/art/sprites/spr_enemy_fire.png" id="2_sdjlu"]
 [ext_resource type="Texture2D" uid="uid://clb7quodehgmr" path="res://assets/art/sprites/spr_fx_explosion.png" id="3_ikns8"]
+[ext_resource type="Texture2D" uid="uid://rwec3xnhkxkf" path="res://assets/art/sprites/spr_ui_health_bar.png" id="5_lcirn"]
+[ext_resource type="Texture2D" uid="uid://bs1li1amcuwmf" path="res://assets/art/sprites/spr_ui_health_bg.png" id="6_meion"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ikns8"]
 radius = 8.06226
@@ -191,3 +193,20 @@ shape = SubResource("CircleShape2D_ikns8")
 libraries = {
 &"": SubResource("AnimationLibrary_h0ygw")
 }
+<<<<<<< HEAD
+=======
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = -4.0
+offset_right = 16.0
+grow_horizontal = 2
+value = 100.0
+texture_under = ExtResource("6_meion")
+texture_progress = ExtResource("5_lcirn")
+>>>>>>> 6d6113b2415c5e86ad507e37dddc17fa2862e47a

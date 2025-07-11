@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://nifbpm4btkyy"]
+
+[ext_resource type="PackedScene" uid="uid://dubhjspmje3uk" path="res://scenes/ui/DialogueBox.tscn" id="1_1hs27"]
+[ext_resource type="Script" uid="uid://db06u0qolifvo" path="res://scripts/ui/tutorial_ui.gd" id="1_j5iru"]
+
+[node name="TutorialUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+script = ExtResource("1_j5iru")
+
+[node name="DialogueBox1" parent="." instance=ExtResource("1_1hs27")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = -93.0
+offset_top = -46.5
+offset_right = 93.0
+offset_bottom = 46.5
+
+[node name="Dialogue" parent="DialogueBox1/MarginContainer/MarginContainer/HBoxContainer" index="1"]
+text = "Enemies are attacking the realm!
+Quickly, You must Summon our spirits!"
+
+[node name="DialogueBox2" parent="." instance=ExtResource("1_1hs27")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+offset_left = -93.0
+offset_top = -46.0
+offset_right = 112.0
+offset_bottom = 65.0
+
+[node name="Dialogue" parent="DialogueBox2/MarginContainer/MarginContainer/HBoxContainer" index="1"]
+text = "Each spirit is strong against a certain element"
+
+[editable path="DialogueBox1"]
+[editable path="DialogueBox2"]

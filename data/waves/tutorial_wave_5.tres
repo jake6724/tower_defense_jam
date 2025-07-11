@@ -7,6 +7,10 @@
 
 [resource]
 script = ExtResource("1_2mrye")
+<<<<<<< HEAD
 data = Array[ExtResource("1_gwqqs")]([ExtResource("2_ax33a"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s")])
+=======
+data = Array[ExtResource("1_gwqqs")]([ExtResource("2_ax33a"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s")])
+>>>>>>> 4e39c42bd06cc7777f41b40e03e0064bbec193af
 reward = 0.0
 metadata/_custom_type_script = "uid://cskry1sw3vqba"

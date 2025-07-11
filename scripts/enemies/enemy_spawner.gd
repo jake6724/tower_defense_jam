@@ -61,7 +61,7 @@ func _physics_process(_delta):
 			if wave_index == level_waves.size():
 				level_complete.emit()
 
-		if can_spawn_enemy and enemy_index < active_wave.data.size():
+		elif can_spawn_enemy and enemy_index < active_wave.data.size():
 			var spawn_element: GameManager.Element = active_wave.data[enemy_index].element
 			var spawn_delay: float = active_wave.data[enemy_index].delay
 			spawn_enemy(spawn_element)

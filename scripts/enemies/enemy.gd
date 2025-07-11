@@ -12,6 +12,7 @@ var path: PackedVector2Array
 var min_distance: float = 1
 
 # Enemy Stats from Enemy Data Resource
+var max_health: float # Do not set manually; used in health bar calc
 var health: float
 var speed: float
 var element: GameManager.Element
@@ -33,10 +34,13 @@ signal is_dead
 func _ready():
 	path = GameManager.active_path.duplicate() # Enemies MUST use their own local copy
 	health = data.health
+
 	speed = data.speed
 	element = data.element
 
 	set_resistances()
+
+	max_health = health
 
 	base = GameManager.base
 
@@ -54,7 +58,9 @@ func take_damage(damage_recieved: float, tower_element: GameManager.Element):
 		%HealthBar.show()
 
 	health -= damage_recieved
-	%HealthBar.value = health
+	var v = (health / max_health) * 100
+	print(v)
+	%HealthBar.value = v
 
 	if health <= 0:
 		die()

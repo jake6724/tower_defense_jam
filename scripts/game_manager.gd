@@ -13,17 +13,25 @@ var level_one: PackedScene = preload("res://scenes/level/LevelEnvironmentOne.tsc
 
 # THIS DETERMINES LEVEL ORDER @ UVULA
 var levels: Array[PackedScene] = [level_zero, level_tutorial, level_one]
-var level_index: int = 2
+var level_index: int = 0 
 var active_level: LevelEnvironment
 var active_path: PackedVector2Array
 var active_spawn_location: Vector2 # In world coordinates
 
 var base: Base
 
+var level_complete_timer: Timer = Timer.new()
+var level_complete_duration: float = 2
+
 func _ready():
 	# configure_level() called in main - level only configured when main is ready to parent it
 	EnemySpawner.level_complete.connect(on_level_complete)
 	active_level = levels[level_index].instantiate()
+
+	level_complete_timer.one_shot = true
+	level_complete_timer.autostart = false
+	level_complete_timer.timeout.connect(on_level_complete_message_finished)
+	add_child(level_complete_timer)
 
 func configure_level():
 	main = get_tree().root.get_node("Main")
@@ -58,6 +66,10 @@ func clear_level():
 	EnemySpawner.clear_level()
 
 func on_level_complete(): # Emitted by EnemySpawner
+	main.round_info.show_level_complete()
+	level_complete_timer.start(level_complete_duration)
+
+func on_level_complete_message_finished():
 	level_index += 1
 	start_level()
 

@@ -7,7 +7,7 @@ var cell_size: int = 16
 var main_scene: PackedScene = preload("res://scenes/Main.tscn")
 var main: Node2D
 
-var level_zero: PackedScene = preload("res://scenes/level/LevelEnvironmentZero.tscn")
+var level_zero: PackedScene = preload("res://scenes/level/LevelEnvironmentTutorial.tscn")
 
 var levels: Array[PackedScene] = [level_zero, preload("res://scenes/level/LevelEnvironmentTutorial.tscn"), preload("res://scenes/level/LevelEnvironmentOne.tscn")]
 var level_index: int = 0

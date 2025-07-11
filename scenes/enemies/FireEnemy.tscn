@@ -191,7 +191,3 @@ shape = SubResource("CircleShape2D_ikns8")
 libraries = {
 &"": SubResource("AnimationLibrary_h0ygw")
 }
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0

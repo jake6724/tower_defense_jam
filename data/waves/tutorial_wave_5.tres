@@ -7,6 +7,6 @@
 
 [resource]
 script = ExtResource("1_2mrye")
-data = Array[ExtResource("1_gwqqs")]([ExtResource("2_ax33a"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+data = Array[ExtResource("1_gwqqs")]([ExtResource("2_ax33a"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s"), ExtResource("3_fni2s")])
 reward = 0.0
 metadata/_custom_type_script = "uid://cskry1sw3vqba"

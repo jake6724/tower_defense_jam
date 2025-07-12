@@ -13,7 +13,7 @@ config_version=5
 config/name="tower_defense_jam"
 run/main_scene="uid://yaumfsyoni78"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://df0lpdhv8ra1k"
 
 [autoload]
 

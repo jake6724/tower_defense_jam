@@ -1105,7 +1105,7 @@ position = Vector2(240, 192)
 position = Vector2(352, 192)
 
 [node name="Waypoint13" parent="WaypointManager" instance=ExtResource("4_kqnko")]
-position = Vector2(352, 128)
+position = Vector2(352, 112)
 
 [node name="UI Reference" type="CanvasLayer" parent="."]
 visible = false

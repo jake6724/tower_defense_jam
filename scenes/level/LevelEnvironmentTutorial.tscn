@@ -1071,7 +1071,7 @@ position = Vector2(0, 144)
 position = Vector2(352, 144)
 
 [node name="Waypoint3" parent="WaypointManager" instance=ExtResource("8_8amrt")]
-position = Vector2(352, 128)
+position = Vector2(352, 112)
 
 [node name="Reference(LEAVE_INVISIBLE)" type="CanvasLayer" parent="."]
 visible = false

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://d37yx87886ct2"]
 
 [ext_resource type="Shader" uid="uid://btn76211mct8c" path="res://assets/art/scroll.gdshader" id="1_chaq1"]
-[ext_resource type="Texture2D" uid="uid://b8wt5ykepyrjo" path="res://assets/art/sprites/spr_ui_triangle.png" id="2_chaq1"]
+[ext_resource type="Texture2D" uid="uid://ctm22yndbrhy3" path="res://assets/art/sprites/spr_ui_scroll.png" id="2_chaq1"]
 [ext_resource type="Texture2D" uid="uid://du4eqmkqh76la" path="res://assets/art/sprites/spr_ui_box2.png" id="3_67v2q"]
 [ext_resource type="Texture2D" uid="uid://dmda72qgk1nbj" path="res://assets/art/sprites/spr_tower_earth.png" id="4_xt0p4"]
 

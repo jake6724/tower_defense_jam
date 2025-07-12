@@ -10,6 +10,19 @@ extends Control
 @onready var wave_button: TextureButton = %WaveButton
 @onready var wave_number: Label = %WaveNumber
 @onready var level_number: Label = %LevelNumber
+@onready var progress: Label = %Progress
+
+var ui_tower_sprites: Dictionary[GameManager.Element, Texture] = {
+	GameManager.Element.FIRE: preload("res://assets/art/sprites/spr_ui_tower_fire.png"),
+	GameManager.Element.EARTH: preload("res://assets/art/sprites/spr_ui_tower_earth.png"),
+	GameManager.Element.WATER: preload("res://assets/art/sprites/spr_ui_tower_ice.png")
+}
+
+var locked_ui_tower_sprites: Dictionary[GameManager.Element, Texture] = {
+	GameManager.Element.FIRE: preload("res://assets/art/sprites/spr_ui_tower_fire_locked.png"),
+	GameManager.Element.EARTH: preload("res://assets/art/sprites/spr_ui_tower_earth_locked.png"),
+	GameManager.Element.WATER: preload("res://assets/art/sprites/spr_ui_tower_ice_locked.png")
+}
 
 # Signals
 signal tower_selected
@@ -75,6 +88,26 @@ func on_level_number_timer_timeout():
 ## Intended to be called by `player_controller` to directly update gold count
 func update_gold(new_amount: int) -> void:
 	gold.text = str(new_amount)
+
+func set_tower_button_sprites(_gold: float, fire_price: int , earth_price: int, water_price: int):
+	# Set Fire
+	if _gold >= fire_price:
+		fire_button.texture_normal = ui_tower_sprites[GameManager.Element.FIRE]
+	else:
+		fire_button.texture_normal = locked_ui_tower_sprites[GameManager.Element.FIRE]
+	# Set Earth
+	if _gold >= earth_price:
+		earth_button.texture_normal = ui_tower_sprites[GameManager.Element.EARTH]
+	else:
+		earth_button.texture_normal = locked_ui_tower_sprites[GameManager.Element.EARTH]
+	# Set Water
+	if _gold >= water_price:
+		water_button.texture_normal = ui_tower_sprites[GameManager.Element.WATER]
+	else:
+		water_button.texture_normal = locked_ui_tower_sprites[GameManager.Element.WATER]
+
+func update_progress():
+	progress.text = str(GameManager.level_index) + "-" + str(EnemySpawner.wave_index+1)
 
 func on_wave_button_pressed() -> void:
 	wave_number.text = "Wave " + str(EnemySpawner.wave_index+1)

@@ -18,12 +18,12 @@ func _process(_delta: float) -> void:
 		get_tree().quit()
 
 func _on_play_button_pressed() -> void:
-	GameManager.level_index = 2
+	GameManager.level_index = 1
 	GameManager.configure_active_level()
 	get_tree().change_scene_to_packed(main_scene)
 
 func _on_tutorial_button_pressed() ->void :
-	GameManager.level_index = 1
+	GameManager.level_index = 0
 	GameManager.configure_active_level()
 	get_tree().change_scene_to_packed(main_scene)
 
@@ -34,4 +34,3 @@ func _on_credits_button_pressed() -> void:
 func _on_go_back_button_pressed() -> void:
 	$Credits.hide()
 	$MainMenu.show()
-	

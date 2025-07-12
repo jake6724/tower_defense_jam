@@ -32,7 +32,7 @@ var pre_wave_towers: Array[Tower] = [] # Original configuration of towers during
 
 var placement_enabled: bool = true
 
-var gold: float
+var gold: int
 var reward: float
 
 var indicator_sprite: Sprite2D
@@ -47,8 +47,9 @@ func _ready():
 	tower_menu.mouse_exited_button.connect(on_mouse_exited_button)
 
 	tower_menu.show_level_number()
-	tower_menu.update_gold(int(gold)) # get this from GameManager active_level
-
+	tower_menu.update_gold(gold) # get this from GameManager active_level
+	tower_menu.set_tower_button_sprites(gold, prices["fire"],prices["earth"],prices["water"])
+	tower_menu.update_progress()
 	tower_menu.start_wave.connect(on_start_wave)
 
 	# Configure indicator sprite
@@ -60,6 +61,7 @@ func _ready():
 
 	# Connect to EnemySpawner
 	EnemySpawner.wave_complete.connect(on_wave_complete)
+	EnemySpawner.enemy_died.connect(on_enemy_died)
 
 func _process(_delta):
 	if placement_enabled and selected_tower_name in towers:
@@ -93,11 +95,11 @@ func spawn_tower(tower_name: String, world_pos: Vector2, is_transform: bool=fals
 				WorldGrid.data[grid_pos] = false
 				if not is_transform:
 					gold -= prices[tower_name]
-					tower_menu.update_gold(int(gold))
+					tower_menu.update_gold(gold)
 
 				# Clean up indicator
 				indicator_sprite.hide()
-
+				tower_menu.set_tower_button_sprites(gold, prices["fire"],prices["earth"],prices["water"])
 				play_tower_select_sfx(tower_name)
 
 				selected_tower_name = ""
@@ -164,13 +166,15 @@ func on_start_wave() -> void:
 func on_wave_complete() -> void:
 	# Update variables
 	placement_enabled = true	
-	gold += reward
+	gold += int(reward)
+	tower_menu.set_tower_button_sprites(gold, prices["fire"],prices["earth"],prices["water"])
 
 	# Tower Menu config
 	if EnemySpawner.wave_index != EnemySpawner.level_waves.size():
 		tower_menu.show_placement_phase()
 		tower_menu.update_gold(int(gold))
 		reset_towers()
+		tower_menu.update_progress()
 
 ## For each tower in `active_towers` create a new tower object in `pre_wave_towers` with the same attributes. 
 ## This is a NEW `Tower` object and NOT a reference.
@@ -214,6 +218,10 @@ func play_tower_select_sfx(tower_name: String) -> void:
 		"fire": SFXPlayer.play_sfx("fire_select")
 		"earth": SFXPlayer.play_sfx("earth_select")
 		"water": SFXPlayer.play_sfx("water_select")
+
+func on_enemy_died():
+	gold += 1
+	tower_menu.update_gold(gold)
 
 func _input(_event):
 	if click_enabled and Input.is_action_just_pressed("left_click"):

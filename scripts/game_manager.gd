@@ -7,12 +7,12 @@ var cell_size: int = 16
 var main_scene: PackedScene = preload("res://scenes/Main.tscn")
 var main: Node2D
 
-var level_zero: PackedScene = preload("res://scenes/level/LevelEnvironmentZero.tscn")
+# var level_zero: PackedScene = preload("res://scenes/level/LevelEnvironmentZero.tscn")
 var level_tutorial: PackedScene = preload("res://scenes/level/LevelEnvironmentTutorial.tscn")
 var level_one: PackedScene = preload("res://scenes/level/LevelEnvironmentOne.tscn")
 
-var levels: Array[PackedScene] = [level_zero, level_tutorial, level_one]
-var level_index: int = 1
+var levels: Array[PackedScene] = [level_tutorial, level_one]
+var level_index: int = 0
 var active_level: LevelEnvironment
 var active_path: PackedVector2Array
 var active_spawn_location: Vector2 # In world coordinates
@@ -65,6 +65,12 @@ func clear_level():
 	base.base_destroyed.disconnect(start_level)
 	base = null
 	EnemySpawner.clear_level()
+
+# func _input(event):
+# 	if Input.is_action_pressed("spacebar"):
+# 		Engine.time_scale = 4.0
+# 	if Input.is_action_just_released("spacebar"):
+# 		Engine.time_scale = 1.0
 
 func on_level_complete(): # Emitted by EnemySpawner
 	main.round_info.show_level_complete()

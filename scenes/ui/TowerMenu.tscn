@@ -36,7 +36,7 @@ theme_override_constants/margin_top = 4
 [node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_constants/separation = 168
+theme_override_constants/separation = 134
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/HBoxContainer4"]
 custom_minimum_size = Vector2(200, 0)
@@ -67,10 +67,24 @@ theme_override_font_sizes/font_size = 32
 text = "25"
 vertical_alignment = 2
 
-[node name="ElementGuide" type="TextureRect" parent="MarginContainer/HBoxContainer4"]
-texture_filter = 1
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/separation = 7
+
+[node name="Progress" type="Label" parent="MarginContainer/HBoxContainer4/HBoxContainer4"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("3_ur1ae")
+text = "1-10"
+
+[node name="ElementGuide" type="TextureRect" parent="MarginContainer/HBoxContainer4/HBoxContainer4"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 10
 size_flags_vertical = 4
 texture = ExtResource("4_638he")
 

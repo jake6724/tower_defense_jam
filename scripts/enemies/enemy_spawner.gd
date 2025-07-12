@@ -20,6 +20,7 @@ var enemies: Dictionary[GameManager.Element, PackedScene] = {
 signal wave_complete
 signal level_complete
 signal enemy_spawned
+signal enemy_died
 
 func _ready():
 	# Configure Timer
@@ -88,6 +89,7 @@ func on_enemy_died(enemy: Enemy) -> void:
 		active_enemies.remove_at(index)
 		enemy.ap.play("die") # This may not need to be here and could MAYBE go in enemy. Not sure if queue_free() would cause race condition or issues...
 		enemy.play_explosion_sfx()
+	enemy_died.emit()
 
 func on_spawn_timer_timeout():
 	can_spawn_enemy = true

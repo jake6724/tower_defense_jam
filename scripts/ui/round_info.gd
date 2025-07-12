@@ -7,3 +7,7 @@ extends Control
 func show_level_complete():
 	level_label.show()
 	level_label.text = "Level Complete!"
+
+func show_game_complete():
+	level_label.show()
+	level_label.text = "You win!"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d1tpevjl5vidt"]
+[gd_scene load_steps=13 format=3 uid="uid://d1tpevjl5vidt"]
 
 [ext_resource type="Script" uid="uid://1v42jjyvr5ed" path="res://scripts/towers/tower.gd" id="1_i5ies"]
 [ext_resource type="Resource" uid="uid://bplk0h2miw0yo" path="res://data/towers/water.tres" id="2_5t26u"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bytque4pb4xlc" path="res://assets/art/sprites/spr_ui_swap.png" id="4_ulvl6"]
 [ext_resource type="Texture2D" uid="uid://ddu5dkds6mgeh" path="res://assets/art/sprites/spr_ui_fire.png" id="5_hjywe"]
 [ext_resource type="Texture2D" uid="uid://8k0oajw470vq" path="res://assets/art/sprites/spr_ui_cross.png" id="5_snxhm"]
+[ext_resource type="Texture2D" uid="uid://b4g8en84fxspy" path="res://assets/placeholders/test_range.png" id="7_p0b8c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5t26u"]
 size = Vector2(16, 16)
@@ -147,3 +148,7 @@ visible = false
 texture_filter = 1
 texture = ExtResource("5_snxhm")
 offset = Vector2(8, 8)
+
+[node name="RangeIndicator" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+texture = ExtResource("7_p0b8c")

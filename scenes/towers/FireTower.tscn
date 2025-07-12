@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://mfpy8qxjx58x"]
+[gd_scene load_steps=13 format=3 uid="uid://mfpy8qxjx58x"]
 
 [ext_resource type="Script" uid="uid://1v42jjyvr5ed" path="res://scripts/towers/tower.gd" id="1_53w0b"]
 [ext_resource type="Resource" uid="uid://dmqkrjnii0xbf" path="res://data/towers/fire.tres" id="2_53w0b"]
 [ext_resource type="Texture2D" uid="uid://c3em678h7o11n" path="res://assets/art/sprites/spr_tower_fire_idle.png" id="2_bfb4r"]
 [ext_resource type="Texture2D" uid="uid://bytque4pb4xlc" path="res://assets/art/sprites/spr_ui_swap.png" id="4_0mo5k"]
+[ext_resource type="Texture2D" uid="uid://b4g8en84fxspy" path="res://assets/placeholders/test_range.png" id="4_yrnm3"]
 [ext_resource type="Texture2D" uid="uid://8k0oajw470vq" path="res://assets/art/sprites/spr_ui_cross.png" id="5_3x3sf"]
 [ext_resource type="Texture2D" uid="uid://2sexc1kk1x2h" path="res://assets/art/sprites/spr_ui_earth.png" id="5_miyej"]
 
@@ -140,7 +141,6 @@ hframes = 4
 unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransformArea"]
-visible = false
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_53w0b")
 
@@ -148,7 +148,6 @@ shape = SubResource("RectangleShape2D_53w0b")
 input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-visible = false
 position = Vector2(8, 8)
 scale = Vector2(1, 1.04698)
 shape = SubResource("CircleShape2D_53w0b")
@@ -174,3 +173,7 @@ visible = false
 texture_filter = 1
 texture = ExtResource("5_3x3sf")
 offset = Vector2(8, 8)
+
+[node name="RangeIndicator" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+texture = ExtResource("4_yrnm3")

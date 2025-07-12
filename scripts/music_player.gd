@@ -9,6 +9,7 @@ var start_track = track_1
 func _ready():
 	# Configure AudioStreamPlayer
 	music_player.volume_db = -16
+	music_player.bus = "music"
 	add_child(music_player)
 	music_player.stream = track_1
 	music_player.play()

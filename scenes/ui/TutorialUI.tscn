@@ -31,6 +31,7 @@ Quickly, Summon spirits to defend!"
 
 [node name="DialogueBox2" parent="." instance=ExtResource("1_1hs27")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 offset_left = -93.0
 offset_top = -46.0

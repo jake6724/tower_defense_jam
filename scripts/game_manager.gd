@@ -5,13 +5,15 @@ enum Element {FIRE, WATER, EARTH}
 var cell_size: int = 16
 
 var main_scene: PackedScene = preload("res://scenes/Main.tscn")
+var main_menu_scene: PackedScene = preload("res://scenes/MainMenu.tscn")
 var main: Node2D
 
-# var level_zero: PackedScene = preload("res://scenes/level/LevelEnvironmentZero.tscn")
+var level_zero: PackedScene = preload("res://scenes/level/LevelEnvironmentZero.tscn")
 var level_tutorial: PackedScene = preload("res://scenes/level/LevelEnvironmentTutorial.tscn")
 var level_one: PackedScene = preload("res://scenes/level/LevelEnvironmentOne.tscn")
 
 var levels: Array[PackedScene] = [level_tutorial, level_one]
+# var levels: Array[PackedScene] = [level_zero]
 var level_index: int = 0
 var active_level: LevelEnvironment
 var active_path: PackedVector2Array
@@ -21,6 +23,8 @@ var base: Base
 
 var level_complete_timer: Timer = Timer.new()
 var level_complete_duration: float = 2
+
+var fast_forward_speed: int = 2
 
 func _ready():
 	# configure_level() called in main - level only configured when main is ready to parent it
@@ -66,19 +70,28 @@ func clear_level():
 	base = null
 	EnemySpawner.clear_level()
 
-# func _input(event):
-# 	if Input.is_action_pressed("spacebar"):
-# 		Engine.time_scale = 4.0
-# 	if Input.is_action_just_released("spacebar"):
-# 		Engine.time_scale = 1.0
-
 func on_level_complete(): # Emitted by EnemySpawner
-	main.round_info.show_level_complete()
+	level_index += 1
+	if level_index == levels.size():
+		main.round_info.show_game_complete()
+	else:
+		main.round_info.show_level_complete()
+
 	level_complete_timer.start(level_complete_duration)
 
 func on_level_complete_message_finished():
-	level_index += 1
-	start_level()
+	# Exit to main menu if last level
+	if level_index == levels.size():
+		clear_level()
+		get_tree().change_scene_to_packed(main_menu_scene)
+	else:
+		start_level()
+
+func _input(_event):
+	if Input.is_action_pressed("fast_forward"):
+		Engine.time_scale = fast_forward_speed
+	if Input.is_action_just_released("fast_forward"):
+		Engine.time_scale = 1.0
 
 func convert_path_to_world(path) -> PackedVector2Array:
 	for i in range(path.size()):

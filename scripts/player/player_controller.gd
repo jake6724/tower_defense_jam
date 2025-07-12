@@ -17,6 +17,9 @@ var textures: Dictionary[String, Texture] = {
 	"earth": preload("res://assets/art/sprites/spr_tower_earth.png"),
 }
 
+var placement_indicator: PackedScene = preload("res://scenes/towers/PlacementIndicator.tscn")
+var indicator: Node2D
+
 var prices: Dictionary[String, int] = {
 	"fire": 25,
 	"water": 75,
@@ -35,8 +38,6 @@ var placement_enabled: bool = true
 var gold: int
 var reward: float
 
-var indicator_sprite: Sprite2D
-
 func _ready():
 	# ** EVERYTHING in here will only be done ONCE. If something needs to be done each level, put in configure_level()
 	gold = GameManager.active_level.initial_gold
@@ -53,11 +54,10 @@ func _ready():
 	tower_menu.start_wave.connect(on_start_wave)
 
 	# Configure indicator sprite
-	indicator_sprite = Sprite2D.new()
-	indicator_sprite.modulate.a = .75
-	indicator_sprite.centered = false
-	indicator_sprite.hide()
-	add_child(indicator_sprite)
+	indicator = placement_indicator.instantiate()
+	indicator.modulate.a = .75
+	indicator.hide()
+	add_child(indicator)
 
 	# Connect to EnemySpawner
 	EnemySpawner.wave_complete.connect(on_wave_complete)
@@ -65,9 +65,9 @@ func _ready():
 
 func _process(_delta):
 	if placement_enabled and selected_tower_name in towers:
-		indicator_sprite.position = GameManager.grid_to_world(GameManager.world_to_grid(get_global_mouse_position()))
+		indicator.position = GameManager.grid_to_world(GameManager.world_to_grid(get_global_mouse_position()))
 	else:
-		indicator_sprite.hide()
+		indicator.hide()
 
 ## Place a tower in the world grid. Return true if successful, false if not. If `is_tranform` is `true`, the gold
 ## cost of the tower will not be subtracted from player gold.
@@ -98,7 +98,7 @@ func spawn_tower(tower_name: String, world_pos: Vector2, is_transform: bool=fals
 					tower_menu.update_gold(gold)
 
 				# Clean up indicator
-				indicator_sprite.hide()
+				indicator.hide()
 				tower_menu.set_tower_button_sprites(gold, prices["fire"],prices["earth"],prices["water"])
 				play_tower_select_sfx(tower_name)
 
@@ -119,8 +119,8 @@ func on_tower_selected(tower_name: String) -> void:
 		selected_tower_name = tower_name
 
 		# Indicator
-		indicator_sprite.texture = textures[tower_name]
-		indicator_sprite.show()
+		indicator.tower_sprite.texture = textures[tower_name]
+		indicator.show()
 	else:
 		print("Not enough gold")
 

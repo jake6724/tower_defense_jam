@@ -11,6 +11,7 @@ extends Node2D
 @onready var transform_area: Area2D = %TransformArea
 @onready var collider: CollisionShape2D = $Area2D/CollisionShape2D
 @onready var ap: AnimationPlayer = $AnimationPlayer
+@onready var range_indicator = $RangeIndicator
 
 var active_target: Enemy
 var in_range_targets: Array[Enemy] = []
@@ -23,7 +24,7 @@ var can_transform: bool = false
 # Tower stats
 var damage: float
 var speed: float
-var attack_range: float = 55.0
+var attack_range: float = 50.0
 var num_targets: int
 var element: GameManager.Element
 var tower_name: String
@@ -64,9 +65,7 @@ func _ready():
 	var shape: CircleShape2D = collider.shape
 	shape.radius = attack_range
 
-	# # TODO
-	# var range_indicator: Polygon2D = Polygon2D.new()
-	# sprite.add_child(range_indicator)
+	range_indicator.hide()
 
 	# Configure Timers
 	attack_timer.timeout.connect(on_attack_timer_timeout)
@@ -160,9 +159,11 @@ func play_shot_sfx() -> void:
 		GameManager.Element.WATER: SFXPlayer.play_sfx("water_shot")
 
 func on_mouse_entered_transform_area():
+	range_indicator.show()
 	tower_hovered.emit(self)
 
 func on_mouse_exited_transform_area():
+	range_indicator.hide()
 	tower_unhovered.emit(self)
 
 func on_transform_area_pressed(_viewport, _event, _shape_idx) -> void:

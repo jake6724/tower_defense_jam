@@ -23,6 +23,7 @@ func _ready():
 	for i in range(num_players):
 		var new_player: AudioStreamPlayer = AudioStreamPlayer.new()
 		new_player.volume_db = volume
+		new_player.bus = "sfx"
 		add_child(new_player)
 		players.append(new_player)
 

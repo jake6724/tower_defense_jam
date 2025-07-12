@@ -9,7 +9,7 @@ extends Area2D
 @onready var ap: AnimationPlayer = $AnimationPlayer
 
 var path: PackedVector2Array
-var min_distance: float = 1
+var min_distance: float = 2
 
 # Enemy Stats from Enemy Data Resource
 var max_health: float # Do not set manually; used in health bar calc
@@ -78,9 +78,10 @@ func move(delta) -> void:
 	if path and is_alive:
 		ap.play("walk")
 		if position.distance_to(path[0]) < min_distance:
+			position = path[0]
 			path.remove_at(0)
 		else:
-			position = (position + ((path[0] - position).normalized() * speed * delta)) # Fixed with pixel snap in project settings, but not perfect
+			position = (position + ((path[0] - position).normalized() * speed * delta * Engine.time_scale)) # Fixed with pixel snap in project settings, but not perfect
 
 	else:
 		if can_attack:
